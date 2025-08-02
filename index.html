@@ -11,12 +11,20 @@
   <!-- Font Awesome for icons (mail/phone) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-xX2J3UlP8bIz7pPj9wVjZPQvP4gx+qX7YL8PbIHjKNqj7MsbO90iaC3q6iJFASsVHVuYLDhqAoPYfRZbjY2GcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css" />
+  <!-- Favicon: utilise l'icône écologique comme favicon -->
+  <link rel="icon" type="image/png" href="img/logo.png" />
   <!-- Script inutile pour l’instant (3D gérée en CSS) -->
 </head>
 <body>
   <header class="header">
     <nav class="navbar">
-      <div class="logo">Abdelilah El Ghazouani</div>
+      <div class="logo">
+        <!-- Photo de profil en logo dans le bandeau -->
+        <img src="img/profile.jpg" alt="Photo de Abdelilah El Ghazouani" class="profile-logo" />
+        <span>Abdelilah El Ghazouani</span>
+        <!-- Petit logo écologique à droite du nom -->
+        <img src="img/logo.png" alt="Icône écologique" class="eco-logo" />
+      </div>
       <input type="checkbox" id="menu-toggle" />
       <label for="menu-toggle" class="hamburger"><span></span><span></span><span></span></label>
       <ul class="nav-links">
@@ -28,7 +36,7 @@
     </nav>
     <section id="accueil" class="hero">
       <div class="hero-text">
-        <h1>Ingénieur&nbsp;Éco‑Énergéticien</h1>
+        <h1>Ingénieur Éco‑Énergéticien</h1>
         <p class="tagline">À la recherche d'un stage ou d'une alternance en 2025.</p>
         <a href="#cv" class="cta">Découvrir mon profil</a>
       </div>
@@ -44,6 +52,8 @@
   <main>
     <section id="cv" class="section">
       <h2>À propos de moi</h2>
+      <!-- Image de profil (remplaçable) -->
+      <img src="img/profile.jpg" alt="Photo de Abdelilah El Ghazouani" class="profile-photo" />
       <p>Je suis étudiant en cycle d’ingénierie éco‑énergéticien à l’ENSIATE (Paris). Passionné par les énergies renouvelables et la transition énergétique, je combine modélisation informatique et interventions de terrain afin d’optimiser la performance énergétique des installations. Je recherche un stage ou une alternance pour mettre mes compétences en pratique et contribuer à des projets innovants.</p>
       <h3>Expériences professionnelles</h3>
       <div class="timeline">
@@ -102,35 +112,35 @@
     <section id="projets" class="section">
       <h2>Projets</h2>
       <div class="projects-grid">
-        <article class="project-card">
+        <a href="gouttes.html" class="project-card">
           <h3>Gouttes d’Espoir</h3>
           <p>
             Co‑fondateur d’une solution solaire innovante pour le traitement de l’eau destinée à améliorer
             l’accès à l’eau potable tout en minimisant l’impact écologique. Le projet a été incubé et financé et s’est
             classé dans le Top 5 du concours IFMEREE Entreprendre.
           </p>
-        </article>
-        <article class="project-card">
+        </a>
+        <a href="techecocalc.html" class="project-card">
           <h3>TECHECOCALC AI</h3>
           <p>
             Création d’une plateforme web de calcul et de dimensionnement des systèmes solaires intégrant des analyses
             technico‑économiques et une interface conviviale. Ce projet vise à faciliter la conception de systèmes énergétiques performants.
           </p>
-        </article>
-        <article class="project-card">
-          <h3>Stage Temasol</h3>
+        </a>
+        <a href="stage-temasol.html" class="project-card">
+          <h3>Stage Temasol</h3>
           <p>
             Stage de 3 mois axé sur la maintenance des installations solaires thermiques et photovoltaïques. Mise en place
             d’un plan de maintenance préventive réduisant de 25 % le nombre de pannes et rédaction de rapports techniques.
           </p>
-        </article>
-        <article class="project-card">
+        </a>
+        <a href="operateur-csp.html" class="project-card">
           <h3>Opérateur CSP</h3>
           <p>
             Supervision en temps réel des paramètres de la centrale CSP Noor 1 via SCADA et participation à l’analyse des
             processus de production pour optimiser l’efficacité du site.
           </p>
-        </article>
+        </a>
       </div>
     </section>
     <section id="contact" class="section">
