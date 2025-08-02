@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abdelilah El Ghazouani | Portfolio</title>
+  <!-- Load a modern Google font for a clean look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+  <!-- Font Awesome for icons (mail/phone) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-xX2J3UlP8bIz7pPj9wVjZPQvP4gx+qX7YL8PbIHjKNqj7MsbO90iaC3q6iJFASsVHVuYLDhqAoPYfRZbjY2GcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Script inutile pour l’instant (3D gérée en CSS) -->
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar">
+      <div class="logo">Abdelilah El Ghazouani</div>
+      <input type="checkbox" id="menu-toggle" />
+      <label for="menu-toggle" class="hamburger"><span></span><span></span><span></span></label>
+      <ul class="nav-links">
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#cv">CV</a></li>
+        <li><a href="#projets">Projets</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <section id="accueil" class="hero">
+      <div class="hero-text">
+        <h1>Ingénieur&nbsp;Éco‑Énergéticien</h1>
+        <p class="tagline">À la recherche d'un stage ou d'une alternance en 2025.</p>
+        <a href="#cv" class="cta">Découvrir mon profil</a>
+      </div>
+      <!-- Panneau solaire 3D animé en CSS -->
+      <div id="panel3d" aria-hidden="true">
+        <div class="panel">
+          <div class="face front"></div>
+          <div class="face back"></div>
+        </div>
+      </div>
+    </section>
+  </header>
+  <main>
+    <section id="cv" class="section">
+      <h2>À propos de moi</h2>
+      <p>Je suis étudiant en cycle d’ingénierie éco‑énergéticien à l’ENSIATE (Paris). Passionné par les énergies renouvelables et la transition énergétique, je combine modélisation informatique et interventions de terrain afin d’optimiser la performance énergétique des installations. Je recherche un stage ou une alternance pour mettre mes compétences en pratique et contribuer à des projets innovants.</p>
+      <h3>Expériences professionnelles</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-date">Mai – Août 2024</span>
+          <h4>Technicien stagiaire – Maintenance &amp; SAV (Temasol)</h4>
+          <p>
+            • Maintenance préventive et corrective des systèmes solaires thermiques et photovoltaïques.<br />
+            • Réduction de 25 % des pannes en 3 mois grâce à un plan préventif.<br />
+            • Diagnostics et réparations (fuites, fluide frigorigène), remplacement de batteries et modules PV.<br />
+            • Rédaction de 15 rapports techniques et mise en place d’un suivi des pièces détachées (Excel + Power BI).
+          </p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">Juillet – Août 2023</span>
+          <h4>Opérateur en salle de contrôle – CSP (NOMAC Noor 1)</h4>
+          <p>
+            • Supervision en temps réel des paramètres (température du fluide, flux solaire) sur SCADA 24/7.<br />
+            • Étude complète des processus de production pour améliorer l'efficacité.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">Projet de fin d’études – 2024</span>
+          <h4>Maintenance des installations hors réseau (IFMEREE)</h4>
+          <p>
+            • Mise en œuvre d’un système automatisé de surveillance avec ESP32 + LoRa afin d’améliorer l’efficacité énergétique des installations hors réseau.<br />
+            • Résultat : réduction de 25 % des pannes grâce à une maintenance proactive.
+          </p>
+        </div>
+      </div>
+      <h3>Formations</h3>
+      <ul class="education-list">
+        <li><strong>Cycle d’ingénierie – Éco‑Énergéticien (BAC +3)</strong> – ENSIATE (Paris), 2024 – en cours</li>
+        <li><strong>Technicien spécialisé en systèmes d’énergies solaires</strong> – IFMEREE (Ouarzazate), 2022 – 2024</li>
+        <li><strong>Baccalauréat scientifique, option sciences physiques</strong> – Lycée Qualifiant Sidi Daouad (Ouarzazate), 2022</li>
+      </ul>
+      <h3>Compétences</h3>
+      <ul class="skills-list">
+        <li>Maintenance et gestion des équipements (GMAO)</li>
+        <li>Analyse et optimisation des performances énergétiques</li>
+        <li>Dimensionnement et simulation de systèmes énergétiques (T‑SOL, PVsyst, Pleiades, Archelios)</li>
+        <li>Régulation GTB et normes HQE / BREEAM / BBC / RE2020</li>
+        <li>Modélisation et programmation (Python, AutoCAD, Revit, CYPE)</li>
+        <li>Langues : français (courant), anglais (C1), arabe et amazigh (langues maternelles)</li>
+      </ul>
+      <h3>Certifications</h3>
+      <ul class="cert-list">
+        <li>Fondamentaux de la chaleur renouvelable – ADEME (2024)</li>
+        <li>Rénovation performante : les clés de la réhabilitation énergétique – MOOC (2024)</li>
+        <li>Concevoir une réhabilitation énergétique responsable du bâti ancien – MOOC (2024)</li>
+        <li>Huawei FusionSolar Certified Installer – 2023</li>
+        <li>ISO 50001:2018 – Gestion de l’énergie</li>
+        <li>EF SET English Certificate – Niveau C1 Advanced</li>
+      </ul>
+    </section>
+    <section id="projets" class="section">
+      <h2>Projets</h2>
+      <div class="projects-grid">
+        <article class="project-card">
+          <h3>Gouttes d’Espoir</h3>
+          <p>
+            Co‑fondateur d’une solution solaire innovante pour le traitement de l’eau destinée à améliorer
+            l’accès à l’eau potable tout en minimisant l’impact écologique. Le projet a été incubé et financé et s’est
+            classé dans le Top 5 du concours IFMEREE Entreprendre.
+          </p>
+        </article>
+        <article class="project-card">
+          <h3>TECHECOCALC AI</h3>
+          <p>
+            Création d’une plateforme web de calcul et de dimensionnement des systèmes solaires intégrant des analyses
+            technico‑économiques et une interface conviviale. Ce projet vise à faciliter la conception de systèmes énergétiques performants.
+          </p>
+        </article>
+        <article class="project-card">
+          <h3>Stage Temasol</h3>
+          <p>
+            Stage de 3 mois axé sur la maintenance des installations solaires thermiques et photovoltaïques. Mise en place
+            d’un plan de maintenance préventive réduisant de 25 % le nombre de pannes et rédaction de rapports techniques.
+          </p>
+        </article>
+        <article class="project-card">
+          <h3>Opérateur CSP</h3>
+          <p>
+            Supervision en temps réel des paramètres de la centrale CSP Noor 1 via SCADA et participation à l’analyse des
+            processus de production pour optimiser l’efficacité du site.
+          </p>
+        </article>
+      </div>
+    </section>
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <p>Vous souhaitez en savoir plus ou collaborer avec moi ? N’hésitez pas à me contacter.</p>
+      <p class="contact-info">
+        <i class="fas fa-phone"></i> 06 60 35 47 96<br />
+        <i class="fas fa-envelope"></i> <a href="mailto:abdelilahelghzouani@gmail.com">abdelilahelghzouani@gmail.com</a>
+      </p>
+    </section>
+  </main>
+  <footer>
+    © 2025 Abdelilah El Ghazouani
+  </footer>
+</body>
+</html>

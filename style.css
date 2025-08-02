@@ -1,0 +1,334 @@
+/* Base styling resets and variables */
+:root {
+  --primary: #1e88e5; /* deep blue reminiscent of clean energy */
+  --secondary: #00796b; /* teal accent for eco‑friendly vibes */
+  --light-bg: #fafafa;
+  --dark-text: #202124;
+  --muted-text: #5f6368;
+  --section-padding: 4rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  color: var(--dark-text);
+  background-color: var(--light-bg);
+  scroll-behavior: smooth;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: var(--secondary);
+}
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+.logo {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--primary);
+}
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+.nav-links li a {
+  font-weight: 500;
+  color: var(--dark-text);
+  position: relative;
+}
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  transition: width 0.3s ease;
+}
+.nav-links li a:hover::after {
+  width: 100%;
+}
+/* Hamburger menu for mobile */
+#menu-toggle {
+  display: none;
+}
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+.hamburger span {
+  height: 3px;
+  width: 25px;
+  background-color: var(--dark-text);
+  border-radius: 3px;
+}
+
+/* Hero section */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding-top: 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero-text {
+  text-align: center;
+  z-index: 10;
+  max-width: 600px;
+}
+.hero-text h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+.hero-text .tagline {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: var(--muted-text);
+}
+.cta {
+  display: inline-block;
+  background-color: var(--primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+.cta:hover {
+  background-color: var(--secondary);
+}
+
+/* 3D canvas container (fills remaining space) */
+#canvas-container {
+  display: none;
+}
+
+/* CSS‑based 3D panel in hero */
+#panel3d {
+  position: absolute;
+  top: 40%;
+  right: 8%;
+  transform: translate(50%, -50%);
+  width: 220px;
+  height: 140px;
+  perspective: 800px;
+  z-index: 1;
+}
+#panel3d .panel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotatePanel 18s linear infinite;
+}
+#panel3d .face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 6px;
+}
+#panel3d .front {
+  background: linear-gradient(135deg, #42a5f5, #1e88e5);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+#panel3d .back {
+  background: #455a64;
+  transform: rotateY(180deg);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+@keyframes rotatePanel {
+  from {
+    transform: rotateY(0deg) rotateX(12deg);
+  }
+  to {
+    transform: rotateY(360deg) rotateX(12deg);
+  }
+}
+
+/* Main sections */
+.section {
+  padding: var(--section-padding) 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+  text-align: center;
+}
+.section h3 {
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+  color: var(--secondary);
+}
+
+/* Timeline */
+.timeline {
+  margin-top: 1rem;
+  border-left: 3px solid var(--primary);
+  position: relative;
+  padding-left: 1.5rem;
+}
+.timeline-item {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -1.65rem;
+  top: 0.2rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  background-color: var(--primary);
+  border-radius: 50%;
+}
+.timeline-date {
+  font-size: 0.85rem;
+  color: var(--muted-text);
+}
+.timeline-item h4 {
+  margin: 0.3rem 0 0.5rem;
+  font-size: 1.1rem;
+  color: var(--dark-text);
+}
+.timeline-item p {
+  font-size: 0.95rem;
+  color: var(--muted-text);
+  line-height: 1.4;
+}
+
+/* Education and lists */
+.education-list,
+.skills-list,
+.cert-list {
+  list-style-type: disc;
+  padding-left: 1.2rem;
+  color: var(--muted-text);
+  margin-top: 0.5rem;
+}
+.education-list li,
+.skills-list li,
+.cert-list li {
+  margin-bottom: 0.4rem;
+}
+
+/* Projects */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.project-card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  color: var(--secondary);
+}
+.project-card p {
+  font-size: 0.95rem;
+  color: var(--muted-text);
+  line-height: 1.45;
+}
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+}
+
+/* Contact */
+.contact-info {
+  font-size: 1.1rem;
+  color: var(--dark-text);
+  margin-top: 1rem;
+}
+.contact-info i {
+  margin-right: 0.5rem;
+  color: var(--secondary);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: white;
+  margin-top: 4rem;
+  color: var(--muted-text);
+  font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .nav-links {
+    position: fixed;
+    top: 70px;
+    right: 0;
+    width: 60%;
+    height: calc(100% - 70px);
+    background-color: white;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem;
+    gap: 1rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+  .nav-links li {
+    width: 100%;
+  }
+  .nav-links li a {
+    font-size: 1.1rem;
+  }
+  #menu-toggle:checked + .hamburger + .nav-links {
+    transform: translateX(0);
+  }
+  .hamburger {
+    display: flex;
+  }
+
+  /* Masquer le panneau 3D sur mobile pour garder la lisibilité */
+  #panel3d {
+    display: none;
+  }
+}
