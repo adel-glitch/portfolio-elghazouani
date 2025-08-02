@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdelilah El Ghazouani – Portfolio (Version Moderne)</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-mJT3ZjxZN9+GwKXpbDc0IWSJ/dfS+4JZ3T8Lkrk5/jl/EqYD1fGDWqdMiOmKfPGhI2v9pOFujBcl/4q5m5qTog==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="img/profile.jpg" alt="Photo d'Abdelilah" class="nav-photo">
+            <h1 class="nav-title">Abdelilah&nbsp;El&nbsp;Ghazouani</h1>
+            <img src="img/logo.png" alt="Logo Éco-énergie" class="nav-icon">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#cv">CV</a></li>
+            <li><a href="#projets">Projets</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Héro avec animation 3D -->
+    <section id="accueil" class="hero-section">
+        <div class="hero-content">
+            <h2 class="hero-title">Ingénieur&nbsp;Éco‑Énergéticien</h2>
+            <p class="hero-subtitle">Concepteur de solutions durables et innovantes pour l’énergie de demain.</p>
+            <a href="#cv" class="btn-primary">Découvrir mon parcours</a>
+        </div>
+        <div class="hero-canvas-wrapper">
+            <canvas id="heroCanvas"></canvas>
+        </div>
+    </section>
+
+    <!-- CV / À propos -->
+    <section id="cv" class="about-section">
+        <div class="about-container">
+            <img src="img/profile.jpg" alt="Photo d'Abdelilah" class="about-photo">
+            <div class="about-text">
+                <h2>À propos de moi</h2>
+                <p>Étudiant en cycle d’ingénierie éco‑énergétique à l’ENSIATE (Paris), je suis passionné par les énergies renouvelables et la transition énergétique. Je combine modélisation informatique et interventions de terrain pour optimiser la performance énergétique des installations et imaginer des solutions adaptées aux nouveaux défis.</p>
+                <p>En recherche d’un stage ou d’une alternance à partir de 2025, je souhaite mettre mes compétences en œuvre au sein d’une équipe innovante et engagée.</p>
+            </div>
+        </div>
+        <div class="skills-container">
+            <h3>Compétences clés</h3>
+            <ul class="skills-list">
+                <li><i class="fa-solid fa-bolt"></i> Optimisation des performances énergétiques</li>
+                <li><i class="fa-solid fa-layer-group"></i> Dimensionnement &amp; simulation de systèmes</li>
+                <li><i class="fa-solid fa-code"></i> Programmation&nbsp;: Python, AutoCAD, Revit</li>
+                <li><i class="fa-solid fa-language"></i> Langues&nbsp;: Français, Anglais (C1), Arabe, Amazigh</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Section Projets -->
+    <section id="projets" class="projects-section">
+        <h2>Projets</h2>
+        <div class="projects-grid">
+            <a href="gouttes.html" class="project-card">
+                <h3>Gouttes d’Espoir</h3>
+                <p>Solution solaire innovante pour le traitement de l’eau.</p>
+            </a>
+            <a href="techecocalc.html" class="project-card">
+                <h3>TECHECOCALC&nbsp;AI</h3>
+                <p>Plateforme de calcul et de dimensionnement des systèmes solaires.</p>
+            </a>
+            <a href="stage-temasol.html" class="project-card">
+                <h3>Stage&nbsp;Temasol</h3>
+                <p>Maintenance préventive des installations solaires thermiques et PV.</p>
+            </a>
+            <a href="operateur-csp.html" class="project-card">
+                <h3>Opérateur&nbsp;CSP</h3>
+                <p>Contrôle en temps réel d’une centrale CSP Noor&nbsp;1 via SCADA.</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact-section">
+        <h2>Contact</h2>
+        <p>N’hésitez pas à me contacter pour discuter de vos projets ou d’opportunités d’alternance.</p>
+        <ul class="contact-list">
+            <li><i class="fa-solid fa-phone"></i> 06&nbsp;60&nbsp;35&nbsp;47&nbsp;96</li>
+            <li><i class="fa-solid fa-envelope"></i> <a href="mailto:abdelilahelghazouani@gmail.com">abdelilahelghazouani@gmail.com</a></li>
+        </ul>
+    </section>
+
+    <footer>
+        &copy; 2025 Abdelilah El&nbsp;Ghazouani – Portfolio Version Moderne
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r135/three.min.js" integrity="sha512-f5XgqlJxpnIU0Tx4paKNrIb1l5tVXngPrUv0sxu9oehcGM+OJpEmPJZdLnhI8JLKTO18V2y1kZ3mkSJxiONiFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="script.js"></script>
+</body>
+</html>
