@@ -28,10 +28,37 @@
     </ul>
   </nav>
 </header>
-
-<main class="section">
+    <style>
+        :root {
+            --primary: #1e88e5;
+            --secondary: #00796b;
+            --light: #f5f9fc;
+            --dark: #202124;
+            --muted: #5f6368;
+        }
+        body {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--light); color: var(--dark); margin: 0;}
+        header {background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 2rem 1rem; text-align: center;}
+        header h1 { font-size: 2rem; margin-top: 1rem; margin-bottom: 0.8rem; font-weight: 600; }
+        main {max-width: 950px; margin: -50px auto 0; background: White; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;}
+        section {padding: 2rem 2rem; border-bottom: 1px solid #e0e0e0;}
+        section:last-child {border-bottom: none;}
+        h2 {color: var(--primary); margin-top: 0; margin-bottom: 0.8rem; font-size: 1.6rem;}
+        h3 {color: var(--secondary); margin-top: 1.5rem; margin-bottom: 0.6rem; font-size: 1.3rem;}
+        p {line-height: 1.6; margin-bottom: 1rem;}
+        .chart-container {text-align: center; margin: 1.5rem 0;}
+        .chart-container img {max-width: 100%; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);}
+        ul {list-style: none; padding: 0; margin: 0;}
+        ul li {margin-bottom: 0.5rem;}
+        .documents a {color: var(--primary); text-decoration: none;}
+        .documents a:hover {text-decoration: underline;}
+        footer {background: var(--light); padding: 1.5rem; text-align: center; color: var(--muted); font-size: 0.9rem;}
+    </style>
+</head>
+<body>
+    <header>
   <h1>Évaluation Énergétique du Bâtiment</h1>
-
+        
+<main class="section">
   <h2>Introduction</h2>
   <p>Ce projet présente une étude énergétique d’un bâtiment tertiaire de 437,9 m² réalisée dans le cadre du module ENF 119 avec le logiciel Pleiades. L’objectif est d’optimiser les systèmes de chauffage, refroidissement, eau chaude sanitaire, ventilation et éclairage afin de réduire les consommations et les émissions de gaz à effet de serre, avec l’ambition d’atteindre une étiquette énergétique de classe A.</p>
 
