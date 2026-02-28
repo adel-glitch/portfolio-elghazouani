@@ -1,32 +1,29 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EHXMS5CHFZ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-EHXMS5CHFZ');
-</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TECHECOCALC AI | Portfolio</title>
+  <title>TECHECOCALC AI | Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-xX2J3UlP8bIz7pPj9wVjZPQvP4gx+qX7YL8PbIHjKNqj7MsbO90iaC3q6iJFASsVHVuYLDhqAoPYfRZbjY2GcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css" />
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="img/logo.png" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EHXMS5CHFZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EHXMS5CHFZ');
+  </script>
 </head>
 <body>
   <header class="header">
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
       <div class="logo">
-        <img src="img/profile.jpg" alt="Photo de Abdelilah El Ghazouani" class="profile-logo" />
-        <span>Abdelilah El Ghazouani</span>
+        <img src="img/profile.jpg" alt="Photo de Abdelilah El Ghazouani" class="profile-logo" />
+        <span>Abdelilah El Ghazouani</span>
         <img src="img/logo.png" alt="Icône écologique" class="eco-logo" />
       </div>
       <input type="checkbox" id="menu-toggle" />
@@ -39,21 +36,43 @@
       </ul>
     </nav>
   </header>
-  <main>
-    <section class="section">
-      <h2>TECHECOCALC AI</h2>
-      <img src="img/profile.jpg" alt="Illustration du projet TECHECOCALC AI" class="profile-photo" />
-      <p>
-        TECHECOCALC AI est une plateforme web que j’ai conçue pour faciliter le calcul et le dimensionnement des
-        systèmes solaires. Elle intègre des analyses technico‑économiques et une interface conviviale permettant aux
-        utilisateurs de simuler différents scénarios et de choisir la configuration optimale. Ce projet illustre mes
-        compétences en programmation et en modélisation ainsi que mon intérêt pour l’optimisation énergétique.
-      </p>
-      <p><a href="index.html#projets">← Retour aux projets</a></p>
-    </section>
+
+  <div class="subpage-hero">
+    <h1>TECHECOCALC AI</h1>
+    <p>Plateforme web de calcul et dimensionnement solaire</p>
+  </div>
+
+  <main class="subpage-content">
+    <h2>Présentation du projet</h2>
+    <p>
+      TECHECOCALC AI est une plateforme web que j'ai conçue pour faciliter le calcul et le dimensionnement des systèmes solaires. Elle intègre des analyses technico-économiques et une interface conviviale permettant aux utilisateurs de simuler différents scénarios et de choisir la configuration optimale.
+    </p>
+
+    <h2>Fonctionnalités principales</h2>
+    <ul>
+      <li>Dimensionnement automatisé des installations photovoltaïques</li>
+      <li>Analyses technico-économiques avec calcul du retour sur investissement</li>
+      <li>Interface utilisateur intuitive et responsive</li>
+      <li>Simulation de différents scénarios de configuration</li>
+      <li>Génération de rapports de dimensionnement</li>
+    </ul>
+
+    <h2>Technologies utilisées</h2>
+    <ul>
+      <li>Développement web (HTML, CSS, JavaScript)</li>
+      <li>Algorithmes de calcul et d'optimisation</li>
+      <li>Modélisation des systèmes solaires</li>
+    </ul>
+
+    <h2>Compétences mobilisées</h2>
+    <p>
+      Ce projet illustre mes compétences en programmation et en modélisation ainsi que mon intérêt pour l'optimisation énergétique. Il démontre ma capacité à concevoir des outils numériques au service de la transition énergétique.
+    </p>
+
+    <a href="index.html#projets" class="back-link">← Retour aux projets</a>
   </main>
-  <footer>
-    © 2025 Abdelilah El Ghazouani
-  </footer>
+
+  <footer>© 2026 Abdelilah El Ghazouani</footer>
+  <script src="script.js"></script>
 </body>
 </html>

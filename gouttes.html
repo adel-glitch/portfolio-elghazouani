@@ -1,32 +1,29 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EHXMS5CHFZ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-EHXMS5CHFZ');
-</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gouttes d’Espoir | Portfolio</title>
+  <title>Gouttes d'Espoir – Étude solaire | Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-xX2J3UlP8bIz7pPj9wVjZPQvP4gx+qX7YL8PbIHjKNqj7MsbO90iaC3q6iJFASsVHVuYLDhqAoPYfRZbjY2GcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css" />
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="img/logo.png" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EHXMS5CHFZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EHXMS5CHFZ');
+  </script>
 </head>
 <body>
   <header class="header">
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
       <div class="logo">
-        <img src="img/profile.jpg" alt="Photo de Abdelilah El Ghazouani" class="profile-logo" />
-        <span>Abdelilah El Ghazouani</span>
+        <img src="img/profile.jpg" alt="Photo de Abdelilah El Ghazouani" class="profile-logo" />
+        <span>Abdelilah El Ghazouani</span>
         <img src="img/logo.png" alt="Icône écologique" class="eco-logo" />
       </div>
       <input type="checkbox" id="menu-toggle" />
@@ -39,21 +36,35 @@
       </ul>
     </nav>
   </header>
-  <main>
-    <section class="section">
-      <h2>Gouttes d’Espoir</h2>
-      <img src="img/profile.jpg" alt="Photo du projet Gouttes d’Espoir" class="profile-photo" />
-      <p>
-        Gouttes d’Espoir est une solution solaire innovante pour le traitement de l’eau. En tant que co‑fondateur, j’ai
-        développé un dispositif utilisant l’énergie solaire pour purifier l’eau et améliorer l’accès à l’eau potable dans les
-        zones rurales. Le projet a été incubé et financé et s’est classé dans le Top 5 du concours IFMEREE Entreprendre.
-        Cette initiative démontre ma capacité à innover et à créer des solutions écologiques ayant un impact social positif.
-      </p>
-      <p><a href="index.html#projets">← Retour aux projets</a></p>
-    </section>
+
+  <div class="subpage-hero">
+    <h1>Gouttes d'Espoir</h1>
+    <p>Étude solaire – Dimensionnement PV pour le traitement d'eau</p>
+  </div>
+
+  <main class="subpage-content">
+    <h2>Contexte du projet</h2>
+    <p>
+      Gouttes d'Espoir est une solution solaire innovante pour le traitement de l'eau. En tant que chargé d'étude solaire au sein du bureau d'études, j'ai développé un dispositif utilisant l'énergie solaire pour purifier l'eau et améliorer l'accès à l'eau potable dans les zones rurales.
+    </p>
+
+    <h2>Missions réalisées</h2>
+    <ul>
+      <li>Dimensionnement du système photovoltaïque pour l'alimentation d'une unité de traitement d'eau</li>
+      <li>Analyse de faisabilité technico-économique adaptée aux zones rurales</li>
+      <li>Contribution à l'implémentation et à l'optimisation énergétique du système</li>
+      <li>Classement dans le Top 5 du concours IFMEREE Entreprendre</li>
+    </ul>
+
+    <h2>Impact</h2>
+    <p>
+      Le projet a été incubé et financé, démontrant sa viabilité technique et économique. Cette initiative illustre ma capacité à innover et à créer des solutions écologiques ayant un impact social positif, en combinant ingénierie solaire et développement durable.
+    </p>
+
+    <a href="index.html#projets" class="back-link">← Retour aux projets</a>
   </main>
-  <footer>
-    © 2025 Abdelilah El Ghazouani
-  </footer>
+
+  <footer>© 2026 Abdelilah El Ghazouani</footer>
+  <script src="script.js"></script>
 </body>
 </html>

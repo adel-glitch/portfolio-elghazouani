@@ -1,79 +1,199 @@
-/*
- * Script de gestion des animations 3D et autres interactions.
- * La scène 3D utilise Three.js pour afficher un panneau solaire stylisé qui tourne
- * lentement en arrière‑plan de la section d’accueil. L’objectif est de donner
- * un rendu moderne et technologique sans encombrer l’interface.
- */
+/* ============================================================
+   Portfolio – Abdelilah El Ghazouani
+   Interactive animations & scroll effects
+   ============================================================ */
 
-// Lorsque le DOM est entièrement chargé, initialiser la scène 3D
 document.addEventListener('DOMContentLoaded', () => {
-  init3DScene();
+  initNavbar();
+  initScrollReveal();
+  initTypingAnimation();
+  initCounterAnimation();
+  initActiveNavHighlight();
+  initSmoothMobileMenu();
 });
 
-function init3DScene() {
-  const container = document.getElementById('canvas-container');
-  // Crée le renderer et l’ajoute au conteneur
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setSize(container.clientWidth, container.clientHeight);
-  renderer.shadowMap.enabled = true;
-  container.appendChild(renderer.domElement);
+/* ---------- Navbar scroll effect ---------- */
+function initNavbar() {
+  const navbar = document.getElementById('navbar');
+  if (!navbar) return;
 
-  // Crée une scène et une caméra
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(
-    35,
-    container.clientWidth / container.clientHeight,
-    0.1,
-    100
-  );
-  camera.position.set(0, 0, 6);
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+}
 
-  // Ajoute une lumière ambiante douce
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
-  scene.add(ambientLight);
-  // Lumière directionnelle simulant le soleil
-  const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
-  dirLight.position.set(5, 5, 5);
-  scene.add(dirLight);
+/* ---------- Scroll Reveal (IntersectionObserver) ---------- */
+function initScrollReveal() {
+  const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children');
 
-  // Création du panneau solaire stylisé
-  // Dimensions du panneau (largeur, hauteur, profondeur minime)
-  const panelWidth = 3;
-  const panelHeight = 1.8;
-  const panelDepth = 0.08;
-
-  const panelGeometry = new THREE.BoxGeometry(panelWidth, panelHeight, panelDepth);
-  // Matériaux pour chaque face: top (bleu) + côtés (gris foncé)
-  const materials = [
-    new THREE.MeshStandardMaterial({ color: 0x455a64 }), // droite
-    new THREE.MeshStandardMaterial({ color: 0x455a64 }), // gauche
-    new THREE.MeshStandardMaterial({ color: 0x455a64 }), // dessus
-    new THREE.MeshStandardMaterial({ color: 0x455a64 }), // dessous
-    new THREE.MeshStandardMaterial({ color: 0x42a5f5 }), // avant (surface bleue du panneau)
-    new THREE.MeshStandardMaterial({ color: 0x42a5f5 })  // arrière
-  ];
-  const panelMesh = new THREE.Mesh(panelGeometry, materials);
-  scene.add(panelMesh);
-
-  // Incline légèrement le panneau pour un meilleur angle de vue
-  panelMesh.rotation.x = Math.PI / 8;
-  panelMesh.rotation.y = -Math.PI / 6;
-
-  // Animation de rotation lente
-  function animate() {
-    requestAnimationFrame(animate);
-    panelMesh.rotation.y += 0.003;
-    panelMesh.rotation.x += 0.001;
-    renderer.render(scene, camera);
+  if (!('IntersectionObserver' in window)) {
+    // Fallback: show everything
+    revealElements.forEach(el => el.classList.add('visible'));
+    return;
   }
-  animate();
 
-  // Gestion du redimensionnement de la fenêtre
-  window.addEventListener('resize', () => {
-    const { clientWidth, clientHeight } = container;
-    camera.aspect = clientWidth / clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(clientWidth, clientHeight);
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Don't unobserve stagger-children so they stay visible
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  revealElements.forEach(el => observer.observe(el));
+}
+
+/* ---------- Typing Animation ---------- */
+function initTypingAnimation() {
+  const typingEl = document.getElementById('typing');
+  if (!typingEl) return;
+
+  const phrases = [
+    'Rythme : 2 semaines école / 3 semaines entreprise',
+    'Solaire PV · CSP · Efficacité énergétique',
+    'Python · IoT · Simulation thermique',
+    'Certifié ISO 50001'
+  ];
+
+  let phraseIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  let pauseTimeout = null;
+
+  function type() {
+    const currentPhrase = phrases[phraseIndex];
+
+    if (isDeleting) {
+      charIndex--;
+      typingEl.textContent = currentPhrase.substring(0, charIndex);
+    } else {
+      charIndex++;
+      typingEl.textContent = currentPhrase.substring(0, charIndex);
+    }
+
+    let speed = isDeleting ? 30 : 60;
+
+    if (!isDeleting && charIndex === currentPhrase.length) {
+      // Pause at end of phrase
+      speed = 2500;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      speed = 400;
+    }
+
+    pauseTimeout = setTimeout(type, speed);
+  }
+
+  // Start after a short delay
+  setTimeout(type, 1000);
+}
+
+/* ---------- Counter Animation ---------- */
+function initCounterAnimation() {
+  const counters = document.querySelectorAll('.stat-number[data-target]');
+  if (counters.length === 0) return;
+
+  let animated = false;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !animated) {
+        animated = true;
+        counters.forEach(counter => {
+          const target = parseInt(counter.getAttribute('data-target'), 10);
+          const duration = 1500; // ms
+          const startTime = performance.now();
+
+          function updateCounter(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+
+            // Ease out cubic
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = Math.round(eased * target);
+
+            counter.textContent = current;
+
+            if (progress < 1) {
+              requestAnimationFrame(updateCounter);
+            } else {
+              counter.textContent = target;
+              // Add "+" suffix for some stats
+              if (target >= 4) {
+                counter.textContent = target + '+';
+              }
+            }
+          }
+
+          requestAnimationFrame(updateCounter);
+        });
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  // Observe the stats section
+  const statsSection = document.querySelector('.stats-section');
+  if (statsSection) {
+    observer.observe(statsSection);
+  }
+}
+
+/* ---------- Active Nav Link Highlighting ---------- */
+function initActiveNavHighlight() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  if (sections.length === 0 || navLinks.length === 0) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + id) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, {
+    threshold: 0.2,
+    rootMargin: '-80px 0px -50% 0px'
+  });
+
+  sections.forEach(section => observer.observe(section));
+}
+
+/* ---------- Mobile Menu Auto-close ---------- */
+function initSmoothMobileMenu() {
+  const toggle = document.getElementById('menu-toggle');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  if (!toggle) return;
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      toggle.checked = false;
+    });
   });
 }

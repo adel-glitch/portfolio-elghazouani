@@ -1,32 +1,29 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EHXMS5CHFZ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-EHXMS5CHFZ');
-</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stage Temasol | Portfolio</title>
+  <title>Stage Temasol – Maintenance solaire | Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-xX2J3UlP8bIz7pPj9wVjZPQvP4gx+qX7YL8PbIHjKNqj7MsbO90iaC3q6iJFASsVHVuYLDhqAoPYfRZbjY2GcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css" />
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="img/logo.png" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EHXMS5CHFZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EHXMS5CHFZ');
+  </script>
 </head>
 <body>
   <header class="header">
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
       <div class="logo">
-        <img src="img/profile.jpg" alt="Photo de Abdelilah El Ghazouani" class="profile-logo" />
-        <span>Abdelilah El Ghazouani</span>
+        <img src="img/profile.jpg" alt="Photo de Abdelilah El Ghazouani" class="profile-logo" />
+        <span>Abdelilah El Ghazouani</span>
         <img src="img/logo.png" alt="Icône écologique" class="eco-logo" />
       </div>
       <input type="checkbox" id="menu-toggle" />
@@ -39,21 +36,36 @@
       </ul>
     </nav>
   </header>
-  <main>
-    <section class="section">
-      <h2>Stage Temasol</h2>
-      <img src="img/profile.jpg" alt="Illustration du stage Temasol" class="profile-photo" />
-      <p>
-        Lors de mon stage de 3 mois chez Temasol, j’ai participé à la maintenance des installations solaires thermiques
-        et photovoltaïques. J’ai mis en place un plan de maintenance préventive qui a permis de réduire de 25 % le
-        nombre de pannes. Je réalisais des diagnostics, des réparations et la rédaction de rapports techniques. Cette
-        expérience pratique m’a permis de développer mes compétences en maintenance et gestion d’équipements.
-      </p>
-      <p><a href="index.html#projets">← Retour aux projets</a></p>
-    </section>
+
+  <div class="subpage-hero">
+    <h1>Stage Temasol</h1>
+    <p>Maintenance &amp; SAV – Systèmes solaires thermiques et photovoltaïques</p>
+  </div>
+
+  <main class="subpage-content">
+    <h2>Contexte du stage</h2>
+    <p>
+      Stage de 4 mois chez TEMASOL à Ouarzazate (Mai – Août 2024), axé sur la maintenance des installations solaires thermiques et photovoltaïques. TEMASOL est un acteur majeur de l'énergie solaire au Maroc.
+    </p>
+
+    <h2>Missions réalisées</h2>
+    <ul>
+      <li>Maintenance préventive et corrective des systèmes solaires thermiques et photovoltaïques</li>
+      <li>Mise en place d'un plan de maintenance préventive réduisant de 25 % le nombre de pannes en 3 mois</li>
+      <li>Diagnostics techniques et réparations sur site</li>
+      <li>Rédaction de 15 rapports techniques détaillés</li>
+      <li>Mise en place d'un suivi des pièces détachées (Excel + Power BI)</li>
+    </ul>
+
+    <h2>Résultats et compétences acquises</h2>
+    <p>
+      Cette expérience pratique m'a permis de développer mes compétences en maintenance et gestion d'équipements solaires. La réduction de 25 % des pannes démontre l'efficacité de l'approche préventive mise en place. J'ai également renforcé mes compétences en rédaction technique et en analyse de données avec Power BI.
+    </p>
+
+    <a href="index.html#projets" class="back-link">← Retour aux projets</a>
   </main>
-  <footer>
-    © 2025 Abdelilah El Ghazouani
-  </footer>
+
+  <footer>© 2026 Abdelilah El Ghazouani</footer>
+  <script src="script.js"></script>
 </body>
 </html>
