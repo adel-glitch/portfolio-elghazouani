@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trame Audit Énergétique Tertiaire – NF EN 16247 & DEET | Portfolio</title>
+<meta name="description" content="Trame interactive d'audit énergétique tertiaire conforme NF EN 16247-1/-2, Décret Tertiaire (DEET) et référentiel ADEME Perfimmo. Outil professionnel développé par Abdelilah El Ghazouani.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0e1a;
+  --bg2:#0f1419;
+  --card:#1a1f2e;
+  --card-h:#22293d;
+  --border:#2a3142;
+  --text:#e8eaf0;
+  --text2:#a8b0c0;
+  --text3:#6b7385;
+  --accent:#22c55e;
+  --accent2:#16a34a;
+  --blue:#3b82f6;
+  --amber:#f59e0b;
+  --red:#ef4444;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;font-size:15px;min-height:100vh}
+
+/* HEADER */
+.hdr{background:rgba(10,14,26,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;padding:1rem 2rem}
+.hdr-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+.hdr-brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:var(--text)}
+.hdr-brand img{width:36px;height:36px;border-radius:50%;border:2px solid var(--accent)}
+.hdr-brand .nm{font-weight:700;font-size:14px}
+.hdr-brand .tt{font-size:11px;color:var(--text3)}
+.hdr-nav{display:flex;gap:.4rem;align-items:center;font-size:13.5px}
+.hdr-nav a{color:var(--text2);text-decoration:none;padding:.5rem .9rem;border-radius:6px;transition:all .15s}
+.hdr-nav a:hover{color:var(--text);background:rgba(255,255,255,.04)}
+
+/* HERO */
+.hero{padding:4rem 2rem 3rem;background:linear-gradient(180deg,#0a0e1a 0%,#0f1419 100%);border-bottom:1px solid var(--border)}
+.hero-inner{max-width:1100px;margin:0 auto}
+.crumb{font-size:12px;color:var(--text3);margin-bottom:1rem;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em}
+.crumb a{color:var(--text3);text-decoration:none}
+.crumb a:hover{color:var(--accent)}
+.hero h1{font-size:2.5rem;font-weight:800;margin-bottom:.6rem;letter-spacing:-.02em;line-height:1.1}
+.hero h1 .acc{background:linear-gradient(90deg,var(--accent) 0%,#3b82f6 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{font-size:1.15rem;color:var(--text2);margin-bottom:1.5rem;max-width:850px}
+.hero-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.tag{padding:.35rem .8rem;border-radius:5px;font-size:11.5px;font-weight:500;font-family:'IBM Plex Mono',monospace;letter-spacing:.04em}
+.tag.green{background:rgba(34,197,94,.1);color:var(--accent);border:1px solid rgba(34,197,94,.25)}
+.tag.blue{background:rgba(59,130,246,.1);color:var(--blue);border:1px solid rgba(59,130,246,.25)}
+.tag.amber{background:rgba(245,158,11,.1);color:var(--amber);border:1px solid rgba(245,158,11,.25)}
+.hero-cta{display:flex;gap:.8rem;flex-wrap:wrap}
+.btn{padding:.85rem 1.6rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:14.5px;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem;border:none;cursor:pointer}
+.btn-p{background:var(--accent);color:#fff}
+.btn-p:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 8px 20px rgba(34,197,94,.25)}
+.btn-s{background:var(--card);color:var(--text);border:1px solid var(--border)}
+.btn-s:hover{background:var(--card-h);border-color:var(--accent)}
+
+/* SECTION */
+section{padding:3rem 2rem;border-bottom:1px solid var(--border)}
+.sec-inner{max-width:1100px;margin:0 auto}
+.sec-tit{font-size:1.55rem;font-weight:700;margin-bottom:.5rem;letter-spacing:-.01em}
+.sec-tit .num{color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:.8em;margin-right:.6rem}
+.sec-sub{color:var(--text2);margin-bottom:2rem;font-size:15px}
+
+/* INTRO */
+.intro p{font-size:1.05rem;color:var(--text2);margin-bottom:1rem;max-width:880px}
+.intro p strong{color:var(--text);font-weight:600}
+
+/* FEATURES GRID */
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:1.5rem}
+.feat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.4rem;transition:all .2s}
+.feat:hover{border-color:var(--accent);transform:translateY(-2px)}
+.feat .ico{font-size:1.7rem;margin-bottom:.7rem;display:block}
+.feat h3{font-size:1rem;font-weight:600;margin-bottom:.4rem;color:var(--text)}
+.feat p{font-size:13px;color:var(--text2);line-height:1.55}
+
+/* NORMS TABLE */
+.norms{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-top:1rem}
+.norms-row{display:grid;grid-template-columns:200px 1fr 120px;gap:1rem;padding:1rem 1.2rem;border-bottom:1px solid var(--border);align-items:center;font-size:14px}
+.norms-row:last-child{border-bottom:none}
+.norms-row.hdr-row{background:var(--bg2);font-weight:600;font-size:12px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;font-family:'IBM Plex Mono',monospace}
+.norms-row .nm{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--accent);font-size:13px}
+.norms-row .dx{color:var(--text2);font-size:13.5px}
+.norms-row .st{font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:.25rem .6rem;border-radius:4px;text-align:center}
+.st.ok{background:rgba(34,197,94,.15);color:var(--accent)}
+
+/* KPI */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-top:1.5rem}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem;text-align:center}
+.kpi-v{font-size:2.2rem;font-weight:800;color:var(--accent);font-family:'IBM Plex Mono',monospace;line-height:1;display:block;margin-bottom:.3rem}
+.kpi-l{font-size:12px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em}
+
+/* PREVIEW */
+.preview{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:0;margin-top:1.5rem;overflow:hidden}
+.preview-bar{background:var(--bg2);padding:.7rem 1rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+.preview-dots{display:flex;gap:.4rem}
+.preview-dots span{width:11px;height:11px;border-radius:50%;background:var(--border)}
+.preview-dots span:nth-child(1){background:#ff5f56}
+.preview-dots span:nth-child(2){background:#ffbd2e}
+.preview-dots span:nth-child(3){background:#27c93f}
+.preview-url{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--text3)}
+.preview-body{padding:2rem 1.5rem;text-align:center}
+.preview-body h3{font-size:1.3rem;margin-bottom:.5rem;color:var(--text)}
+.preview-body p{color:var(--text2);font-size:14px;margin-bottom:1.5rem}
+
+/* CTA */
+.cta-final{background:linear-gradient(135deg,var(--card) 0%,var(--card-h) 100%);border:1px solid var(--border);border-radius:14px;padding:3rem 2rem;text-align:center;margin-top:2rem}
+.cta-final h3{font-size:1.6rem;margin-bottom:.6rem}
+.cta-final p{color:var(--text2);margin-bottom:1.5rem;max-width:600px;margin-left:auto;margin-right:auto}
+
+/* FOOTER */
+footer{padding:2.5rem 2rem;text-align:center;color:var(--text3);font-size:13px}
+footer a{color:var(--accent);text-decoration:none}
+
+@media (max-width:768px){
+  .hero{padding:2.5rem 1.5rem 2rem}
+  .hero h1{font-size:1.85rem}
+  .hdr-nav a:not(.btn){display:none}
+  .norms-row{grid-template-columns:1fr;gap:.4rem}
+  .norms-row .st{text-align:left;width:fit-content}
+  section{padding:2rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ──────────────────────────────────────────── -->
+<header class="hdr">
+  <div class="hdr-inner">
+    <a href="index.html" class="hdr-brand">
+      <img src="img/profile.jpg" alt="Abdelilah El Ghazouani">
+      <div>
+        <div class="nm">Abdelilah El Ghazouani</div>
+        <div class="tt">Ingénieur Énergétique</div>
+      </div>
+    </a>
+    <nav class="hdr-nav">
+      <a href="index.html#accueil">Accueil</a>
+      <a href="index.html#projets">Projets</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="trame-audit.html" class="btn btn-p" style="padding:.45rem 1rem;font-size:13px">Ouvrir l'outil →</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ─── HERO ────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="crumb"><a href="index.html">Accueil</a> / <a href="index.html#projets">Projets</a> / Trame Audit Énergétique</div>
+    <h1>Trame Audit <span class="acc">Énergétique Tertiaire</span></h1>
+    <p class="sub">Outil web interactif conforme aux normes <strong>NF EN 16247-1/-2</strong>, au <strong>Décret Tertiaire (DEET)</strong> et au référentiel <strong>ADEME Perfimmo</strong>. Conçu pour structurer méthodiquement un audit énergétique tertiaire, du kick-off à la livraison du rapport final.</p>
+    <div class="hero-tags">
+      <span class="tag green">NF EN 16247-1</span>
+      <span class="tag green">NF EN 16247-2</span>
+      <span class="tag blue">DEET (Décret n°2019-771)</span>
+      <span class="tag blue">ADEME Perfimmo</span>
+      <span class="tag amber">BACS (Décret n°2020-887)</span>
+      <span class="tag amber">OPQIBI 1905</span>
+    </div>
+    <div class="hero-cta">
+      <a href="trame-audit.html" class="btn btn-p">🚀 Ouvrir la trame interactive</a>
+      <a href="#features" class="btn btn-s">Découvrir les fonctionnalités</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTEXTE ────────────────────────────────────────── -->
+<section>
+  <div class="sec-inner">
+    <h2 class="sec-tit"><span class="num">01</span>Contexte du projet</h2>
+    <p class="sec-sub">Un outil professionnel développé en alternance, pour répondre aux exigences réelles du métier</p>
+    <div class="intro">
+      <p>Dans le cadre de mon alternance au sein du <strong>Cabinet Energis</strong> (Bureau d'Études énergétique, Île-de-France), j'ai été confronté à la nécessité d'<strong>industrialiser</strong> la production d'audits énergétiques tertiaires. Le secteur fait face à des obligations réglementaires de plus en plus contraignantes :</p>
+      <p>• Le <strong>Décret Tertiaire (DEET)</strong> impose à tous les bâtiments tertiaires &gt; 1 000 m² une réduction de consommation de 40 % d'ici 2030, 50 % d'ici 2040 et 60 % d'ici 2050.<br>
+      • Le <strong>Décret BACS</strong> exige une GTB classe B depuis le 1er janvier 2025 pour les bâtiments &gt; 290 kW.<br>
+      • Les normes <strong>NF EN 16247-1 et -2</strong> imposent un processus rigoureux pour la qualification <strong>OPQIBI 1905</strong>.</p>
+      <p>Cette trame interactive est ma <strong>réponse méthodologique</strong> : structurer chaque audit selon les 12 étapes obligatoires, automatiser les calculs DEET (Créf, Crelat, Cabs), garantir la conformité normative, et produire un livrable professionnel.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONFORMITÉ NORMES ──────────────────────────────── -->
+<section style="background:var(--bg2)">
+  <div class="sec-inner">
+    <h2 class="sec-tit"><span class="num">02</span>Conformité normative</h2>
+    <p class="sec-sub">Couverture complète des exigences réglementaires et normatives applicables</p>
+    <div class="norms">
+      <div class="norms-row hdr-row">
+        <div>Référence</div>
+        <div>Description</div>
+        <div>Statut</div>
+      </div>
+      <div class="norms-row">
+        <div class="nm">NF EN 16247-1</div>
+        <div class="dx">Audits énergétiques — Exigences générales (réunion démarrage, collecte données, visite, analyse, rapport, clôture)</div>
+        <div class="st ok">✓ Couvert</div>
+      </div>
+      <div class="norms-row">
+        <div class="nm">NF EN 16247-2</div>
+        <div class="dx">Audits énergétiques — Exigences spécifiques aux bâtiments (enveloppe, systèmes, modélisation, scénarios)</div>
+        <div class="st ok">✓ Couvert</div>
+      </div>
+      <div class="norms-row">
+        <div class="nm">DEET</div>
+        <div class="dx">Décret n°2019-771 + Arrêtés Valeurs Absolues I à VI (Créf, Crelat 2030/2040/2050, Cabs par sous-catégorie OPERAT)</div>
+        <div class="st ok">✓ Couvert</div>
+      </div>
+      <div class="norms-row">
+        <div class="nm">ADEME Perfimmo</div>
+        <div class="dx">Référentiel ADEME en 10 chapitres (Contexte → Annexes) avec sections obligatoires (amiante, ponts thermiques, QAI...)</div>
+        <div class="st ok">✓ Couvert</div>
+      </div>
+      <div class="norms-row">
+        <div class="nm">Décret BACS</div>
+        <div class="dx">Décrets n°2020-887 et n°2023-259 — GTB classe B (NF EN ISO 52120-1), échéance 01/01/2025</div>
+        <div class="st ok">✓ Couvert</div>
+      </div>
+      <div class="norms-row">
+        <div class="nm">QAI ERP</div>
+        <div class="dx">Décret n°2022-1689 — Mesures CO₂, formaldéhyde, benzène, plan d'actions</div>
+        <div class="st ok">✓ Couvert</div>
+      </div>
+      <div class="norms-row">
+        <div class="nm">Ombrières PV</div>
+        <div class="dx">Loi n°2023-175, Décret n°2024-1023 — Obligation parkings &gt; 1 500 m²</div>
+        <div class="st ok">✓ Couvert</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FONCTIONNALITÉS ────────────────────────────────── -->
+<section id="features">
+  <div class="sec-inner">
+    <h2 class="sec-tit"><span class="num">03</span>Fonctionnalités</h2>
+    <p class="sec-sub">12 sections d'audit + 3 outils intégrés, dans une interface web responsive</p>
+    <div class="feat-grid">
+      <div class="feat">
+        <span class="ico">📋</span>
+        <h3>Réunion de démarrage</h3>
+        <p>Cadrage du périmètre, participants, documents à collecter, PV signé conforme NF EN 16247-1 §5.2</p>
+      </div>
+      <div class="feat">
+        <span class="ico">🏢</span>
+        <h3>Présentation du site</h3>
+        <p>SIRET, surface, catégorie OPERAT, IIU, exigences confort, historique des travaux</p>
+      </div>
+      <div class="feat">
+        <span class="ico">🧱</span>
+        <h3>Enveloppe & équipements</h3>
+        <p>Murs, menuiseries, toiture, ponts thermiques, chauffage, ECS, ventilation, GTB, éclairage</p>
+      </div>
+      <div class="feat">
+        <span class="ico">📊</span>
+        <h3>Consommations</h3>
+        <p>DJU multi-années, contrats, prix unitaires, ratios par poste, validation factures/simulation</p>
+      </div>
+      <div class="feat">
+        <span class="ico">🎯</span>
+        <h3>Objectifs DEET / OPERAT</h3>
+        <p>3 cas d'année de référence, Cabs étalon/référence/modulé, Crelat 2030/2040/2050, modulations</p>
+      </div>
+      <div class="feat">
+        <span class="ico">🌡</span>
+        <h3>Modélisation thermique</h3>
+        <p>Hypothèses fonctionnement, validation simulation/factures, écart &lt; 5 % requis</p>
+      </div>
+      <div class="feat">
+        <span class="ico">🌍</span>
+        <h3>Confort & aléas climat</h3>
+        <p>Vagues de chaleur (TRACC, PNACC-3), aléas littoraux, RGA, stratégies de résilience</p>
+      </div>
+      <div class="feat">
+        <span class="ico">💡</span>
+        <h3>Préconisations</h3>
+        <p>Bilan chiffré (gain, CAPEX, CEE, TRB), méthodologie économique formalisée</p>
+      </div>
+      <div class="feat">
+        <span class="ico">📈</span>
+        <h3>Scénarios DEET</h3>
+        <p>Gains rapides + Scénarios 2030/2040/2050 avec bilan investissement et économies</p>
+      </div>
+      <div class="feat">
+        <span class="ico">🧮</span>
+        <h3>Calculateur OPERAT</h3>
+        <p>Calcul automatique Créf, Crelat 2030/2040/2050, ratio Créf/Cabs en temps réel</p>
+      </div>
+      <div class="feat">
+        <span class="ico">✔</span>
+        <h3>Checklist conformité</h3>
+        <p>Validation point par point NF EN 16247-1, -2, DEET et BACS avant livraison</p>
+      </div>
+      <div class="feat">
+        <span class="ico">💾</span>
+        <h3>Export JSON / PDF</h3>
+        <p>Sauvegarde des données saisies + export PDF print-ready pour livraison client</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── KPI ─────────────────────────────────────────────── -->
+<section style="background:var(--bg2)">
+  <div class="sec-inner">
+    <h2 class="sec-tit"><span class="num">04</span>L'outil en chiffres</h2>
+    <p class="sec-sub">Une couverture exhaustive de la méthodologie d'audit</p>
+    <div class="kpi-grid">
+      <div class="kpi"><span class="kpi-v">12</span><span class="kpi-l">Sections d'audit</span></div>
+      <div class="kpi"><span class="kpi-v">3</span><span class="kpi-l">Outils intégrés</span></div>
+      <div class="kpi"><span class="kpi-v">7</span><span class="kpi-l">Normes & décrets</span></div>
+      <div class="kpi"><span class="kpi-v">50+</span><span class="kpi-l">Tableaux & formulaires</span></div>
+      <div class="kpi"><span class="kpi-v">100%</span><span class="kpi-l">Conforme ADEME</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PREVIEW ─────────────────────────────────────────── -->
+<section>
+  <div class="sec-inner">
+    <h2 class="sec-tit"><span class="num">05</span>Démonstration</h2>
+    <p class="sec-sub">Accédez à la trame interactive complète</p>
+    <div class="preview">
+      <div class="preview-bar">
+        <div class="preview-dots"><span></span><span></span><span></span></div>
+        <div class="preview-url">abdelilah-elghazouani.pro/trame-audit.html</div>
+        <div style="width:50px"></div>
+      </div>
+      <div class="preview-body">
+        <h3>🚀 Trame Audit Énergétique v3.0</h3>
+        <p>Outil web interactif avec sauvegarde JSON, calculateur OPERAT et checklist conformité</p>
+        <a href="trame-audit.html" class="btn btn-p">Ouvrir la trame interactive →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── COMPÉTENCES MOBILISÉES ─────────────────────────── -->
+<section style="background:var(--bg2)">
+  <div class="sec-inner">
+    <h2 class="sec-tit"><span class="num">06</span>Compétences mobilisées</h2>
+    <p class="sec-sub">Au-delà de la technique énergétique, ce projet montre une maîtrise multidisciplinaire</p>
+    <div class="feat-grid">
+      <div class="feat">
+        <span class="ico">⚡</span>
+        <h3>Énergétique tertiaire</h3>
+        <p>Maîtrise du DEET, normes NF EN 16247, méthodologie d'audit, calculs Cabs/Crelat, sous-catégories OPERAT</p>
+      </div>
+      <div class="feat">
+        <span class="ico">📐</span>
+        <h3>Méthodologie</h3>
+        <p>Structuration rigoureuse des processus d'audit, conformité aux référentiels ADEME et OPQIBI</p>
+      </div>
+      <div class="feat">
+        <span class="ico">💻</span>
+        <h3>Développement web</h3>
+        <p>HTML5, CSS3, JavaScript vanilla, design responsive, gestion d'état, export JSON</p>
+      </div>
+      <div class="feat">
+        <span class="ico">🎨</span>
+        <h3>UX/UI Design</h3>
+        <p>Interface professionnelle inspirée des outils ADEME, navigation fluide, codes couleur métier</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA FINAL ──────────────────────────────────────── -->
+<section>
+  <div class="sec-inner">
+    <div class="cta-final">
+      <h3>🚀 Tester la trame interactive</h3>
+      <p>Découvrez l'outil web complet, sauvegardez vos données et générez vos rapports PDF.</p>
+      <div class="hero-cta" style="justify-content:center">
+        <a href="trame-audit.html" class="btn btn-p">Ouvrir la trame →</a>
+        <a href="index.html#contact" class="btn btn-s">Me contacter</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────────────── -->
+<footer>
+  <p>© 2026 Abdelilah El Ghazouani · <a href="index.html">Portfolio</a> · <a href="index.html#contact">Contact</a></p>
+</footer>
+
+</body>
+</html>
