@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trame Audit Énergétique Tertiaire – Conforme NF EN 16247 & DEET | Abdelilah El Ghazouani</title>
+<meta name="description" content="Trame interactive d'audit énergétique tertiaire conforme NF EN 16247-1/-2, ADEME Perfimmo et Décret Tertiaire (DEET). Outil professionnel pour Bureaux d'études.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0D1B2A;--navy2:#1A2E42;--blue:#1565C0;--blue-l:#42A5F5;
+  --teal:#00897B;--teal-l:#4DB6AC;--amber:#E65100;--red:#B71C1C;--red-l:#EF5350;
+  --green:#1B5E20;--green-l:#43A047;--slate:#546E7A;
+  --border:#CFD8DC;--border-dk:#90A4AE;--bg:#ECEFF1;--bg2:#F5F7F9;
+  --white:#FFF;--text:#0D1B2A;--text2:#37474F;--text3:#607D8B;
+  --tip-bg:#E3F2FD;--tip-bd:#90CAF9;--tip-tx:#0D47A1;
+  --warn-bg:#FFF8E1;--warn-bd:#FFE082;--warn-tx:#E65100;
+  --sidebar-w:300px;
+  --portfolio-accent:#2E7D32;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:13.5px;line-height:1.6}
+
+/* Bannière portfolio */
+.portfolio-banner{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);color:white;padding:.8rem 2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid var(--portfolio-accent);position:sticky;top:0;z-index:100}
+.pb-left{display:flex;align-items:center;gap:1rem}
+.pb-name{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem}
+.pb-name span{color:var(--portfolio-accent);font-weight:500}
+.pb-tag{font-size:10.5px;color:rgba(255,255,255,0.6);font-family:'IBM Plex Mono',monospace;letter-spacing:.05em}
+.pb-right{display:flex;gap:.8rem;align-items:center}
+.pb-link{color:rgba(255,255,255,0.7);text-decoration:none;font-size:12px;padding:.3rem .7rem;border-radius:4px;transition:all .15s}
+.pb-link:hover{color:white;background:rgba(255,255,255,0.08)}
+.pb-link.primary{background:var(--portfolio-accent);color:white}
+.pb-link.primary:hover{background:#1B5E20}
+
+.app{display:flex;min-height:calc(100vh - 60px)}
+.sidebar{width:var(--sidebar-w);min-height:calc(100vh - 60px);background:var(--navy);color:white;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;flex-shrink:0;display:flex;flex-direction:column}
+.sb-logo{padding:1.2rem 1.2rem .9rem;border-bottom:1px solid rgba(255,255,255,0.07)}
+.sb-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(66,165,245,0.15);border:1px solid rgba(66,165,245,0.3);color:var(--blue-l);font-size:10px;font-weight:600;letter-spacing:.1em;padding:3px 8px;border-radius:3px;margin-bottom:7px;font-family:'IBM Plex Mono',monospace}
+.sb-logo h1{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:white;line-height:1.3}
+.sb-logo p{font-size:11px;color:rgba(255,255,255,0.38);margin-top:3px}
+.pb-wrap{background:rgba(255,255,255,0.08);border-radius:10px;height:4px;margin:8px 0 0;overflow:hidden}
+.pb-bar{background:linear-gradient(90deg,var(--blue-l),var(--teal-l));height:100%;border-radius:10px;transition:width .4s}
+.sb-nav{padding:.6rem 0;flex:1}
+.nav-sec{padding:.55rem 1.2rem .2rem;font-size:9px;font-weight:600;letter-spacing:.14em;color:rgba(255,255,255,0.22);text-transform:uppercase;font-family:'IBM Plex Mono',monospace}
+.nav-item{display:flex;align-items:center;gap:8px;padding:.4rem 1.2rem;cursor:pointer;color:rgba(255,255,255,0.52);font-size:12.5px;transition:all .15s;border-left:2px solid transparent;text-decoration:none}
+.nav-item:hover{color:white;background:rgba(255,255,255,0.04)}
+.nav-item.active{color:white;border-left-color:var(--blue-l);background:rgba(66,165,245,0.1)}
+.nav-item .nn{font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(255,255,255,0.22);width:22px;flex-shrink:0}
+.nav-item.active .nn{color:var(--blue-l)}
+.sb-foot{padding:.85rem 1.2rem;border-top:1px solid rgba(255,255,255,0.07)}
+.btn-pdf{width:100%;background:var(--blue);color:white;border:none;padding:.6rem 1rem;border-radius:5px;font-family:'Syne',sans-serif;font-size:12.5px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:7px;margin-bottom:5px}
+.btn-pdf:hover{background:#1976D2;transform:translateY(-1px)}
+.btn-export{width:100%;background:var(--teal);color:white;border:none;padding:.5rem 1rem;border-radius:5px;font-family:'Syne',sans-serif;font-size:11.5px;font-weight:600;cursor:pointer;transition:all .2s;margin-bottom:5px}
+.btn-export:hover{background:#00695C}
+.sb-ver{margin-top:6px;font-size:9.5px;color:rgba(255,255,255,0.2);text-align:center;font-family:'IBM Plex Mono',monospace}
+
+.main{flex:1;padding:1.75rem 2rem;max-width:980px;overflow-x:hidden}
+.pg-hdr{margin-bottom:1.5rem;padding-bottom:1.2rem;border-bottom:2px solid var(--border)}
+.breadcrumb{font-size:10.5px;color:var(--text3);margin-bottom:5px;display:flex;align-items:center;gap:5px;font-family:'IBM Plex Mono',monospace}
+.pg-hdr h2{font-family:'Syne',sans-serif;font-size:1.45rem;font-weight:700;color:var(--navy);margin-bottom:3px}
+.pg-hdr p{font-size:11.5px;color:var(--text2)}
+
+.stepper{display:flex;gap:0;margin-bottom:1.5rem;overflow:hidden;border-radius:6px;border:1px solid var(--border);flex-wrap:wrap}
+.step{flex:1;min-width:60px;padding:.5rem .3rem;font-size:10px;text-align:center;background:white;color:var(--slate);border-right:1px solid var(--border);cursor:pointer;transition:all .15s;font-weight:500}
+.step:last-child{border-right:none}
+.step.done{background:#E8F5E9;color:var(--green)}
+.step.active{background:var(--navy);color:white}
+.step:hover:not(.active){background:var(--bg2)}
+.step .sn{font-family:'IBM Plex Mono',monospace;font-size:9px;display:block;margin-bottom:1px}
+
+.section{margin-bottom:2rem;display:none}
+.section.active{display:block}
+.sec-title{display:flex;align-items:center;gap:10px;margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:2px solid var(--border);flex-wrap:wrap}
+.snum{background:var(--navy);color:white;width:27px;height:27px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;flex-shrink:0}
+.sec-title h3{font-family:'Syne',sans-serif;font-size:1.08rem;font-weight:700;color:var(--navy)}
+.norm-ref{margin-left:auto;font-size:10px;font-family:'IBM Plex Mono',monospace;background:rgba(21,101,192,0.08);color:var(--blue);padding:2px 7px;border-radius:3px;white-space:nowrap}
+
+.card{background:white;border:1px solid var(--border);border-radius:8px;padding:1.1rem;margin-bottom:.8rem}
+.card-title{font-weight:600;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);margin-bottom:.8rem;display:flex;align-items:center;gap:7px}
+.card-title::before{content:'';display:block;width:3px;height:13px;background:var(--blue);border-radius:2px}
+
+.tip{background:var(--tip-bg);border:1px solid var(--tip-bd);border-left:3px solid var(--blue);border-radius:5px;padding:.65rem .85rem;margin-bottom:.7rem;font-size:11.5px;color:var(--tip-tx);line-height:1.55}
+.tip strong{font-weight:600}
+.tip.warn{background:var(--warn-bg);border-color:var(--warn-bd);border-left-color:var(--amber);color:var(--warn-tx)}
+.tip.red{background:#FFEBEE;border-color:#FFCDD2;border-left-color:var(--red);color:#7B1FA2}
+.tip.green{background:#E8F5E9;border-color:#C8E6C9;border-left-color:var(--green);color:var(--green)}
+.tip-lbl{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:3px;opacity:.72}
+
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}
+.fg3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.65rem}
+.fg4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:.6rem}
+.ff{grid-column:1/-1}
+.field{display:flex;flex-direction:column;gap:3px}
+.field label{font-size:11px;font-weight:600;color:var(--text2);display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.field label .req{color:var(--red);font-size:10px}
+.field label .ref{font-size:9px;font-weight:400;color:var(--text3);font-family:'IBM Plex Mono',monospace;background:rgba(21,101,192,0.07);padding:1px 5px;border-radius:3px}
+
+input[type="text"],input[type="number"],input[type="date"],select,textarea{
+  background:var(--bg2);border:1.5px solid var(--border);border-radius:5px;
+  padding:.42rem .58rem;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;
+  color:var(--text);transition:border-color .15s;width:100%
+}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);background:white}
+textarea{resize:vertical;min-height:62px;line-height:1.5}
+select{cursor:pointer}
+.ic{background:#E8F5E9!important;color:var(--green)!important;font-family:'IBM Plex Mono',monospace!important;font-weight:600!important;border-color:#A5D6A7!important}
+.ia{background:#FFF3E0!important;color:var(--amber)!important;font-family:'IBM Plex Mono',monospace!important;font-weight:600!important;border-color:#FFCC80!important}
+
+.dt{width:100%;border-collapse:collapse;font-size:12px}
+.dt th{background:var(--navy);color:white;padding:6px 8px;text-align:left;font-weight:500;font-size:10.5px;letter-spacing:.04em}
+.dt td{padding:4px 4px;border-bottom:1px solid var(--border);vertical-align:middle}
+.dt tr:last-child td{border-bottom:none}
+.dt input,.dt select{font-size:11.5px;padding:4px 6px}
+.del{background:none;border:none;color:var(--red-l);cursor:pointer;font-size:15px;padding:2px 5px;border-radius:3px}
+.del:hover{background:#FFEBEE}
+.add-btn{margin-top:6px;background:none;border:1.5px dashed var(--border);color:var(--blue);font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;padding:5px 12px;border-radius:5px;width:100%;transition:all .15s}
+.add-btn:hover{border-color:var(--blue);background:rgba(21,101,192,0.04)}
+.cc{font-family:'IBM Plex Mono',monospace;color:var(--teal);font-weight:600;text-align:center}
+
+.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem}
+.kpi{background:var(--navy);border-radius:7px;padding:.85rem;color:white;text-align:center}
+.kpi-v{font-family:'IBM Plex Mono',monospace;font-size:1.3rem;font-weight:600;color:var(--blue-l);display:block;margin-bottom:2px}
+.kpi-l{font-size:10px;color:rgba(255,255,255,0.48)}
+.kpi.green .kpi-v{color:#81C784}
+.kpi.amber .kpi-v{color:#FFB74D}
+.kpi.red .kpi-v{color:#EF9A9A}
+
+.ssub{font-size:12px;font-weight:700;color:var(--navy);margin:1.1rem 0 .5rem;padding:.38rem .72rem;border-left:3px solid var(--blue);background:rgba(21,101,192,0.04);border-radius:0 4px 4px 0;font-family:'Syne',sans-serif}
+.sep{height:1px;background:var(--border);margin:.8rem 0}
+
+.bnav{display:flex;justify-content:space-between;align-items:center;margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid var(--border)}
+.btn{padding:.52rem 1.1rem;border-radius:6px;font-family:'Syne',sans-serif;font-size:12.5px;font-weight:600;cursor:pointer;transition:all .2s;border:none;display:inline-flex;align-items:center;gap:6px}
+.btn-p{background:var(--blue);color:white}
+.btn-p:hover{background:#1976D2}
+.btn-s{background:white;color:var(--text);border:1.5px solid var(--border)}
+.btn-s:hover{border-color:var(--blue);color:var(--blue)}
+.btn-ok{background:var(--green);color:white}
+
+.cl li{display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px;list-style:none}
+.cl li:last-child{border-bottom:none}
+.cl input[type="checkbox"]{width:14px;height:14px;margin-top:2px;flex-shrink:0;accent-color:var(--blue)}
+
+.mod-box{background:#FFF8E1;border:1.5px solid var(--warn-bd);border-radius:6px;padding:.85rem;margin-bottom:.7rem}
+.mod-box h5{font-family:'Syne',sans-serif;color:var(--amber);font-size:12.5px;margin-bottom:.5rem;display:flex;align-items:center;gap:6px}
+.mod-box p{font-size:11.5px;color:var(--text2);margin-bottom:.4rem}
+
+.case-box{background:white;border:2px solid var(--border);border-radius:7px;padding:.9rem;margin-bottom:.7rem;cursor:pointer;transition:all .15s}
+.case-box:hover{border-color:var(--blue)}
+.case-box.selected{border-color:var(--green);background:#F1F8E9}
+.case-box h5{font-family:'Syne',sans-serif;font-size:12.5px;color:var(--navy);margin-bottom:.4rem;display:flex;align-items:center;gap:7px}
+.case-box .case-radio{width:16px;height:16px;border:2px solid var(--border);border-radius:50%;flex-shrink:0}
+.case-box.selected .case-radio{border-color:var(--green);background:radial-gradient(circle,var(--green) 30%,white 35%)}
+
+.consult-cta{background:linear-gradient(135deg,#0D1B2A 0%,#1565C0 100%);color:white;padding:1.5rem;border-radius:10px;margin-top:2rem;text-align:center}
+.consult-cta h4{font-family:'Syne',sans-serif;font-size:1.15rem;margin-bottom:.5rem}
+.consult-cta p{color:rgba(255,255,255,0.85);font-size:12.5px;margin-bottom:1rem}
+.consult-cta a{background:var(--portfolio-accent);color:white;padding:.6rem 1.4rem;border-radius:6px;text-decoration:none;font-weight:600;font-family:'Syne',sans-serif;display:inline-block;transition:all .2s}
+.consult-cta a:hover{background:#1B5E20;transform:translateY(-1px)}
+
+@media (max-width:900px){
+  .app{flex-direction:column}
+  .sidebar{width:100%;height:auto;position:relative;top:0;min-height:auto}
+  .main{padding:1rem}
+  .fg,.fg3,.fg4{grid-template-columns:1fr}
+  .kpi-grid{grid-template-columns:1fr 1fr}
+  .stepper{flex-wrap:wrap}
+  .step{min-width:80px}
+}
+
+@media print{
+  .portfolio-banner,.sidebar,.stepper,.bnav,.consult-cta{display:none!important}
+  .section{display:block!important;page-break-after:always}
+  .main{max-width:100%;padding:0}
+}
+</style>
+</head>
+<body>
+
+<!-- Bannière portfolio -->
+<div class="portfolio-banner">
+  <div class="pb-left">
+    <div>
+      <div class="pb-name">Abdelilah El Ghazouani <span>· Bureau d'Études Énergétique</span></div>
+      <div class="pb-tag">TRAME AUDIT ÉNERGÉTIQUE · OUTIL PROFESSIONNEL</div>
+    </div>
+  </div>
+  <div class="pb-right">
+    <a href="https://abdelilah-elghazouani.pro/index.html#projets" class="pb-link">← Portfolio</a>
+    <a href="https://abdelilah-elghazouani.pro/index.html#contact" class="pb-link primary">Me contacter</a>
+  </div>
+</div>
+
+<div class="app">
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sb-logo">
+    <div class="sb-badge">v3.0 · CONFORME ADEME</div>
+    <h1>Trame Audit Énergétique Tertiaire</h1>
+    <p>NF EN 16247-1/-2 · DEET · ADEME Perfimmo</p>
+    <div class="pb-wrap"><div class="pb-bar" id="progress" style="width:0%"></div></div>
+  </div>
+
+  <nav class="sb-nav">
+    <div class="nav-sec">Démarrage</div>
+    <a class="nav-item active" onclick="go('s0')"><span class="nn">0</span>Réunion de démarrage</a>
+
+    <div class="nav-sec">Audit · 10 chapitres ADEME</div>
+    <a class="nav-item" onclick="go('s1')"><span class="nn">1</span>Contexte</a>
+    <a class="nav-item" onclick="go('s2')"><span class="nn">2</span>Présentation du site</a>
+    <a class="nav-item" onclick="go('s3')"><span class="nn">3</span>Enveloppe (clos & couvert)</a>
+    <a class="nav-item" onclick="go('s4')"><span class="nn">4</span>Équipements techniques</a>
+    <a class="nav-item" onclick="go('s5')"><span class="nn">5</span>Consommations</a>
+    <a class="nav-item" onclick="go('s6')"><span class="nn">6</span>Objectifs DEET / OPERAT</a>
+    <a class="nav-item" onclick="go('s7')"><span class="nn">7</span>Modélisation thermique</a>
+    <a class="nav-item" onclick="go('s8')"><span class="nn">8</span>Confort & aléas climat</a>
+    <a class="nav-item" onclick="go('s9')"><span class="nn">9</span>Préconisations</a>
+    <a class="nav-item" onclick="go('s10')"><span class="nn">10</span>Scénarios DEET</a>
+    <a class="nav-item" onclick="go('s11')"><span class="nn">11</span>Synthèse exécutive</a>
+    <a class="nav-item" onclick="go('s12')"><span class="nn">12</span>Annexes & PV</a>
+
+    <div class="nav-sec">Outils intégrés</div>
+    <a class="nav-item" onclick="go('st1')"><span class="nn">⟨⟩</span>Calculs OPERAT</a>
+    <a class="nav-item" onclick="go('st2')"><span class="nn">✔</span>Checklist conformité</a>
+    <a class="nav-item" onclick="go('st3')"><span class="nn">ⓘ</span>À propos</a>
+  </nav>
+
+  <div class="sb-foot">
+    <button class="btn-pdf" onclick="window.print()">📥 Exporter en PDF</button>
+    <button class="btn-export" onclick="exportJSON()">💾 Sauvegarder JSON</button>
+    <input type="file" id="importFile" accept=".json" onchange="importJSON(event)" style="display:none">
+    <button class="btn-export" onclick="document.getElementById('importFile').click()" style="background:var(--slate)">📂 Charger JSON</button>
+    <div class="sb-ver">v3.0 · 2026 · A. El Ghazouani</div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+<div class="pg-hdr">
+  <div class="breadcrumb">PORTFOLIO &gt; OUTILS &gt; <span id="bc">Trame audit énergétique</span></div>
+  <h2 id="pgtitle">0. Réunion de Démarrage</h2>
+  <p>Trame interactive complète pour audit énergétique tertiaire — conforme NF EN 16247-1/-2 + Décret Tertiaire (DEET) + référentiel ADEME Perfimmo</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 0 — RÉUNION DE DÉMARRAGE (NF EN 16247-1 § 5.2)
+═══════════════════════════════════════════════════════════════ -->
+<div class="section active" id="s0">
+  <div class="sec-title"><div class="snum">0</div><h3>Réunion de Démarrage (Kick-off)</h3><span class="norm-ref">NF EN 16247-1 § 5.2</span></div>
+
+  <div class="tip"><span class="tip-lbl">📋 Exigence normative</span>La réunion de démarrage est <strong>obligatoire</strong>. Elle définit le périmètre exact, les interlocuteurs, la liste des documents à collecter, le planning, et donne lieu à un <strong>procès-verbal signé</strong> des deux parties (Annexe 3).</div>
+
+  <div class="card">
+    <div class="card-title">Informations de l'audit</div>
+    <div class="fg">
+      <div class="field"><label>Date de réunion <span class="req">*</span></label><input type="date" id="kdate"></div>
+      <div class="field"><label>Lieu de la réunion</label><input type="text" placeholder="Sur site / Visio / Bureau"></div>
+      <div class="field"><label>Référence dossier <span class="ref">à attribuer</span></label><input type="text" placeholder="AUDIT-2026-XXX"></div>
+      <div class="field"><label>Type d'audit</label>
+        <select><option>Audit énergétique global (NF EN 16247-1)</option><option>Audit bâtiment (NF EN 16247-2)</option><option>Audit DEET (Décret tertiaire)</option><option>Audit ISO 50002</option></select>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Participants</div>
+    <table class="dt">
+      <thead><tr><th>Nom Prénom</th><th>Fonction</th><th>Organisation</th><th>Email</th><th>Signature</th><th></th></tr></thead>
+      <tbody id="kpart"><tr><td><input type="text" placeholder="ELGHAZOUANI Abdelilah"></td><td><input type="text" value="Auditeur référent"></td><td><input type="text" placeholder="Cabinet Energis"></td><td><input type="text" placeholder="contact@..."></td><td><input type="text" placeholder="✔ Signé"></td><td><button class="del" onclick="rmRow(this)">×</button></td></tr></tbody>
+    </table>
+    <button class="add-btn" onclick="addRow('kpart',6)">+ Ajouter un participant</button>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Périmètre & objectifs convenus</div>
+    <div class="fg">
+      <div class="ff field"><label>Bâtiments / parties d'ouvrage inclus dans l'audit</label>
+        <textarea placeholder="Ex: bâtiment principal R-2 à R+16, annexes au R-2, locaux techniques..."></textarea>
+      </div>
+      <div class="ff field"><label>Exclusions explicites</label>
+        <textarea placeholder="Ex: parking extérieur, espaces verts, recharge VE..."></textarea>
+      </div>
+      <div class="field"><label>Surface totale (m²) <span class="req">*</span></label><input type="number" placeholder="11 526"></div>
+      <div class="field"><label>Surface auditée (m²)</label><input type="number" placeholder="11 526"></div>
+      <div class="field"><label>Année de référence DEET</label><input type="number" placeholder="2013" min="2010" max="2019"></div>
+      <div class="field"><label>Délai de livraison du rapport</label><input type="text" placeholder="Ex: 8 semaines"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Documents à fournir par le client</div>
+    <ul class="cl">
+      <li><input type="checkbox"> Factures énergétiques 5 dernières années (Élec + Gaz + Réseau chaleur)</li>
+      <li><input type="checkbox"> Plans architecte (masse, niveaux, coupes)</li>
+      <li><input type="checkbox"> DOE équipements CVC (fiches techniques, schémas)</li>
+      <li><input type="checkbox"> Données d'occupation (PMS, planning, taux occupation)</li>
+      <li><input type="checkbox"> DPE en vigueur</li>
+      <li><input type="checkbox"> DTA amiante à jour (bâti antérieur 1997)</li>
+      <li><input type="checkbox"> Soumissions OPERAT antérieures + IUB</li>
+      <li><input type="checkbox"> Contrats maintenance CVC + F-Gas DRV</li>
+      <li><input type="checkbox"> Études antérieures (audits, STD, simulations)</li>
+      <li><input type="checkbox"> Comptages divisionnaires / sous-comptage existant</li>
+    </ul>
+  </div>
+
+  <div class="bnav"><span></span><button class="btn btn-p" onclick="next()">Suivant : Contexte →</button></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 1 — CONTEXTE
+═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="s1">
+  <div class="sec-title"><div class="snum">1</div><h3>Contexte & Identification</h3><span class="norm-ref">ADEME Perfimmo §1</span></div>
+
+  <div class="ssub">1.1 Cadre réglementaire</div>
+  <div class="tip"><span class="tip-lbl">📚 Textes officiels</span><strong>DEET</strong> : Loi ÉLAN 2018, Décret n°2019-771, Arrêtés VA I à VI · <strong>BACS</strong> : Décret n°2023-259 + Arrêté 07/04/2023 · <strong>Ombrières PV</strong> : Loi n°2023-175, Décret n°2024-1023 · <strong>Calorifugeage</strong> : Décret n°2023-444</div>
+
+  <div class="ssub">1.2 Interlocuteurs</div>
+  <div class="card">
+    <table class="dt">
+      <thead><tr><th>Rôle</th><th>Nom / Société</th><th>Tél</th><th>Email</th><th></th></tr></thead>
+      <tbody id="interloc">
+        <tr><td><select><option>Maître d'ouvrage</option><option>Exploitant</option><option>Auditeur</option><option>Maître d'œuvre</option><option>Référent technique</option></select></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><button class="del" onclick="rmRow(this)">×</button></td></tr>
+      </tbody>
+    </table>
+    <button class="add-btn" onclick="addRow('interloc',5)">+ Ajouter un interlocuteur</button>
+  </div>
+
+  <div class="ssub">1.3 Documents transmis</div>
+  <div class="card">
+    <div class="fg">
+      <div class="ff field"><label>Consommations <span class="ref">factures + OPERAT</span></label><textarea placeholder="Ex: factures GRDF + EDF 2021-2024, déclarations OPERAT, année de référence 2013"></textarea></div>
+      <div class="ff field"><label>Plans</label><textarea placeholder="Ex: plan de masse, plans niveaux R-2 à R+16, plans locaux techniques"></textarea></div>
+      <div class="ff field"><label>DOE techniques</label><textarea placeholder="Ex: fiches chaudières, GTB, préparateurs ECS, DRV..."></textarea></div>
+      <div class="ff field"><label>Usage et occupation</label><textarea placeholder="Ex: planning ouverture, PMS, taux d'occupation"></textarea></div>
+    </div>
+  </div>
+
+  <div class="ssub">1.4 Périmètre de l'étude</div>
+  <div class="card">
+    <div class="field"><label>Description du périmètre énergétique</label>
+      <textarea placeholder="Ex: ensemble des usages et consommations énergétiques du bâtiment, pour les activités tertiaires uniquement. Exclusions : recharge VE et hybrides."></textarea>
+    </div>
+  </div>
+
+  <div class="ssub">1.5 Visite du site</div>
+  <div class="card">
+    <div class="fg">
+      <div class="field"><label>Date de visite <span class="req">*</span></label><input type="date"></div>
+      <div class="field"><label>Auditeur(s) ayant réalisé la visite</label><input type="text" placeholder="Nom Prénom"></div>
+      <div class="ff field"><label>Zones / locaux visités</label><textarea placeholder="Liste détaillée des zones inspectées..."></textarea></div>
+      <div class="ff field"><label>Zones / locaux NON visités (avec justification)</label><textarea placeholder="Ex: chambres en occupation client (confidentialité)"></textarea></div>
+    </div>
+    <div class="ssub" style="margin-top:.8rem">Ressentis confort & QAI</div>
+    <div class="fg">
+      <div class="field"><label>Confort d'hiver</label><textarea placeholder="Ressentis utilisateurs en période froide..."></textarea></div>
+      <div class="field"><label>Confort d'été</label><textarea placeholder="Surchauffes, zones à risque..."></textarea></div>
+      <div class="ff field"><label>Qualité de l'air intérieur (QAI)</label><textarea placeholder="Campagnes antérieures, ressentis, CO₂..."></textarea></div>
+    </div>
+  </div>
+
+  <div class="ssub">1.6 Amiante</div>
+  <div class="tip warn"><span class="tip-lbl">⚠ Bâti antérieur 1997</span>Un DTA (Diagnostic Technique Amiante) à jour est <strong>obligatoire</strong> avant tout chantier d'isolation extérieure ou remplacement de menuiseries. Tout RAAT (Repérage Amiante Avant Travaux) est exigé avant démarrage.</div>
+  <div class="card">
+    <div class="fg">
+      <div class="field"><label>Année de construction</label><input type="number" placeholder="1960"></div>
+      <div class="field"><label>DTA à jour ?</label>
+        <select><option>Oui — disponible</option><option>Oui — à actualiser</option><option>Non — à réaliser</option><option>Sans objet (postérieur 1997)</option></select>
+      </div>
+      <div class="ff field"><label>Risques amiante identifiés</label><textarea placeholder="Ex: colles sols souples, calorifugeage réseaux, enduits, flocages..."></textarea></div>
+    </div>
+  </div>
+
+  <div class="ssub">1.7 Indicateurs de performance et vétusté</div>
+  <div class="kpi-grid">
+    <div class="kpi"><span class="kpi-v" id="ipf1">—</span><span class="kpi-l">kWhEF/m²·an (courant)</span></div>
+    <div class="kpi green"><span class="kpi-v" id="ipf2">—</span><span class="kpi-l">Classe DPE</span></div>
+    <div class="kpi amber"><span class="kpi-v" id="ipf3">—</span><span class="kpi-l">Réduction vs Créf</span></div>
+  </div>
+  <div class="card" style="margin-top:.6rem">
+    <div class="field"><label>État de vétusté global du bâtiment</label>
+      <textarea placeholder="Synthèse points forts / points faibles enveloppe et équipements..."></textarea>
+    </div>
+  </div>
+
+  <div class="bnav"><button class="btn btn-s" onclick="prev()">← Précédent</button><button class="btn btn-p" onclick="next()">Suivant : Site →</button></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 2 — PRÉSENTATION DU SITE
+═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="s2">
+  <div class="sec-title"><div class="snum">2</div><h3>Présentation du Site</h3><span class="norm-ref">ADEME Perfimmo §2 · NF EN 16247-2 §5.1</span></div>
+
+  <div class="ssub">2.1 Caractéristiques du site</div>
+  <div class="card">
+    <div class="fg3">
+      <div class="field"><label>Nom du site <span class="req">*</span></label><input type="text" placeholder="Résidence Belambra Anglet"></div>
+      <div class="field"><label>SIRET</label><input type="text" placeholder="XXX XXX XXX XXXXX"></div>
+      <div class="field"><label>Code NAF / APE</label><input type="text" placeholder="55.20Z"></div>
+      <div class="ff field"><label>Adresse complète</label><input type="text" placeholder="N° rue + voie + CP + Ville"></div>
+      <div class="field"><label>Latitude / Longitude</label><input type="text" placeholder="43,494° N — -1,540° W"></div>
+      <div class="field"><label>Altitude (m)</label><input type="number" placeholder="50"></div>
+      <div class="field"><label>Zone climatique</label>
+        <select><option>H1a</option><option>H1b</option><option>H1c</option><option>H2a</option><option>H2b</option><option>H2c</option><option>H2d</option><option>H3</option></select>
+      </div>
+      <div class="field"><label>Année de construction</label><input type="number" placeholder="1960"></div>
+      <div class="field"><label>Surface Utile DEET (m²)</label><input type="number" placeholder="11526"></div>
+      <div class="field"><label>SHON RT (m²)</label><input type="number"></div>
+      <div class="field"><label>SDP (m²)</label><input type="number"></div>
+      <div class="field"><label>Capacité d'accueil (personnes)</label><input type="number" placeholder="460"></div>
+    </div>
+  </div>
+
+  <div class="ssub">2.2 Usage</div>
+  <div class="card">
+    <div class="card-title">Occupations et horaires</div>
+    <table class="dt">
+      <thead><tr><th>Zone</th><th>Horaires d'utilisation</th><th>Effectif</th><th></th></tr></thead>
+      <tbody id="zones">
+        <tr><td><input type="text" placeholder="Chambres"></td><td><input type="text" placeholder="24h/24, 9 mois/12"></td><td><input type="text" placeholder="~460 pers."></td><td><button class="del" onclick="rmRow(this)">×</button></td></tr>
+      </tbody>
+    </table>
+    <button class="add-btn" onclick="addRow('zones',4)">+ Ajouter une zone</button>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Catégorie d'activité OPERAT</div>
+    <div class="fg">
+      <div class="ff field"><label>Catégorie principale</label>
+        <select id="opcat">
+          <option>Bureaux</option><option>Enseignement</option><option>Santé</option>
+          <option>Commerce</option><option>Résidences de tourisme / villages de vacances</option>
+          <option>Restauration</option><option>Sport</option><option>Culture / Loisirs</option><option>Hôtels</option>
+        </select>
+      </div>
+      <div class="ff field"><label>Sous-catégorie</label>
+        <input type="text" placeholder="Ex: Village/club vacances 4★ — Chambres & services AVEC restauration">
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Indicateurs d'Usage (IIU)</div>
+    <div class="tip"><strong>Arrêté Valeurs Absolues</strong> — Définit les IIU étalon par sous-catégorie. La modulation Cabs s'effectue en comparant les IIU réels (PMS, comptage) aux IIU étalon.</div>
+    <table class="dt">
+      <thead><tr><th>Indicateur IIU</th><th>Étalon</th><th>Référence (Créf)</th><th>Année courante</th><th>Coef modulation</th></tr></thead>
+      <tbody>
+        <tr><td>SDP par logement (m²)</td><td><input type="number" placeholder="18"></td><td><input type="number"></td><td><input type="number"></td><td class="cc">1,00</td></tr>
+        <tr><td>Taux d'occupation (%)</td><td><input type="number" placeholder="55"></td><td><input type="number"></td><td><input type="number"></td><td class="cc">1,00</td></tr>
+        <tr><td>Repas/jour servis</td><td><input type="number"></td><td><input type="number"></td><td><input type="number"></td><td class="cc">1,00</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Exigences confort, hygiène, bien-être</div>
+    <table class="dt">
+      <thead><tr><th>Paramètre</th><th>Consigne</th><th>Référence</th></tr></thead>
+      <tbody>
+        <tr><td>Chambres - hiver occupation</td><td><input type="text" value="19 °C"></td><td>Décret n°2022-1271</td></tr>
+        <tr><td>ECS production</td><td><input type="text" value="55 °C"></td><td>Anti-légionelle ERP</td></tr>
+        <tr><td>CO₂ en occupation</td><td><input type="text" value="< 1 000 ppm"></td><td>Décret QAI n°2022-1689</td></tr>
+        <tr><td>Renouvellement air bureaux</td><td><input type="text" value="25 m³/h/occ"></td><td>CCH R4222-6</td></tr>
+        <tr><td>Renouvellement air restauration</td><td><input type="text" value="30 m³/h/occ"></td><td>CCH R4222-6</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ssub">2.3 Historique des travaux</div>
+  <div class="card">
+    <table class="dt">
+      <thead><tr><th>Année</th><th>Nature des travaux</th><th>Périmètre</th><th></th></tr></thead>
+      <tbody id="histo">
+        <tr><td><input type="text"></td><td><input type="text" placeholder="Ex: Remplacement menuiseries chambres"></td><td><input type="text"></td><td><button class="del" onclick="rmRow(this)">×</button></td></tr>
+      </tbody>
+    </table>
+    <button class="add-btn" onclick="addRow('histo',4)">+ Ajouter</button>
+  </div>
+
+  <div class="ssub">2.4 Maintenance</div>
+  <div class="card">
+    <table class="dt">
+      <thead><tr><th>Équipement</th><th>Type d'entretien</th><th>Fréquence</th><th>Prestataire</th></tr></thead>
+      <tbody>
+        <tr><td>Chaudières gaz</td><td><input type="text" value="Maintenance préventive + ramonage"></td><td><input type="text" value="Annuelle"></td><td><input type="text"></td></tr>
+        <tr><td>GTB</td><td><input type="text" value="Vérifications fonctionnement"></td><td><input type="text" value="Trimestrielle"></td><td><input type="text"></td></tr>
+        <tr><td>Préparateurs ECS</td><td><input type="text" value="Détartrage échangeurs"></td><td><input type="text" value="Semestrielle"></td><td><input type="text"></td></tr>
+        <tr><td>Légionelle ECS</td><td><input type="text" value="Prélèvements + analyses lab."></td><td><input type="text" value="Trimestrielle"></td><td><input type="text"></td></tr>
+        <tr><td>DRV (climatisation)</td><td><input type="text" value="F-Gas + nettoyage filtres"></td><td><input type="text" value="Annuelle (UE 2024/573)"></td><td><input type="text"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ssub">2.5 Alimentation en énergies</div>
+  <div class="card">
+    <table class="dt">
+      <thead><tr><th>Énergie</th><th>Fournisseur</th><th>Type contrat</th><th>Usage</th></tr></thead>
+      <tbody>
+        <tr><td>Électricité</td><td><input type="text" placeholder="EDF"></td><td><input type="text" placeholder="Tarif Jaune/Bleu Pro"></td><td><input type="text" placeholder="Éclairage, vent., clim., aux."></td></tr>
+        <tr><td>Gaz naturel</td><td><input type="text" placeholder="GRDF + fournisseur"></td><td><input type="text"></td><td><input type="text" placeholder="Chauffage, ECS, cuisson"></td></tr>
+        <tr><td>Réseau chaleur</td><td><input type="text" placeholder="Sans objet"></td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>Autres énergies</td><td><input type="text" placeholder="Sans objet"></td><td><input type="text"></td><td><input type="text"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ssub">2.10 Non-conformités remarquées</div>
+  <div class="card">
+    <table class="dt">
+      <thead><tr><th>N°</th><th>Non-conformité</th><th>Texte applicable</th><th>Échéance</th><th>Criticité</th><th></th></tr></thead>
+      <tbody id="nc">
+        <tr><td class="cc">1</td><td><input type="text" placeholder="Ex: GTB non conforme classe BACS B"></td><td><input type="text" placeholder="Décret BACS n°2020-887"></td><td><input type="date"></td><td><select><option>🔴 Élevée</option><option>🟠 Modérée</option><option>🟡 Faible</option></select></td><td><button class="del" onclick="rmRow(this)">×</button></td></tr>
+      </tbody>
+    </table>
+    <button class="add-btn" onclick="addRow('nc',6)">+ Ajouter une non-conformité</button>
+  </div>
+
+  <div class="bnav"><button class="btn btn-s" onclick="prev()">← Précédent</button><button class="btn btn-p" onclick="next()">Suivant : Enveloppe →</button></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 3 — ENVELOPPE (CLOS & COUVERT)
+═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="s3">
+  <div class="sec-title"><div class="snum">3</div><h3>Description du Clos et Couvert</h3><span class="norm-ref">ADEME Perfimmo §2.6 · NF EN 16247-2 §5.4</span></div>
+
+  <div class="ssub">3.1 Murs extérieurs</div>
+  <div class="card">
+    <div class="fg">
+      <div class="ff field"><label>Composition</label><textarea placeholder="Ex: Béton non isolé d'origine 1960"></textarea></div>
+      <div class="field"><label>État</label><select><option>Bon</option><option>Usure normale</option><option>Vétuste</option></select></div>
+      <div class="field"><label>U (W/m²·K)</label><input type="number" step="0.01" placeholder="3,1"></div>
+      <div class="ff field"><label>Préconisation associée</label><input type="text" placeholder="BAT-EN-101 : ITE polystyrène 16 cm cible U=0,22"></div>
+    </div>
+  </div>
+
+  <div class="ssub">3.2 Menuiseries</div>
+  <div class="card">
+    <table class="dt">
+      <thead><tr><th>Zone</th><th>Composition</th><th>Année</th><th>Uw (W/m²·K)</th><th>Sg</th><th></th></tr></thead>
+      <tbody id="men">
+        <tr><td><input type="text" placeholder="Chambres"></td><td><input type="text"></td><td><input type="number"></td><td><input type="number" step="0.1"></td><td><input type="number" step="0.1"></td><td><button class="del" onclick="rmRow(this)">×</button></td></tr>
+      </tbody>
+    </table>
+    <button class="add-btn" onclick="addRow('men',6)">+ Ajouter</button>
+  </div>
+
+  <div class="ssub">3.3 Toiture / Plancher haut</div>
+  <div class="card">
+    <div class="fg">
+      <div class="ff field"><label>Composition</label><textarea placeholder="Béton + isolation laine minérale 40 cm"></textarea></div>
+      <div class="field"><label>U (W/m²·K)</label><input type="number" step="0.01" placeholder="2,4"></div>
+      <div class="field"><label>U théorique (à recalculer)</label><input type="number" step="0.01" placeholder="0,10"></div>
+      <div class="ff field"><label>Cohérence (à valider par thermographie)</label>
+        <select><option>OK</option><option>Incohérence majeure - thermographie IR à programmer</option></select>
+      </div>
+    </div>
+  </div>
+
+  <div class="ssub">3.4 Planchers bas</div>
+  <div class="card">
+    <div class="fg">
+      <div class="ff field"><label>Composition</label><textarea></textarea></div>
+      <div class="field"><label>U (W/m²·K)</label><input type="number" step="0.01"></div>
+      <div class="field"><label>État</label><select><option>Bon</option><option>Usure normale</option><option>Vétuste</option></select></div>
+    </div>
+  </div>
+
+  <div class="ssub">3.5 Ponts thermiques</div>
+  <div class="card">
+    <div class="tip warn">Les bâtiments anciens présentent des ponts thermiques importants au niveau des liaisons façade/plancher, façade/menuiseries, balcons et refends. Une étude détaillée des Ψ linéiques est recommandée avant ITE.</div>
+    <table class="dt">
+      <thead><tr><th>Type de pont thermique</th><th>Localisation</th><th>Ψ (W/m·K)</th><th>Linéaire (m)</th></tr></thead>
+      <tbody>
+        <tr><td><input type="text" value="Nez de dalle"></td><td><input type="text"></td><td><input type="number" step="0.01" placeholder="0,9"></td><td><input type="number"></td></tr>
+        <tr><td><input type="text" value="Liaison façade/menuiserie"></td><td><input type="text"></td><td><input type="number" step="0.01" placeholder="0,3"></td><td><input type="number"></td></tr>
+        <tr><td><input type="text" value="Balcons/coursives"></td><td><input type="text"></td><td><input type="number" step="0.01" placeholder="0,7"></td><td><input type="number"></td></tr>
+        <tr><td><input type="text" value="Refends intérieurs"></td><td><input type="text"></td><td><input type="number" step="0.01" placeholder="0,5"></td><td><input type="number"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ssub">3.6 Synthèse performance thermique enveloppe</div>
+  <div class="card">
+    <table class="dt">
+      <thead><tr><th>Constat</th><th>Niveau de criticité</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><input type="text" placeholder="Façades faiblement isolées"></td><td><select><option>🔴 Élevé</option><option>🟠 Modéré</option><option>🟢 OK</option></select></td><td><input type="text"></td></tr>
+        <tr><td><input type="text"></td><td><select><option>🔴</option><option>🟠</option><option>🟢</option></select></td><td><input type="text"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="bnav"><button class="btn btn-s" onclick="prev()">← Précédent</button><button class="btn btn-p" onclick="next()">Suivant : Équipements →</button></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 4 — ÉQUIPEMENTS TECHNIQUES
+═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="s4">
+  <div class="sec-title"><div class="snum">4</div><h3>Description des Équipements Techniques</h3><span class="norm-ref">ADEME Perfimmo §2.7 · NF EN 16247-2 §5.5</span></div>
+
+  <div class="ssub">4.1 Chauffage</div>
+  <div class="card">
+    <div class="fg">
+      <div class="field"><label>Type d'énergie</label>
+        <select><option>Gaz naturel</option><option>Électricité</option><option>Fioul</option><option>Réseau de chaleur</option><option>Bois/biomasse</option><option>Mixte</option></select>
+      </div>
+      <div class="field"><label>Type de production</label>
+        <select><option>Chaudière condensation</option><option>Chaudière standard</option><option>PAC Air/Eau</option><option>PAC Géothermie</option><option>Sous-station RC</option></select>
+      </div>
+      <div class="field"><label>Nombre d'équipements</label><input type="number"></div>
+      <div class="field"><label>Puissance unitaire (kW)</label><input type="number"></div>
+      <div class="field"><label>Puissance totale chauffage (kW)</label><input type="number" placeholder="576"></div>
+      <div class="field"><label>Puissance totale chaufferie (kW)</label><input type="number" placeholder="864"></div>
+      <div class="ff field"><label>Émetteurs principaux</label><input type="text" placeholder="Ex: radiateurs eau chaude avec têtes thermostatiques manuelles"></div>
+      <div class="ff field"><label>Émetteurs secondaires</label><input type="text" placeholder="Ex: ventilo-convecteurs, DRV, aérothermes"></div>
+      <div class="field"><label>Régulation</label><input type="text" placeholder="Sonde extérieure + mode réduit"></div>
+      <div class="field"><label>Équilibrage hydraulique</label><select><option>Conforme</option><option>Défaillant</option><option>À vérifier</option></select></div>
+    </div>
+    <div class="tip warn" style="margin-top:.7rem"><strong>Décret BACS</strong> — Si puissance totale chauffage > 290 kW, mise à niveau GTB classe B obligatoire (NF EN ISO 52120-1) — échéance 01/01/2025 dépassée si non conforme.</div>
+  </div>
+
+  <div class="ssub">4.2 Climatisation</div>
+  <div class="card">
+    <div class="fg">
+      <div class="field"><label>Technologie</label>
+        <select><option>DRV (détente directe)</option><option>PAC réversible Air/Eau</option><option>Groupe froid + ventilo</option><option>Cassettes 4 voies</option><option>Sans climatisation</option></select>
+      </div>
+      <div class="field"><label>Puissance froide totale (kW)</label><input type="number"></div>
+      <div class="ff field"><label>Zones climatisées</label><textarea placeholder="Ex: restaurant, salle de spectacle, salle de séminaire"></textarea></div>
+      <div class="field"><label>Inventaire F-Gas formalisé</label><select><option>Oui</option><option>Non - à formaliser</option><option>Sans objet</option></select></div>
+    </div>
+  </div>
+
+  <div class="ssub">4.3 Production ECS</div>
+  <div class="card">
+    <div class="fg">
+      <div class="field"><label>Production primaire</label><input type="text" placeholder="Chaudière gaz dédiée 288 kW"></div>
+      <div class="field"><label>Volume stockage tampon (L)</label><input type="number" placeholder="4000"></div>
+      <div class="field"><label>Préparation finale</label><input type="text" placeholder="Échangeurs à plaques"></div>
+      <div class="field"><label>Anti-légionelle</label><select><option>Conforme (55/50°C + analyses trim.)</option><option>Non conforme</option></select></div>
+    </div>
+  </div>
+
+  <div class="ssub">4.4 Ventilation</div>
+  <div class="card">
+    <table class="dt">
+      <thead><tr><th>Zone</th><th>Système</th><th>Conformité ERP</th></tr></thead>
+      <tbody>
+        <tr><td><input type="text" value="Sanitaires + cuisines"></td><td><input type="text" value="VMC simple flux"></td><td><select><option>OK</option><option>À améliorer</option></select></td></tr>
+        <tr><td><input type="text" value="Chambres"></td><td><input type="text" value="Ventilation naturelle"></td><td><select><option>OK</option><option>À améliorer</option></select></td></tr>
+        <tr><td><input type="text" value="Parties communes"></td><td><input type="text" value="Naturelle + DRV ponctuels"></td><td><select><option>OK</option><option>QAI à surveiller</option></select></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ssub">4.5 Désenfumage</div>
+  <div class="card">
+    <div class="field"><label>État de conformité ERP</label>
+      <textarea placeholder="Système de désenfumage présent / à vérifier à la prochaine commission de sécurité..."></textarea>
+    </div>
+  </div>
+
+  <div class="ssub">4.6 Éclairage</div>
+  <div class="card">
+    <table class="dt">
+      <thead><tr><th>Zone</th><th>Type</th><th>Pilotage</th><th>Performance</th></tr></thead>
+      <tbody id="ecl">
+        <tr><td><input type="text" placeholder="Chambres"></td><td><select><option>LED</option><option>Fluo</option><option>Halogène</option><option>Mixte</option></select></td><td><input type="text" placeholder="Manuel / RFID / Détection"></td><td><select><option>Bon</option><option>Moyen</option><option>À reprendre</option></select></td></tr>
+      </tbody>
+    </table>
+    <button class="add-btn" onclick="addRow('ecl',4)">+ Ajouter une zone</button>
+  </div>
+
+  <div class="ssub">4.7 Ascenseurs</div>
+  <div class="card">
+    <div class="fg">
+      <div class="field"><label>Nombre d'ascenseurs</label><input type="number"></div>
+      <div class="field"><label>Marque / Modèle</label><input type="text"></div>
+      <div class="field"><label>Année</label><input type="number"></div>
+      <div class="field"><label>Régénération énergie</label><select><option>Oui</option><option>Non</option></select></div>
+    </div>
+  </div>
+
+  <div class="ssub">4.8 GTB (Gestion Technique du Bâtiment)</div>
+  <div class="card">
+    <table class="dt">
+      <thead><tr><th>Fonction actuelle</th><th>État</th><th>Conformité BACS</th></tr></thead>
+      <tbody>
+        <tr><td>Console supervision</td><td><input type="text" placeholder="Itouch existante"></td><td><select><option>❌ Non</option><option>🟡 Partielle</option><option>✅ Oui (classe B)</option></select></td></tr>
+        <tr><td>Programmation horaire</td><td><input type="text"></td><td><select><option>❌ Non</option><option>🟡 Partielle</option><option>✅ Oui</option></select></td></tr>
+        <tr><td>Pilotage vannes à distance</td><td><input type="text"></td><td><select><option>❌ Non</option><option>✅ Oui</option></select></td></tr>
+        <tr><td>Détection dérives énergétiques</td><td><input type="text"></td><td><select><option>❌ Non</option><option>✅ Oui</option></select></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ssub">4.9 Production d'énergie sur site</div>
+  <div class="card">
+    <table class="dt">
+      <thead><tr><th>EnR potentielle</th><th>Évaluation</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>Photovoltaïque toiture</td><td><input type="text" placeholder="Gisement, surface dispo"></td><td><input type="text"></td></tr>
+        <tr><td>Solaire thermique ECS</td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>PAC sur eau de mer / nappe</td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>Récupération chaleur eaux grises</td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>Géothermie</td><td><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td>Biomasse</td><td><input type="text"></td><td><input type="text"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ssub">4.10 Qualité de l'Air Intérieur (QAI)</div>
+  <div class="card">
+    <div class="tip warn"><strong>Décret n°2022-1689</strong> applicable aux ERP — Évaluation des moyens d'aération régulière, mesures CO₂ / formaldéhyde / benzène minimum tous les 7 ans, plan d'actions si dépassement.</div>
+    <div class="fg">
+      <div class="field"><label>Dernière campagne QAI</label><input type="date"></div>
+      <div class="field"><label>Conformité ERP</label><select><option>Oui</option><option>Non - à programmer</option></select></div>
+    </div>
+  </div>
+
+  <div class="bnav"><button class="btn btn-s" onclick="prev()">← Précédent</button><button class="btn btn-p" onclick="next()">Suivant : Consommations →</button></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 5 — CONSOMMATIONS ÉNERGÉTIQUES
+═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="s5">
+  <div class="sec-title"><div class="snum">5</div><h3>Étude des Consommations Énergétiques</h3><span class="norm-ref">ADEME Perfimmo §3 · NF EN 16247-1 §5.5</span></div>
+
+  <div class="ssub">5.1 Station météo de référence</div>
+  <div class="card">
+    <div class="fg">
+      <div class="field"><label>Station retenue</label><input type="text" placeholder="Biarritz-Anglet (64)"></div>
+      <div class="field"><label>Distance au site (km)</label><input type="number"></div>
+      <div class="field"><label>Source DJU</label><input type="text" placeholder="infoclimat.fr"></div>
+      <div class="field"><label>Méthode</label><input type="text" value="Professionnel de l'énergie"></div>
+    </div>
+    <div class="ssub" style="margin-top:.8rem">DJU Chauffage et Refroidissement</div>
+    <table class="dt">
+      <thead><tr><th>Année</th><th>DJU Chauffage (base 18°C)</th><th>DJU Refroid. (base 26°C)</th></tr></thead>
+      <tbody id="dju">
+        <tr><td><input type="number" placeholder="2013"></td><td><input type="number" placeholder="1838" class="ic"></td><td><input type="number" placeholder="422" class="ic"></td></tr>
+        <tr><td><input type="number" placeholder="2024"></td><td><input type="number" placeholder="1419"></td><td><input type="number" placeholder="443"></td></tr>
+      </tbody>
+    </table>
+    <button class="add-btn" onclick="addRow('dju',3)">+ Ajouter une année</button>
+  </div>
+
+  <div class="ssub">5.2 Nature des contrats</div>
+  <div class="card">
+    <table class="dt">
+      <thead><tr><th>Énergie</th><th>Fournisseur</th><th>Type tarif</th><th>Unité achat</th></tr></thead>
+      <tbody>
+        <tr><td>Électricité</td><td><input type="text"></td><td><input type="text"></td><td>kWh</td></tr>
+        <tr><td>Gaz naturel</td><td><input type="text"></td><td><input type="text"></td><td>kWh PCS</td></tr>
+        <tr><td>Réseau chaleur</td><td><input type="text" placeholder="Sans objet"></td><td><input type="text"></td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ssub">5.3 Prix unitaires moyens</div>
+  <div class="card">
+    <table class="dt">
+      <thead><tr><th>Énergie</th><th>Part fixe (€HTVA/an)</th><th>Prix variable (€HTVA/kWh)</th></tr></thead>
+      <tbody>
+        <tr><td>Électricité</td><td><input type="number" placeholder="205363"></td><td><input type="number" step="0.001" placeholder="0,24"></td></tr>
+        <tr><td>Gaz naturel</td><td><input type="number" placeholder="65376"></td><td><input type="number" step="0.001" placeholder="0,10"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ssub">5.4 Présentation des consommations — par poste (année courante)</div>
+  <div class="card">
+    <table class="dt">
+      <thead><tr><th>Poste</th><th>Conso (kWhEF/an)</th><th>Ratio (kWhEF/m²·an)</th><th>Part (%)</th></tr></thead>
+      <tbody id="postes">
+        <tr><td>Chauffage</td><td><input type="number" placeholder="516750" oninput="calcRatio(this)"></td><td class="cc rauto">—</td><td><input type="number" placeholder="35"></td></tr>
+        <tr><td>ECS</td><td><input type="number" placeholder="120440" oninput="calcRatio(this)"></td><td class="cc rauto">—</td><td><input type="number" placeholder="8"></td></tr>
+        <tr><td>Climatisation</td><td><input type="number" placeholder="192087" oninput="calcRatio(this)"></td><td class="cc rauto">—</td><td><input type="number" placeholder="13"></td></tr>
+        <tr><td>Éclairage</td><td><input type="number" placeholder="275622" oninput="calcRatio(this)"></td><td class="cc rauto">—</td><td><input type="number" placeholder="19"></td></tr>
+        <tr><td>Ventilation</td><td><input type="number" placeholder="156101" oninput="calcRatio(this)"></td><td class="cc rauto">—</td><td><input type="number" placeholder="11"></td></tr>
+        <tr><td>Bureautique</td><td><input type="number" placeholder="10782" oninput="calcRatio(this)"></td><td class="cc rauto">—</td><td><input type="number" placeholder="1"></td></tr>
+        <tr><td>Auxiliaires</td><td><input type="number" placeholder="190378" oninput="calcRatio(this)"></td><td class="cc rauto">—</td><td><input type="number" placeholder="13"></td></tr>
+        <tr style="background:#F1F8E9"><td><strong>TOTAL</strong></td><td><input type="number" id="totConso" placeholder="1462160" class="ic"></td><td class="cc" id="totRatio">—</td><td class="cc">100 %</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ssub">5.5 Volumes énergétiques par énergie (année de référence)</div>
+  <div class="card">
+    <table class="dt">
+      <thead><tr><th>Énergie</th><th>Conso brute</th><th>Coef DEET</th><th>Conso corrigée (kWhEF)</th></tr></thead>
+      <tbody>
+        <tr><td>Électricité</td><td><input type="number" placeholder="620614" id="elecRef"></td><td class="cc">1,0</td><td class="cc" id="elecRefF">—</td></tr>
+        <tr><td>Gaz naturel</td><td><input type="number" placeholder="1842452" id="gazRef" oninput="calcGaz()"></td><td class="cc">0,9</td><td class="cc" id="gazRefF">—</td></tr>
+        <tr style="background:#F1F8E9"><td><strong>TOTAL Créf</strong></td><td colspan="2"></td><td class="cc" id="crefTotal">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ssub">5.6 Synthèse</div>
+  <div class="kpi-grid">
+    <div class="kpi"><span class="kpi-v" id="kpiCref">—</span><span class="kpi-l">Créf (kWhEF)</span></div>
+    <div class="kpi green"><span class="kpi-v" id="kpiCour">—</span><span class="kpi-l">Conso courante (kWhEF/m²·an)</span></div>
+    <div class="kpi amber"><span class="kpi-v" id="kpiRed">—</span><span class="kpi-l">Réduction brute (%)</span></div>
+  </div>
+
+  <div class="bnav"><button class="btn btn-s" onclick="prev()">← Précédent</button><button class="btn btn-p" onclick="next()">Suivant : Objectifs DEET →</button></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 6 — OBJECTIFS DEET / OPERAT
+═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="s6">
+  <div class="sec-title"><div class="snum">6</div><h3>Objectifs Décret Tertiaire – OPERAT</h3><span class="norm-ref">Décret 2019-771 · Arrêtés Valeurs Absolues</span></div>
+
+  <div class="tip"><span class="tip-lbl">📐 Principe</span>Le DEET impose deux types de cibles : <strong>Cabs</strong> (valeur absolue) et <strong>Crelat</strong> (valeur relative). Le maître d'ouvrage retient la cible <strong>la moins contraignante</strong>.</div>
+
+  <div class="ssub">6.1 Choix de l'année de référence — 3 cas possibles</div>
+  <div class="tip warn">Sélectionnez le cas qui correspond à votre situation. Selon les arrêtés Valeurs Absolues IV à VI, l'approche diffère selon la connaissance des Cabs et des consommations détaillées.</div>
+
+  <div class="case-box" onclick="selectCase(this,1)">
+    <h5><span class="case-radio"></span>1er cas — Cabs CONNUES + Consos chauffage/refroidissement CONNUES</h5>
+    <p>Les consommations sont ajustées suivant la météo et modulées suivant les IIU. On retient l'année où <strong>Créf / Cabs_réf est le plus élevé</strong>.</p>
+  </div>
+
+  <div class="case-box" onclick="selectCase(this,2)">
+    <h5><span class="case-radio"></span>2e cas — Cabs NON CONNUES + Consos chauf/refroid CONNUES</h5>
+    <p>Les Cabs seront publiées dans le futur arrêté. On retient l'année où <strong>Créf est le plus élevé</strong>. Test à refaire après publication.</p>
+  </div>
+
+  <div class="case-box" onclick="selectCase(this,3)">
+    <h5><span class="case-radio"></span>3e cas — Cabs NON CONNUES + Consos chauf/refroid NON CONNUES</h5>
+    <p>Ajustement météo impossible faute de détail. On retient l'année où <strong>Cef est le plus élevé</strong>.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Tableau de choix de l'année de référence</div>
+    <table class="dt">
+      <thead><tr><th>Élément</th><th>Valeur</th><th>Unité</th></tr></thead>
+      <tbody>
+        <tr><td><strong>MAX des Créf / Cabs_réf</strong></td><td><input type="number" step="0.01" placeholder="6,82" class="ic"></td><td>sans unité</td></tr>
+        <tr><td>Cef réf</td><td><input type="number" placeholder="2 278 821"></td><td>kWhEF</td></tr>
+        <tr><td>ACef Chauffage (ajustement climat)</td><td><input type="number" placeholder="0 (année réf.)"></td><td>kWhEF</td></tr>
+        <tr><td>ACef Refroidissement (ajustement climat)</td><td><input type="number" placeholder="0 (année réf.)"></td><td>kWhEF</td></tr>
+        <tr><td>Cef réf ajustée</td><td><input type="number" placeholder="2 278 821"></td><td>kWhEF</td></tr>
+        <tr><td><strong>Année retenue</strong></td><td><input type="number" placeholder="2013" class="ic"></td><td>—</td></tr>
+        <tr><td>DJU Chauf année retenue</td><td><input type="number" placeholder="1 838"></td><td>—</td></tr>
+        <tr><td>DJU Refroid année retenue</td><td><input type="number" placeholder="422"></td><td>—</td></tr>
+        <tr><td>SDP (Surface Utile)</td><td><input type="number" placeholder="11 526"></td><td>m²</td></tr>
+        <tr><td><strong>Créf surfacique</strong></td><td><input type="number" step="0.1" placeholder="197,7" class="ic"></td><td>kWhEF/m²</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ssub">6.2 Cabs 2030 — Cible en valeur absolue</div>
+  <div class="card">
+    <div class="card-title">Tableau Cabs (étalon / référence / modulé / coefficient)</div>
+    <table class="dt">
+      <thead><tr><th>Indicateur</th><th>Unité</th><th>Valeur</th><th>Justification</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Cabs étalon</strong></td><td>kWhEF/m²</td><td><input type="number" placeholder="29"></td><td><input type="text" value="Calculé selon IIU étalon"></td></tr>
+        <tr><td><strong>Cabs référence</strong></td><td>kWhEF/m²</td><td><input type="number" placeholder="29"></td><td><input type="text" value="IIU référence = IIU étalon"></td></tr>
+        <tr><td><strong>Cabs modulé Actuel</strong></td><td>kWhEF/m²</td><td><input type="number" placeholder="29"></td><td><input type="text" placeholder="IIU actuel = IIU étalon (à réviser)"></td></tr>
+        <tr style="background:#F1F8E9"><td><strong>Coefficient modulation</strong></td><td>—</td><td><input type="number" step="0.01" placeholder="1,00" class="ic"></td><td><input type="text" value="= Cabs Actuel / Cabs référence"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ssub">6.3 Crelat 2030 / 2040 / 2050 — Cibles relatives</div>
+  <div class="card">
+    <table class="dt">
+      <thead><tr><th>Horizon</th><th>Formule</th><th>Cible (kWhEF/m²·an)</th><th>Coef modulation</th><th>Crelat modulé</th></tr></thead>
+      <tbody>
+        <tr><td><strong>2030</strong></td><td>0,6 × Créf</td><td><input type="number" placeholder="119" class="ic"></td><td><input type="number" step="0.01" value="1,00"></td><td><input type="number" placeholder="119" class="ic"></td></tr>
+        <tr><td><strong>2040</strong></td><td>0,5 × Créf</td><td><input type="number" placeholder="99" class="ic"></td><td><input type="number" step="0.01" value="1,00"></td><td><input type="number" placeholder="99" class="ic"></td></tr>
+        <tr><td><strong>2050</strong></td><td>0,4 × Créf</td><td><input type="number" placeholder="79" class="ic"></td><td><input type="number" step="0.01" value="1,00"></td><td><input type="number" placeholder="79" class="ic"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ssub">6.4 Modulation des objectifs en raison d'une contrainte</div>
+  <div class="tip">Ces modulations peuvent être calculées et justifiées par un <strong>Dossier Technique</strong>. La présente étude liste les raisons qui pourraient justifier une modulation.</div>
+
+  <div class="mod-box">
+    <h5>🔧 Raisons techniques</h5>
+    <p><em>Exemple : certaines préconisations ne peuvent pas être étudiées, parce que la structure du bâtiment ne le permet pas.</em></p>
+    <textarea placeholder="Ex: ITE limitée par amiante DTA, CTA DF impossible faute de gaines, PV en toiture limité par capacité portante R+16"></textarea>
+  </div>
+
+  <div class="mod-box">
+    <h5>🏛 Raisons patrimoniales</h5>
+    <p><em>Exemple : certaines préconisations ne peuvent pas être étudiées, parce que le bâtiment est classé ou en zone classée pour les monuments historiques.</em></p>
+    <textarea placeholder="Ex: ABF, AVAP, SPR, loi Littoral, périmètre 500 m MH..."></textarea>
+  </div>
+
+  <div class="mod-box">
+    <h5>⚖ Raisons légales</h5>
+    <p><em>Exemple : certaines préconisations ne peuvent pas être étudiées, parce qu'il faudrait intervenir en dehors du domaine, comme une façade alignée sur la limite de propriété.</em></p>
+    <textarea placeholder="Ex: ITE impossible si façade alignée limite propriété, ombrières parking sur domaine public, captage mer..."></textarea>
+  </div>
+
+  <div class="mod-box">
+    <h5>💰 Coût manifestement disproportionné</h5>
+    <p><em>Comparaison entre le coût des travaux découlant d'une préconisation, et le coût des travaux à faire de toutes façons (article 11 arrêté du 10/04/2020 — méthode à publier).</em></p>
+    <textarea placeholder="Ex: ITE TRB 115 ans > durée vie travaux 50 ans, CTA DF TRB 52 ans > seuil 30 ans..."></textarea>
+  </div>
+
+  <div class="ssub">6.5 Synthèse — Cible retenue</div>
+  <div class="card">
+    <table class="dt">
+      <thead><tr><th>Horizon</th><th>Cabs modulé</th><th>Crelat modulé</th><th>Cible retenue (la moins contraignante)</th><th>Type</th></tr></thead>
+      <tbody>
+        <tr><td>2030</td><td><input type="number"></td><td><input type="number" placeholder="119"></td><td><input type="number" placeholder="119" class="ic"></td><td><select><option>Crelat</option><option>Cabs</option></select></td></tr>
+        <tr><td>2040</td><td><input type="number"></td><td><input type="number" placeholder="99"></td><td><input type="number" placeholder="99" class="ic"></td><td><select><option>Crelat</option><option>Cabs</option></select></td></tr>
+        <tr><td>2050</td><td><input type="number"></td><td><input type="number" placeholder="79"></td><td><input type="number" placeholder="79" class="ic"></td><td><select><option>Crelat</option><option>Cabs</option></select></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ssub">6.6 Saisie dans OPERAT</div>
+  <div class="card">
+    <div class="fg">
+      <div class="field"><label>IUB du site</label><input type="text" placeholder="À récupérer compte OPERAT"></div>
+      <div class="field"><label>Référence EFA</label><input type="text"></div>
+      <div class="field"><label>Sous-catégorie OPERAT déclarée</label><input type="text"></div>
+      <div class="field"><label>Échéance annuelle</label><input type="text" value="30 septembre N+1"></div>
+    </div>
+  </div>
+
+  <div class="bnav"><button class="btn btn-s" onclick="prev()">← Précédent</button><button class="btn btn-p" onclick="next()">Suivant : Modélisation →</button></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 7 — MODÉLISATION
+═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="s7">
+  <div class="sec-title"><div class="snum">7</div><h3>Modélisation Thermique & Validation</h3><span class="norm-ref">NF EN 16247-1 §5.5.3</span></div>
+
+  <div class="ssub">7.1 Choix de l'année d'étalonnage</div>
+  <div class="card">
+    <div class="fg">
+      <div class="field"><label>Année retenue</label><input type="number" placeholder="2024"></div>
+      <div class="field"><label>Outil de modélisation</label><select><option>Pleiades + STD</option><option>Comfie Pléiades</option><option>EnergyPlus</option><option>TRNSYS</option><option>DesignBuilder</option><option>IDA ICE</option><option>Outil interne</option></select></div>
+      <div class="ff field"><label>Justification du choix</label><textarea placeholder="Année représentative, données complètes, factures disponibles..."></textarea></div>
+    </div>
+  </div>
+
+  <div class="ssub">7.2 Hypothèses de fonctionnement (état actuel)</div>
+  <div class="card">
+    <div class="fg">
+      <div class="ff field"><label>Températures consigne</label><textarea placeholder="19°C chambres occupation, 17°C inoccupation, 21°C parties communes, 26°C clim été, ECS 55°C..."></textarea></div>
+      <div class="ff field"><label>Apports internes</label><textarea placeholder="~5 W/m² éclairage, ~8 W/m² bureautique, ~15 W/m² cuisines, ~50 W/personne..."></textarea></div>
+    </div>
+  </div>
+
+  <div class="ssub">7.3 Modélisation des consommations</div>
+  <div class="card">
+    <div class="card-title">Validation simulation vs factures</div>
+    <table class="dt">
+      <thead><tr><th>Énergie</th><th>Conso simulée</th><th>Conso facturée</th><th>Écart (%)</th><th>Validation</th></tr></thead>
+      <tbody>
+        <tr><td>Gaz naturel</td><td><input type="number"></td><td><input type="number"></td><td class="cc">—</td><td><select><option>✅ OK (&lt;5%)</option><option>🟡 À ajuster</option></select></td></tr>
+        <tr><td>Électricité</td><td><input type="number"></td><td><input type="number"></td><td class="cc">—</td><td><select><option>✅ OK</option><option>🟡 À ajuster</option></select></td></tr>
+      </tbody>
+    </table>
+    <div class="tip green" style="margin-top:.7rem">Le modèle doit reproduire les factures réelles avec un écart inférieur à <strong>5 %</strong> (sur l'année complète) pour être considéré comme validé.</div>
+  </div>
+
+  <div class="bnav"><button class="btn btn-s" onclick="prev()">← Précédent</button><button class="btn btn-p" onclick="next()">Suivant : Confort →</button></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 8 — CONFORT & ALÉAS CLIMAT
+═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="s8">
+  <div class="sec-title"><div class="snum">8</div><h3>Confort Thermique & Aléas Climatiques</h3><span class="norm-ref">TRACC · PNACC-3 · Manifeste Bâtiment Durable</span></div>
+
+  <div class="ssub">8.1 Aléas vagues de chaleur</div>
+  <div class="card">
+    <div class="tip warn">Selon les projections TRACC (Trajectoire de Réchauffement de l'Adaptation au Changement Climatique) et le PNACC-3, les vagues de chaleur vont s'intensifier. Anticiper les surchauffes estivales est devenu un enjeu majeur.</div>
+    <textarea placeholder="Description des risques canicules sur le site, fréquence, intensité projetée..."></textarea>
+  </div>
+
+  <div class="ssub">8.2 Aléas littoraux (érosion, submersion)</div>
+  <div class="card">
+    <textarea placeholder="Pour sites côtiers : risques submersion marine, érosion, montée des eaux..."></textarea>
+  </div>
+
+  <div class="ssub">8.3 Aléas pluviaux (précipitations intenses, inondations)</div>
+  <div class="card">
+    <textarea placeholder="Risque d'inondation niveaux enterrés, capacité évacuation EP..."></textarea>
+  </div>
+
+  <div class="ssub">8.4 Aléas RGA (Retrait-Gonflement Argiles)</div>
+  <div class="card">
+    <textarea placeholder="Sensibilité du sol, mouvements de terrain..."></textarea>
+  </div>
+
+  <div class="ssub">8.5 Confort d'été — Stratégies</div>
+  <div class="card">
+    <table class="dt">
+      <thead><tr><th>Stratégie</th><th>Application au site</th></tr></thead>
+      <tbody>
+        <tr><td>Optimisation surface vitrage</td><td><input type="text"></td></tr>
+        <tr><td>Protection solaire (volets, stores)</td><td><input type="text"></td></tr>
+        <tr><td>Free cooling nocturne (via GTB)</td><td><input type="text"></td></tr>
+        <tr><td>Inertie thermique</td><td><input type="text"></td></tr>
+        <tr><td>Végétalisation / albédo</td><td><input type="text"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ssub">8.6 Outils de résilience recommandés</div>
+  <div class="card">
+    <ul class="cl">
+      <li><input type="checkbox"> Plan canicule (organisation, signalétique, locaux rafraîchis)</li>
+      <li><input type="checkbox"> Vérification capacité réseau évacuation EP</li>
+      <li><input type="checkbox"> Étude RGA (sondages géotechniques)</li>
+      <li><input type="checkbox"> Référent climat / résilience désigné</li>
+      <li><input type="checkbox"> Plan de continuité d'activité en cas d'aléa majeur</li>
+    </ul>
+  </div>
+
+  <div class="bnav"><button class="btn btn-s" onclick="prev()">← Précédent</button><button class="btn btn-p" onclick="next()">Suivant : Préconisations →</button></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 9 — PRÉCONISATIONS
+═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="s9">
+  <div class="sec-title"><div class="snum">9</div><h3>Préconisations d'Amélioration</h3><span class="norm-ref">NF EN 16247-1 §5.6</span></div>
+
+  <div class="card">
+    <div class="card-title">Bilan des préconisations</div>
+    <table class="dt">
+      <thead><tr><th>N°</th><th>Libellé</th><th>Gain (kWh/an)</th><th>Coût HT (€)</th><th>CEE (€)</th><th>Économie €/an</th><th>TRB (ans)</th><th>Impact confort</th><th></th></tr></thead>
+      <tbody id="preco">
+        <tr><td class="cc">1</td><td><input type="text" placeholder="GTB classe B (BACS)"></td><td><input type="number" placeholder="218500"></td><td><input type="number" placeholder="450000"></td><td><input type="number" placeholder="18200"></td><td><input type="number" placeholder="40600"></td><td><input type="number" step="0.1" placeholder="10.6"></td><td><select><option>🟢 Favorable</option><option>⚪ Neutre</option><option>🔴 Défavorable</option></select></td><td><button class="del" onclick="rmRow(this)">×</button></td></tr>
+      </tbody>
+    </table>
+    <button class="add-btn" onclick="addRow('preco',9)">+ Ajouter une préconisation</button>
+  </div>
+
+  <div class="ssub">9.1 Méthodologie de chiffrage</div>
+  <div class="card">
+    <div class="fg">
+      <div class="field"><label>Taux d'actualisation</label><input type="text" value="3 %/an"></div>
+      <div class="field"><label>Évolution prix énergie</label><input type="text" placeholder="+4% élec / +5% gaz (ETS2)"></div>
+      <div class="field"><label>Évolution coût travaux</label><input type="text" value="+2 %/an"></div>
+      <div class="field"><label>Prix CEE moyen</label><input type="text" placeholder="~8 €/MWh cumac"></div>
+    </div>
+  </div>
+
+  <div class="bnav"><button class="btn btn-s" onclick="prev()">← Précédent</button><button class="btn btn-p" onclick="next()">Suivant : Scénarios →</button></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 10 — SCÉNARIOS DEET
+═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="s10">
+  <div class="sec-title"><div class="snum">10</div><h3>Scénarios de Travaux DEET</h3><span class="norm-ref">NF EN 16247-1 §5.6.4</span></div>
+
+  <div class="card">
+    <table class="dt">
+      <thead><tr><th>Scénario</th><th>Cible</th><th>Travaux</th><th>Invest. €HT</th><th>CEE €</th><th>Écon. €/an</th><th>TRB (ans)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Gains rapides</strong></td><td>TRB &lt; 5 ans</td><td><input type="text" placeholder="Équilibrage + relamping LED"></td><td><input type="number" placeholder="55800"></td><td><input type="number" placeholder="7510"></td><td><input type="number" placeholder="4920"></td><td><input type="number" step="0.1" placeholder="9.8"></td></tr>
+        <tr><td><strong>Scénario 1</strong></td><td>DEET 2030</td><td><input type="text"></td><td><input type="number" placeholder="55800"></td><td><input type="number"></td><td><input type="number"></td><td><input type="number" step="0.1"></td></tr>
+        <tr><td><strong>Scénario 2</strong></td><td>DEET 2040</td><td><input type="text" placeholder="+ GTB + thermostats + comptage"></td><td><input type="number" placeholder="901800"></td><td><input type="number" placeholder="30910"></td><td><input type="number" placeholder="61400"></td><td><input type="number" step="0.1" placeholder="14.2"></td></tr>
+        <tr><td><strong>Scénario 3</strong></td><td>DEET 2050</td><td><input type="text" placeholder="+ ITE + CTA DF + PV"></td><td><input type="number" placeholder="4164300"></td><td><input type="number" placeholder="198020"></td><td><input type="number" placeholder="91700"></td><td><input type="number" step="0.1" placeholder="43.3"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="bnav"><button class="btn btn-s" onclick="prev()">← Précédent</button><button class="btn btn-p" onclick="next()">Suivant : Synthèse →</button></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 11 — SYNTHÈSE
+═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="s11">
+  <div class="sec-title"><div class="snum">11</div><h3>Synthèse Exécutive</h3><span class="norm-ref">NF EN 16247-1 §5.7 & 5.8</span></div>
+
+  <div class="card">
+    <div class="card-title">Points clés à mettre en avant</div>
+    <div class="fg">
+      <div class="ff field"><label>Constat principal</label><textarea placeholder="3-4 phrases résumant l'état énergétique actuel..."></textarea></div>
+      <div class="ff field"><label>Stratégie recommandée</label><textarea placeholder="Quelle trajectoire vers 2030/2040/2050..."></textarea></div>
+      <div class="ff field"><label>Premières actions à engager</label><textarea placeholder="Quick wins TRB court terme..."></textarea></div>
+      <div class="ff field"><label>Limites de l'audit (NF EN 16247-2 §5.9)</label><textarea placeholder="Périmètre, données indisponibles, hypothèses..."></textarea></div>
+    </div>
+  </div>
+
+  <div class="bnav"><button class="btn btn-s" onclick="prev()">← Précédent</button><button class="btn btn-p" onclick="next()">Suivant : Annexes →</button></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 12 — ANNEXES & PV
+═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="s12">
+  <div class="sec-title"><div class="snum">12</div><h3>Annexes & Procès-Verbaux</h3><span class="norm-ref">NF EN 16247-1 §5.7</span></div>
+
+  <div class="ssub">Annexes obligatoires</div>
+  <div class="card">
+    <ul class="cl">
+      <li><input type="checkbox"> Annexe 1 — Glossaire technique</li>
+      <li><input type="checkbox"> Annexe 2 — Calculs détaillés (Créf, Cabs, Crelat, GES, EP)</li>
+      <li><input type="checkbox"> Annexe 3 — PV de réunion de démarrage signé</li>
+      <li><input type="checkbox"> Annexe 4 — PV de visite terrain signé</li>
+      <li><input type="checkbox"> Annexe 5 — PV de réunion de clôture signé</li>
+      <li><input type="checkbox"> Annexe 6 — Photos de visite légendées</li>
+      <li><input type="checkbox"> Annexe 7 — Tableau récapitulatif informations manquantes</li>
+      <li><input type="checkbox"> Annexe 8 — Cabs 2030 selon Arrêté Valeurs Absolues VI</li>
+      <li><input type="checkbox"> Annexe 9 — Compétences auditeur (qualification OPQIBI 1905)</li>
+      <li><input type="checkbox"> Annexe 10 — Cadre réglementaire complet (textes officiels)</li>
+    </ul>
+  </div>
+
+  <div class="ssub">Validation finale du rapport</div>
+  <div class="card">
+    <div class="fg">
+      <div class="field"><label>Date du rapport</label><input type="date"></div>
+      <div class="field"><label>Version</label><input type="text" value="V1.0"></div>
+      <div class="field"><label>Auditeur signataire</label><input type="text"></div>
+      <div class="field"><label>Qualification</label><input type="text" placeholder="OPQIBI 1905 en cours"></div>
+      <div class="ff field"><label>Réunion de clôture / restitution</label><input type="date"></div>
+    </div>
+  </div>
+
+  <div class="bnav"><button class="btn btn-s" onclick="prev()">← Précédent</button><button class="btn btn-ok" onclick="window.print()">✓ Exporter le rapport en PDF</button></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     OUTIL 1 — CALCULS OPERAT
+═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="st1">
+  <div class="sec-title"><div class="snum" style="background:var(--teal)">⟨⟩</div><h3>Calculateur OPERAT Intégré</h3></div>
+
+  <div class="card">
+    <div class="card-title">Saisie</div>
+    <div class="fg">
+      <div class="field"><label>Surface Utile (m²)</label><input type="number" id="csu" oninput="opCalc()" placeholder="11526"></div>
+      <div class="field"><label>Élec référence (kWhEC)</label><input type="number" id="cel" oninput="opCalc()" placeholder="620614"></div>
+      <div class="field"><label>Gaz référence brut (kWh PCS)</label><input type="number" id="cgz" oninput="opCalc()" placeholder="1842452"></div>
+      <div class="field"><label>Cabs étalon (kWhEF/m²)</label><input type="number" id="ccabs" oninput="opCalc()" placeholder="29"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Résultats DEET</div>
+    <table class="dt">
+      <tbody>
+        <tr><td>Créf total (kWhEF)</td><td class="cc" id="rcref">—</td></tr>
+        <tr><td>Créf surfacique</td><td class="cc" id="rcrefs">— kWhEF/m²</td></tr>
+        <tr><td>Crelat 2030 (60% Créf)</td><td class="cc" id="rc30">— kWhEF/m²</td></tr>
+        <tr><td>Crelat 2040 (50% Créf)</td><td class="cc" id="rc40">— kWhEF/m²</td></tr>
+        <tr><td>Crelat 2050 (40% Créf)</td><td class="cc" id="rc50">— kWhEF/m²</td></tr>
+        <tr><td>Cabs × SU</td><td class="cc" id="rcabsu">—</td></tr>
+        <tr><td>Ratio Créf / Cabs_réf</td><td class="cc" id="rratio">—</td></tr>
+        <tr><td><strong>Cible 2030 retenue (la moins contraignante)</strong></td><td class="cc" id="rcible30">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     OUTIL 2 — CHECKLIST CONFORMITÉ
+═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="st2">
+  <div class="sec-title"><div class="snum" style="background:var(--green)">✔</div><h3>Checklist Conformité Complète</h3></div>
+
+  <div class="ssub">NF EN 16247-1 — Exigences générales</div>
+  <div class="card">
+    <ul class="cl">
+      <li><input type="checkbox"> §4.1 Confidentialité et impartialité documentées</li>
+      <li><input type="checkbox"> §5.1 Contact préliminaire effectué</li>
+      <li><input type="checkbox"> §5.2 Réunion de démarrage tenue + PV signé</li>
+      <li><input type="checkbox"> §5.3 Collecte des données effective et tracée</li>
+      <li><input type="checkbox"> §5.4 Visite site documentée (date, participants, photos)</li>
+      <li><input type="checkbox"> §5.5 Analyse réalisée avec hypothèses justifiées</li>
+      <li><input type="checkbox"> §5.6 Rapport d'audit conforme</li>
+      <li><input type="checkbox"> §5.7 Réunion de clôture/restitution organisée + PV</li>
+      <li><input type="checkbox"> §6 Compétences auditeur justifiées</li>
+    </ul>
+  </div>
+
+  <div class="ssub">NF EN 16247-2 — Bâtiments</div>
+  <div class="card">
+    <ul class="cl">
+      <li><input type="checkbox"> §5.4.1 Enveloppe documentée (U, ponts thermiques)</li>
+      <li><input type="checkbox"> §5.4.2 Systèmes énergétiques inventoriés</li>
+      <li><input type="checkbox"> §5.4.3 Mesurage / sous-comptage présent ou planifié</li>
+      <li><input type="checkbox"> §5.4.4 Occupation et usage documentés</li>
+      <li><input type="checkbox"> §5.5 Modélisation thermique validée (&lt;5% écart)</li>
+      <li><input type="checkbox"> §5.6 Préconisations chiffrées avec TRB</li>
+      <li><input type="checkbox"> §5.7 Scénarios 2030/2040/2050 présents</li>
+      <li><input type="checkbox"> §5.8 Hypothèses économiques formalisées</li>
+      <li><input type="checkbox"> §5.9 Limites de l'audit explicitées</li>
+    </ul>
+  </div>
+
+  <div class="ssub">DEET — Décret n°2019-771</div>
+  <div class="card">
+    <ul class="cl">
+      <li><input type="checkbox"> Bâtiment > 1 000 m² tertiaire (champ d'application)</li>
+      <li><input type="checkbox"> Année de référence entre 2010 et 2019</li>
+      <li><input type="checkbox"> Créf calculée avec coefficient 0,9 sur gaz PCS</li>
+      <li><input type="checkbox"> Cabs 2030 vérifiée selon sous-catégorie OPERAT</li>
+      <li><input type="checkbox"> Crelat 2030/2040/2050 calculée (-40%/-50%/-60%)</li>
+      <li><input type="checkbox"> Cible = MAX(Cabs, Crelat) - la moins contraignante</li>
+      <li><input type="checkbox"> Modulations IIU étudiées</li>
+      <li><input type="checkbox"> Modulations contraintes documentées si applicables</li>
+      <li><input type="checkbox"> Saisie OPERAT à jour (IUB, EFA, IIU)</li>
+      <li><input type="checkbox"> Ajustement climatique annuel calculé</li>
+    </ul>
+  </div>
+
+  <div class="ssub">Décret BACS n°2020-887</div>
+  <div class="card">
+    <ul class="cl">
+      <li><input type="checkbox"> Site assujetti évalué (puissance > 290 kW)</li>
+      <li><input type="checkbox"> Conformité classe B (NF EN ISO 52120-1) vérifiée</li>
+      <li><input type="checkbox"> Échéance 01/01/2025 respectée ou plan d'action</li>
+      <li><input type="checkbox"> Calorifugeage et régulation par pièce (n°2023-444)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 13 — À PROPOS
+═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="st3">
+  <div class="sec-title"><div class="snum" style="background:var(--portfolio-accent)">ⓘ</div><h3>À propos de cette trame</h3></div>
+
+  <div class="card">
+    <div class="card-title">Outil professionnel</div>
+    <p style="font-size:13px;line-height:1.7;color:var(--text2)">Cette trame interactive d'audit énergétique a été développée par <strong>Abdelilah El Ghazouani</strong>, ingénieur en énergétique tertiaire, dans le cadre du parcours alternance Cabinet Energis et en préparation de la qualification OPQIBI 1905.</p>
+    <br>
+    <p style="font-size:13px;line-height:1.7;color:var(--text2)">Elle est conçue pour respecter strictement :</p>
+    <ul style="margin-left:1.5rem;font-size:12.5px;line-height:1.8;color:var(--text2)">
+      <li>La <strong>norme NF EN 16247-1</strong> (Audits énergétiques — Exigences générales)</li>
+      <li>La <strong>norme NF EN 16247-2</strong> (Audits énergétiques — Bâtiments)</li>
+      <li>Le <strong>Décret Tertiaire (DEET)</strong> n° 2019-771 et arrêtés Valeurs Absolues I à VI</li>
+      <li>Le référentiel <strong>ADEME Perfimmo</strong> (structure 10 chapitres + annexes)</li>
+      <li>Le <strong>Décret BACS</strong> n° 2020-887 et n° 2023-259</li>
+    </ul>
+  </div>
+
+  <div class="consult-cta">
+    <h4>Besoin d'un audit énergétique tertiaire conforme ?</h4>
+    <p>Je peux vous accompagner dans la réalisation d'audits NF EN 16247 et la mise en conformité DEET de vos bâtiments.</p>
+    <a href="https://abdelilah-elghazouani.pro/index.html#contact">Me contacter →</a>
+  </div>
+</div>
+
+</main>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════════════════
+const sections=['s0','s1','s2','s3','s4','s5','s6','s7','s8','s9','s10','s11','s12','st1','st2','st3'];
+const titles={s0:'0. Réunion de Démarrage',s1:'1. Contexte',s2:'2. Présentation du site',s3:'3. Enveloppe',s4:'4. Équipements techniques',s5:'5. Consommations énergétiques',s6:'6. Objectifs DEET / OPERAT',s7:'7. Modélisation thermique',s8:'8. Confort & aléas climat',s9:'9. Préconisations',s10:'10. Scénarios DEET',s11:'11. Synthèse exécutive',s12:'12. Annexes',st1:'Calculs OPERAT',st2:'Checklist conformité',st3:'À propos'};
+
+function go(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelector(`.nav-item[onclick*="${id}"]`).classList.add('active');
+  document.getElementById('pgtitle').textContent=titles[id];
+  document.getElementById('bc').textContent=titles[id];
+  const idx=sections.indexOf(id);
+  if(idx>=0 && idx<13)document.getElementById('progress').style.width=((idx+1)/13*100)+'%';
+  window.scrollTo(0,0);
+}
+
+function next(){
+  const active=document.querySelector('.section.active');
+  const id=active.id;
+  const idx=sections.indexOf(id);
+  if(idx<sections.length-1)go(sections[idx+1]);
+}
+function prev(){
+  const active=document.querySelector('.section.active');
+  const id=active.id;
+  const idx=sections.indexOf(id);
+  if(idx>0)go(sections[idx-1]);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// CALCULS DYNAMIQUES
+// ═══════════════════════════════════════════════════════════════
+function calcGaz(){
+  const g=parseFloat(document.getElementById('gazRef').value)||0;
+  const e=parseFloat(document.getElementById('elecRef').value)||0;
+  const gf=g*0.9;
+  document.getElementById('gazRefF').textContent=gf.toLocaleString('fr-FR')+' kWhEF';
+  document.getElementById('elecRefF').textContent=e.toLocaleString('fr-FR')+' kWhEF';
+  const total=e+gf;
+  document.getElementById('crefTotal').textContent=total.toLocaleString('fr-FR')+' kWhEF';
+  document.getElementById('kpiCref').textContent=(total/1000000).toFixed(2)+' M';
+}
+
+function calcRatio(input){
+  const su=parseFloat(document.getElementById('csu')?.value)||11526;
+  const v=parseFloat(input.value)||0;
+  const ratio=su>0?(v/su).toFixed(1):'—';
+  const row=input.closest('tr');
+  row.querySelector('.rauto').textContent=ratio;
+}
+
+// Calculateur OPERAT intégré
+function opCalc(){
+  const su=parseFloat(document.getElementById('csu').value)||0;
+  const el=parseFloat(document.getElementById('cel').value)||0;
+  const gz=parseFloat(document.getElementById('cgz').value)||0;
+  const cabs=parseFloat(document.getElementById('ccabs').value)||0;
+  if(!su)return;
+  const gzCorr=gz*0.9;
+  const cref=el+gzCorr;
+  const crefSurf=cref/su;
+  const c30=crefSurf*0.6;
+  const c40=crefSurf*0.5;
+  const c50=crefSurf*0.4;
+  const cabsTot=cabs*su;
+  const ratio=cabsTot>0?(cref/cabsTot).toFixed(2):'—';
+  const cible30=Math.max(cabs,c30);
+  document.getElementById('rcref').textContent=cref.toLocaleString('fr-FR')+' kWhEF';
+  document.getElementById('rcrefs').textContent=crefSurf.toFixed(1)+' kWhEF/m²';
+  document.getElementById('rc30').textContent=c30.toFixed(0)+' kWhEF/m²';
+  document.getElementById('rc40').textContent=c40.toFixed(0)+' kWhEF/m²';
+  document.getElementById('rc50').textContent=c50.toFixed(0)+' kWhEF/m²';
+  document.getElementById('rcabsu').textContent=cabsTot.toLocaleString('fr-FR');
+  document.getElementById('rratio').textContent=ratio;
+  document.getElementById('rcible30').textContent=cible30.toFixed(0)+' kWhEF/m²';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// LIGNES DYNAMIQUES
+// ═══════════════════════════════════════════════════════════════
+function addRow(tbodyId,cols){
+  const tbody=document.getElementById(tbodyId);
+  const row=document.createElement('tr');
+  let cells='';
+  for(let i=0;i<cols-1;i++)cells+='<td><input type="text"></td>';
+  cells+='<td><button class="del" onclick="rmRow(this)">×</button></td>';
+  row.innerHTML=cells;
+  tbody.appendChild(row);
+}
+function rmRow(btn){btn.closest('tr').remove()}
+
+function selectCase(box,n){
+  document.querySelectorAll('.case-box').forEach(b=>b.classList.remove('selected'));
+  box.classList.add('selected');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// EXPORT / IMPORT JSON
+// ═══════════════════════════════════════════════════════════════
+function exportJSON(){
+  const data={};
+  document.querySelectorAll('input,select,textarea').forEach((el,i)=>{
+    if(el.type==='checkbox')data['cb_'+i]=el.checked;
+    else if(el.value)data['f_'+i]=el.value;
+  });
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download='audit_energetique_'+new Date().toISOString().split('T')[0]+'.json';
+  a.click();
+}
+
+function importJSON(event){
+  const file=event.target.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=(e)=>{
+    try{
+      const data=JSON.parse(e.target.result);
+      const inputs=document.querySelectorAll('input,select,textarea');
+      inputs.forEach((el,i)=>{
+        if(el.type==='checkbox' && data['cb_'+i]!==undefined)el.checked=data['cb_'+i];
+        else if(data['f_'+i]!==undefined)el.value=data['f_'+i];
+      });
+      alert('✓ Données importées avec succès');
+    }catch(err){alert('Erreur lors de l\'import : '+err.message)}
+  };
+  reader.readAsText(file);
+}
+
+// Init
+go('s0');
+</script>
+
+</body>
+</html>
