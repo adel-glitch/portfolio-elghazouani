@@ -21,7 +21,6 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:13.5px;line-height:1.6}
 
-/* Bannière portfolio */
 .portfolio-banner{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);color:white;padding:.8rem 2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid var(--portfolio-accent);position:sticky;top:0;z-index:100}
 .pb-left{display:flex;align-items:center;gap:1rem}
 .pb-name{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem}
@@ -174,6 +173,8 @@ select{cursor:pointer}
   .main{max-width:100%;padding:0}
 }
 </style>
+<!-- docx.js for Word generation -->
+<script src="https://unpkg.com/docx@9.6.1/build/index.js"></script>
 </head>
 <body>
 
@@ -195,7 +196,7 @@ select{cursor:pointer}
 <!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="sb-logo">
-    <div class="sb-badge">v3.0 · CONFORME ADEME</div>
+    <div class="sb-badge">v3.1 · CONFORME ADEME</div>
     <h1>Trame Audit Énergétique Tertiaire</h1>
     <p>NF EN 16247-1/-2 · DEET · ADEME Perfimmo</p>
     <div class="pb-wrap"><div class="pb-bar" id="progress" style="width:0%"></div></div>
@@ -227,10 +228,11 @@ select{cursor:pointer}
 
   <div class="sb-foot">
     <button class="btn-pdf" onclick="window.print()">📥 Exporter en PDF</button>
+    <button class="btn-pdf" onclick="generateDocx()" style="background:var(--teal);margin-top:4px">📄 Générer le rapport Word</button>
     <button class="btn-export" onclick="exportJSON()">💾 Sauvegarder JSON</button>
     <input type="file" id="importFile" accept=".json" onchange="importJSON(event)" style="display:none">
     <button class="btn-export" onclick="document.getElementById('importFile').click()" style="background:var(--slate)">📂 Charger JSON</button>
-    <div class="sb-ver">v3.0 · 2026 · A. El Ghazouani</div>
+    <div class="sb-ver">v3.1 · 2026 · A. El Ghazouani</div>
   </div>
 </aside>
 
@@ -244,7 +246,7 @@ select{cursor:pointer}
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════
-     SECTION 0 — RÉUNION DE DÉMARRAGE (NF EN 16247-1 § 5.2)
+     SECTION 0 — RÉUNION DE DÉMARRAGE
 ═══════════════════════════════════════════════════════════════ -->
 <div class="section active" id="s0">
   <div class="sec-title"><div class="snum">0</div><h3>Réunion de Démarrage (Kick-off)</h3><span class="norm-ref">NF EN 16247-1 § 5.2</span></div>
@@ -517,6 +519,15 @@ select{cursor:pointer}
     <button class="add-btn" onclick="addRow('nc',6)">+ Ajouter une non-conformité</button>
   </div>
 
+  <!-- ✅ AJOUT §2.11 — ADEME Perfimmo §2.11 -->
+  <div class="ssub">2.11 Remarques hors périmètre de l'audit énergétique</div>
+  <div class="card">
+    <div class="tip warn"><span class="tip-lbl">ℹ Hors périmètre — ADEME Perfimmo §2.11</span>Cette section concerne les <strong>anomalies énergétiques constatées hors activités tertiaires</strong> du site (process industriel, usages privatifs, équipements non DEET). Elles ne sont pas traitées dans les préconisations mais sont signalées au client. <strong>Indiquer "Sans objet" si aucune remarque.</strong></div>
+    <div class="field"><label>Remarques hors périmètre</label>
+      <textarea placeholder="Ex : compresseur air process fonctionnant 24h/24 hors plages de production, éclairage parking non assujetti au DEET, véhicules électriques sans sous-comptage dédié... Indiquer « Sans objet » si aucune remarque."></textarea>
+    </div>
+  </div>
+
   <div class="bnav"><button class="btn btn-s" onclick="prev()">← Précédent</button><button class="btn btn-p" onclick="next()">Suivant : Enveloppe →</button></div>
 </div>
 
@@ -737,7 +748,7 @@ select{cursor:pointer}
       <div class="field"><label>Station retenue</label><input type="text" placeholder="Biarritz-Anglet (64)"></div>
       <div class="field"><label>Distance au site (km)</label><input type="number"></div>
       <div class="field"><label>Source DJU</label><input type="text" placeholder="infoclimat.fr"></div>
-      <div class="field"><label>Méthode</label><input type="text" value="Professionnel de l'énergie"></div>
+      <div class="field"><label>Méthode</label><input type="text" value="Professionnel de l\'énergie"></div>
     </div>
     <div class="ssub" style="margin-top:.8rem">DJU Chauffage et Refroidissement</div>
     <table class="dt">
@@ -827,12 +838,10 @@ select{cursor:pointer}
     <h5><span class="case-radio"></span>1er cas — Cabs CONNUES + Consos chauffage/refroidissement CONNUES</h5>
     <p>Les consommations sont ajustées suivant la météo et modulées suivant les IIU. On retient l'année où <strong>Créf / Cabs_réf est le plus élevé</strong>.</p>
   </div>
-
   <div class="case-box" onclick="selectCase(this,2)">
     <h5><span class="case-radio"></span>2e cas — Cabs NON CONNUES + Consos chauf/refroid CONNUES</h5>
     <p>Les Cabs seront publiées dans le futur arrêté. On retient l'année où <strong>Créf est le plus élevé</strong>. Test à refaire après publication.</p>
   </div>
-
   <div class="case-box" onclick="selectCase(this,3)">
     <h5><span class="case-radio"></span>3e cas — Cabs NON CONNUES + Consos chauf/refroid NON CONNUES</h5>
     <p>Ajustement météo impossible faute de détail. On retient l'année où <strong>Cef est le plus élevé</strong>.</p>
@@ -859,7 +868,6 @@ select{cursor:pointer}
 
   <div class="ssub">6.2 Cabs 2030 — Cible en valeur absolue</div>
   <div class="card">
-    <div class="card-title">Tableau Cabs (étalon / référence / modulé / coefficient)</div>
     <table class="dt">
       <thead><tr><th>Indicateur</th><th>Unité</th><th>Valeur</th><th>Justification</th></tr></thead>
       <tbody>
@@ -885,30 +893,10 @@ select{cursor:pointer}
 
   <div class="ssub">6.4 Modulation des objectifs en raison d'une contrainte</div>
   <div class="tip">Ces modulations peuvent être calculées et justifiées par un <strong>Dossier Technique</strong>. La présente étude liste les raisons qui pourraient justifier une modulation.</div>
-
-  <div class="mod-box">
-    <h5>🔧 Raisons techniques</h5>
-    <p><em>Exemple : certaines préconisations ne peuvent pas être étudiées, parce que la structure du bâtiment ne le permet pas.</em></p>
-    <textarea placeholder="Ex: ITE limitée par amiante DTA, CTA DF impossible faute de gaines, PV en toiture limité par capacité portante R+16"></textarea>
-  </div>
-
-  <div class="mod-box">
-    <h5>🏛 Raisons patrimoniales</h5>
-    <p><em>Exemple : certaines préconisations ne peuvent pas être étudiées, parce que le bâtiment est classé ou en zone classée pour les monuments historiques.</em></p>
-    <textarea placeholder="Ex: ABF, AVAP, SPR, loi Littoral, périmètre 500 m MH..."></textarea>
-  </div>
-
-  <div class="mod-box">
-    <h5>⚖ Raisons légales</h5>
-    <p><em>Exemple : certaines préconisations ne peuvent pas être étudiées, parce qu'il faudrait intervenir en dehors du domaine, comme une façade alignée sur la limite de propriété.</em></p>
-    <textarea placeholder="Ex: ITE impossible si façade alignée limite propriété, ombrières parking sur domaine public, captage mer..."></textarea>
-  </div>
-
-  <div class="mod-box">
-    <h5>💰 Coût manifestement disproportionné</h5>
-    <p><em>Comparaison entre le coût des travaux découlant d'une préconisation, et le coût des travaux à faire de toutes façons (article 11 arrêté du 10/04/2020 — méthode à publier).</em></p>
-    <textarea placeholder="Ex: ITE TRB 115 ans > durée vie travaux 50 ans, CTA DF TRB 52 ans > seuil 30 ans..."></textarea>
-  </div>
+  <div class="mod-box"><h5>🔧 Raisons techniques</h5><p><em>Exemple : certaines préconisations ne peuvent pas être étudiées, parce que la structure du bâtiment ne le permet pas.</em></p><textarea placeholder="Ex: ITE limitée par amiante DTA, CTA DF impossible faute de gaines, PV en toiture limité par capacité portante R+16"></textarea></div>
+  <div class="mod-box"><h5>🏛 Raisons patrimoniales</h5><p><em>Exemple : certaines préconisations ne peuvent pas être étudiées, parce que le bâtiment est classé ou en zone classée pour les monuments historiques.</em></p><textarea placeholder="Ex: ABF, AVAP, SPR, loi Littoral, périmètre 500 m MH..."></textarea></div>
+  <div class="mod-box"><h5>⚖ Raisons légales</h5><p><em>Exemple : certaines préconisations ne peuvent pas être étudiées, parce qu'il faudrait intervenir en dehors du domaine, comme une façade alignée sur la limite de propriété.</em></p><textarea placeholder="Ex: ITE impossible si façade alignée limite propriété, ombrières parking sur domaine public, captage mer..."></textarea></div>
+  <div class="mod-box"><h5>💰 Coût manifestement disproportionné</h5><p><em>Comparaison entre le coût des travaux découlant d'une préconisation, et le coût des travaux à faire de toutes façons (article 11 arrêté du 10/04/2020 — méthode à publier).</em></p><textarea placeholder="Ex: ITE TRB 115 ans > durée vie travaux 50 ans, CTA DF TRB 52 ans > seuil 30 ans..."></textarea></div>
 
   <div class="ssub">6.5 Synthèse — Cible retenue</div>
   <div class="card">
@@ -930,6 +918,27 @@ select{cursor:pointer}
       <div class="field"><label>Sous-catégorie OPERAT déclarée</label><input type="text"></div>
       <div class="field"><label>Échéance annuelle</label><input type="text" value="30 septembre N+1"></div>
     </div>
+  </div>
+
+  <!-- ✅ AJOUT §6.7 — ADEME Perfimmo §4.7 -->
+  <div class="ssub">6.7 Analyse des saisies déjà faites dans OPERAT</div>
+  <div class="tip"><span class="tip-lbl">ℹ ADEME Perfimmo §4.7</span>Si aucune déclaration n'a encore été faite dans OPERAT, <strong>supprimer ce paragraphe</strong>. Sinon, signaler toute <strong>erreur de saisie</strong> constatée par rapport aux données du présent chapitre. Retrouver l'IUB et la référence EFA dans votre espace OPERAT.</div>
+  <div class="card">
+    <div class="fg">
+      <div class="field"><label>IUB (Identifiant Unique Bâtimentaire)</label><input type="text" placeholder="À récupérer dans OPERAT"></div>
+      <div class="field"><label>Référence EFA déclarée</label><input type="text"></div>
+      <div class="field"><label>Sous-catégorie déclarée dans OPERAT</label><input type="text"></div>
+      <div class="field"><label>Année de référence déclarée</label><input type="number" placeholder="Ex: 2013"></div>
+    </div>
+    <div class="sep"></div>
+    <div class="card-title">Écarts constatés entre déclarations OPERAT et présente étude</div>
+    <table class="dt">
+      <thead><tr><th>Champ OPERAT</th><th>Valeur déclarée</th><th>Valeur corrigée (étude)</th><th>Action requise</th></tr></thead>
+      <tbody id="operatdiff">
+        <tr><td><input type="text" placeholder="Ex: Créf surfacique"></td><td><input type="text" placeholder="Ex: 185 kWhEF/m²"></td><td><input type="text" placeholder="Ex: 197,7 kWhEF/m²"></td><td><select><option>À corriger</option><option>Conforme</option><option>À vérifier</option></select></td></tr>
+      </tbody>
+    </table>
+    <button class="add-btn" onclick="addRow('operatdiff',4)">+ Ajouter un écart</button>
   </div>
 
   <div class="bnav"><button class="btn btn-s" onclick="prev()">← Précédent</button><button class="btn btn-p" onclick="next()">Suivant : Modélisation →</button></div>
@@ -987,19 +996,13 @@ select{cursor:pointer}
   </div>
 
   <div class="ssub">8.2 Aléas littoraux (érosion, submersion)</div>
-  <div class="card">
-    <textarea placeholder="Pour sites côtiers : risques submersion marine, érosion, montée des eaux..."></textarea>
-  </div>
+  <div class="card"><textarea placeholder="Pour sites côtiers : risques submersion marine, érosion, montée des eaux..."></textarea></div>
 
   <div class="ssub">8.3 Aléas pluviaux (précipitations intenses, inondations)</div>
-  <div class="card">
-    <textarea placeholder="Risque d'inondation niveaux enterrés, capacité évacuation EP..."></textarea>
-  </div>
+  <div class="card"><textarea placeholder="Risque d'inondation niveaux enterrés, capacité évacuation EP..."></textarea></div>
 
   <div class="ssub">8.4 Aléas RGA (Retrait-Gonflement Argiles)</div>
-  <div class="card">
-    <textarea placeholder="Sensibilité du sol, mouvements de terrain..."></textarea>
-  </div>
+  <div class="card"><textarea placeholder="Sensibilité du sol, mouvements de terrain..."></textarea></div>
 
   <div class="ssub">8.5 Confort d'été — Stratégies</div>
   <div class="card">
@@ -1056,6 +1059,29 @@ select{cursor:pointer}
     </div>
   </div>
 
+  <!-- ✅ AJOUT §9.2 — ADEME Perfimmo §8.14 Répartition propriétaire/locataire -->
+  <div class="ssub">9.2 Répartition des responsabilités propriétaire / locataire</div>
+  <div class="tip warn"><span class="tip-lbl">⚖ CCH L174-1 — ADEME Perfimmo §8.14</span>Le DEET rend responsable <strong>à la fois le bailleur et le preneur à bail</strong> pour les actions relevant de leurs responsabilités respectives. <strong>Supprimer ce paragraphe si le bâtiment est occupé par son propriétaire (sans objet).</strong></div>
+  <div class="card">
+    <div class="fg">
+      <div class="field"><label>Statut d\'occupation</label>
+        <select><option>Propriétaire occupant — sans objet</option><option>Propriétaire non occupant + locataire</option><option>Copropriété</option><option>Mixte propriétaire/locataire</option></select>
+      </div>
+      <div class="ff field"><label>Observations sur le bail en vigueur</label>
+        <textarea placeholder="Ex: bail commercial 3/6/9, clauses travaux existantes... La renégociation du bail devra comporter une discussion sur les moyens d'atteindre les objectifs DEET 2030 ainsi que sur la répartition des actions et leur incidence sur le loyer et les charges locatives."></textarea>
+      </div>
+    </div>
+    <div class="sep"></div>
+    <div class="card-title">Répartition indicative des préconisations</div>
+    <table class="dt">
+      <thead><tr><th>N° Préco</th><th>Libellé</th><th>Responsable principal</th><th>Commentaire</th></tr></thead>
+      <tbody id="respprop">
+        <tr><td><input type="text" placeholder="1"></td><td><input type="text" placeholder="GTB / BACS"></td><td><select><option>Propriétaire</option><option>Locataire</option><option>Partagé</option></select></td><td><input type="text" placeholder="Investissement bailleur, économies bénéficient aux deux"></td></tr>
+      </tbody>
+    </table>
+    <button class="add-btn" onclick="addRow('respprop',4)">+ Ajouter une ligne</button>
+  </div>
+
   <div class="bnav"><button class="btn btn-s" onclick="prev()">← Précédent</button><button class="btn btn-p" onclick="next()">Suivant : Scénarios →</button></div>
 </div>
 
@@ -1092,7 +1118,7 @@ select{cursor:pointer}
       <div class="ff field"><label>Constat principal</label><textarea placeholder="3-4 phrases résumant l'état énergétique actuel..."></textarea></div>
       <div class="ff field"><label>Stratégie recommandée</label><textarea placeholder="Quelle trajectoire vers 2030/2040/2050..."></textarea></div>
       <div class="ff field"><label>Premières actions à engager</label><textarea placeholder="Quick wins TRB court terme..."></textarea></div>
-      <div class="ff field"><label>Limites de l'audit (NF EN 16247-2 §5.9)</label><textarea placeholder="Périmètre, données indisponibles, hypothèses..."></textarea></div>
+      <div class="ff field"><label>Limites de l\'audit (NF EN 16247-2 §5.9)</label><textarea placeholder="Périmètre, données indisponibles, hypothèses..."></textarea></div>
     </div>
   </div>
 
@@ -1119,6 +1145,30 @@ select{cursor:pointer}
       <li><input type="checkbox"> Annexe 9 — Compétences auditeur (qualification OPQIBI 1905)</li>
       <li><input type="checkbox"> Annexe 10 — Cadre réglementaire complet (textes officiels)</li>
     </ul>
+  </div>
+
+  <!-- ✅ AJOUT §10.3 — ADEME Perfimmo §10.3 FAQ OPERAT -->
+  <div class="ssub">Annexe — FAQ OPERAT à la date de l\'étude</div>
+  <div class="card">
+    <div class="tip"><span class="tip-lbl">📋 ADEME Perfimmo §10.3 — Exigence</span>Joindre en annexe la <strong>FAQ OPERAT en vigueur à la date de l'étude</strong>. Disponible sur <a href="https://operat.ademe.fr/public/faq" target="_blank" style="color:var(--blue)">operat.ademe.fr/public/faq</a>. Copier/coller ci-dessous les réponses particulièrement pertinentes pour ce site (sous-catégorie, IIU, autoconsommation PV...).</div>
+    <div class="fg">
+      <div class="field"><label>Date de consultation FAQ OPERAT</label><input type="date"></div>
+      <div class="field"><label>Version / mise à jour</label><input type="text" placeholder="Ex: mise à jour avril 2025"></div>
+    </div>
+    <div class="sep"></div>
+    <div class="card-title">Questions FAQ pertinentes pour ce site</div>
+    <table class="dt">
+      <thead><tr><th>Réf. FAQ</th><th>Question</th><th>Réponse / Application au site</th></tr></thead>
+      <tbody id="faqoperat">
+        <tr><td><input type="text" placeholder="E11-Q2"></td><td><input type="text" placeholder="Autoconsommation PV — déduction OPERAT"></td><td><input type="text" placeholder="L'énergie PV autoconsommée est déduite du ratio DEET déclaré"></td></tr>
+        <tr><td><input type="text" placeholder="O2-Q3"></td><td><input type="text" placeholder="Calcul taux d'occupation hôtellerie / tourisme"></td><td><input type="text"></td></tr>
+      </tbody>
+    </table>
+    <button class="add-btn" onclick="addRow('faqoperat',3)">+ Ajouter une FAQ</button>
+    <div class="sep"></div>
+    <div class="field"><label>Extraits FAQ OPERAT utiles (copier/coller)</label>
+      <textarea style="min-height:100px" placeholder="Coller ici les extraits FAQ OPERAT utiles pour justifier les choix de l'étude (année de référence, IIU, sous-catégorie, autoconsommation, déduction VE...)"></textarea>
+    </div>
   </div>
 
   <div class="ssub">Validation finale du rapport</div>
@@ -1200,7 +1250,7 @@ select{cursor:pointer}
       <li><input type="checkbox"> §5.6 Préconisations chiffrées avec TRB</li>
       <li><input type="checkbox"> §5.7 Scénarios 2030/2040/2050 présents</li>
       <li><input type="checkbox"> §5.8 Hypothèses économiques formalisées</li>
-      <li><input type="checkbox"> §5.9 Limites de l'audit explicitées</li>
+      <li><input type="checkbox"> §5.9 Limites de l\'audit explicitées</li>
     </ul>
   </div>
 
@@ -1212,10 +1262,12 @@ select{cursor:pointer}
       <li><input type="checkbox"> Créf calculée avec coefficient 0,9 sur gaz PCS</li>
       <li><input type="checkbox"> Cabs 2030 vérifiée selon sous-catégorie OPERAT</li>
       <li><input type="checkbox"> Crelat 2030/2040/2050 calculée (-40%/-50%/-60%)</li>
-      <li><input type="checkbox"> Cible = MAX(Cabs, Crelat) - la moins contraignante</li>
+      <li><input type="checkbox"> Cible = MAX(Cabs, Crelat) — la moins contraignante</li>
       <li><input type="checkbox"> Modulations IIU étudiées</li>
       <li><input type="checkbox"> Modulations contraintes documentées si applicables</li>
       <li><input type="checkbox"> Saisie OPERAT à jour (IUB, EFA, IIU)</li>
+      <li><input type="checkbox"> §4.7 Analyse écarts saisies OPERAT réalisée</li>
+      <li><input type="checkbox"> FAQ OPERAT jointe en annexe (§10.3)</li>
       <li><input type="checkbox"> Ajustement climatique annuel calculé</li>
     </ul>
   </div>
@@ -1229,16 +1281,26 @@ select{cursor:pointer}
       <li><input type="checkbox"> Calorifugeage et régulation par pièce (n°2023-444)</li>
     </ul>
   </div>
+
+  <div class="ssub">ADEME Perfimmo — Chapitres obligatoires</div>
+  <div class="card">
+    <ul class="cl">
+      <li><input type="checkbox"> §2.11 Remarques hors périmètre rédigées (ou "Sans objet")</li>
+      <li><input type="checkbox"> §4.7 / §6.7 Analyse saisies OPERAT réalisée (ou supprimée si aucune déclaration)</li>
+      <li><input type="checkbox"> §8.14 / §9.2 Répartition propriétaire/locataire traitée (ou supprimée si propriétaire occupant)</li>
+      <li><input type="checkbox"> §10.3 FAQ OPERAT jointe en annexe</li>
+    </ul>
+  </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════
-     SECTION 13 — À PROPOS
+     SECTION À PROPOS
 ═══════════════════════════════════════════════════════════════ -->
 <div class="section" id="st3">
   <div class="sec-title"><div class="snum" style="background:var(--portfolio-accent)">ⓘ</div><h3>À propos de cette trame</h3></div>
 
   <div class="card">
-    <div class="card-title">Outil professionnel</div>
+    <div class="card-title">Outil professionnel — v3.1</div>
     <p style="font-size:13px;line-height:1.7;color:var(--text2)">Cette trame interactive d'audit énergétique a été développée par <strong>Abdelilah El Ghazouani</strong>, ingénieur en énergétique tertiaire, dans le cadre du parcours alternance Cabinet Energis et en préparation de la qualification OPQIBI 1905.</p>
     <br>
     <p style="font-size:13px;line-height:1.7;color:var(--text2)">Elle est conçue pour respecter strictement :</p>
@@ -1246,7 +1308,7 @@ select{cursor:pointer}
       <li>La <strong>norme NF EN 16247-1</strong> (Audits énergétiques — Exigences générales)</li>
       <li>La <strong>norme NF EN 16247-2</strong> (Audits énergétiques — Bâtiments)</li>
       <li>Le <strong>Décret Tertiaire (DEET)</strong> n° 2019-771 et arrêtés Valeurs Absolues I à VI</li>
-      <li>Le référentiel <strong>ADEME Perfimmo</strong> (structure 10 chapitres + annexes)</li>
+      <li>Le référentiel <strong>ADEME Perfimmo</strong> — couverture intégrale 10 chapitres + §2.11, §4.7, §8.14, §10.3</li>
       <li>Le <strong>Décret BACS</strong> n° 2020-887 et n° 2023-259</li>
     </ul>
   </div>
@@ -1262,9 +1324,6 @@ select{cursor:pointer}
 </div>
 
 <script>
-// ═══════════════════════════════════════════════════════════════
-// NAVIGATION
-// ═══════════════════════════════════════════════════════════════
 const sections=['s0','s1','s2','s3','s4','s5','s6','s7','s8','s9','s10','s11','s12','st1','st2','st3'];
 const titles={s0:'0. Réunion de Démarrage',s1:'1. Contexte',s2:'2. Présentation du site',s3:'3. Enveloppe',s4:'4. Équipements techniques',s5:'5. Consommations énergétiques',s6:'6. Objectifs DEET / OPERAT',s7:'7. Modélisation thermique',s8:'8. Confort & aléas climat',s9:'9. Préconisations',s10:'10. Scénarios DEET',s11:'11. Synthèse exécutive',s12:'12. Annexes',st1:'Calculs OPERAT',st2:'Checklist conformité',st3:'À propos'};
 
@@ -1279,23 +1338,9 @@ function go(id){
   if(idx>=0 && idx<13)document.getElementById('progress').style.width=((idx+1)/13*100)+'%';
   window.scrollTo(0,0);
 }
+function next(){const active=document.querySelector('.section.active');const idx=sections.indexOf(active.id);if(idx<sections.length-1)go(sections[idx+1]);}
+function prev(){const active=document.querySelector('.section.active');const idx=sections.indexOf(active.id);if(idx>0)go(sections[idx-1]);}
 
-function next(){
-  const active=document.querySelector('.section.active');
-  const id=active.id;
-  const idx=sections.indexOf(id);
-  if(idx<sections.length-1)go(sections[idx+1]);
-}
-function prev(){
-  const active=document.querySelector('.section.active');
-  const id=active.id;
-  const idx=sections.indexOf(id);
-  if(idx>0)go(sections[idx-1]);
-}
-
-// ═══════════════════════════════════════════════════════════════
-// CALCULS DYNAMIQUES
-// ═══════════════════════════════════════════════════════════════
 function calcGaz(){
   const g=parseFloat(document.getElementById('gazRef').value)||0;
   const e=parseFloat(document.getElementById('elecRef').value)||0;
@@ -1315,7 +1360,6 @@ function calcRatio(input){
   row.querySelector('.rauto').textContent=ratio;
 }
 
-// Calculateur OPERAT intégré
 function opCalc(){
   const su=parseFloat(document.getElementById('csu').value)||0;
   const el=parseFloat(document.getElementById('cel').value)||0;
@@ -1341,9 +1385,6 @@ function opCalc(){
   document.getElementById('rcible30').textContent=cible30.toFixed(0)+' kWhEF/m²';
 }
 
-// ═══════════════════════════════════════════════════════════════
-// LIGNES DYNAMIQUES
-// ═══════════════════════════════════════════════════════════════
 function addRow(tbodyId,cols){
   const tbody=document.getElementById(tbodyId);
   const row=document.createElement('tr');
@@ -1353,16 +1394,13 @@ function addRow(tbodyId,cols){
   row.innerHTML=cells;
   tbody.appendChild(row);
 }
-function rmRow(btn){btn.closest('tr').remove()}
+function rmRow(btn){btn.closest('tr').remove();}
 
 function selectCase(box,n){
   document.querySelectorAll('.case-box').forEach(b=>b.classList.remove('selected'));
   box.classList.add('selected');
 }
 
-// ═══════════════════════════════════════════════════════════════
-// EXPORT / IMPORT JSON
-// ═══════════════════════════════════════════════════════════════
 function exportJSON(){
   const data={};
   document.querySelectorAll('input,select,textarea').forEach((el,i)=>{
@@ -1386,17 +1424,642 @@ function importJSON(event){
       const data=JSON.parse(e.target.result);
       const inputs=document.querySelectorAll('input,select,textarea');
       inputs.forEach((el,i)=>{
-        if(el.type==='checkbox' && data['cb_'+i]!==undefined)el.checked=data['cb_'+i];
+        if(el.type==='checkbox'&&data['cb_'+i]!==undefined)el.checked=data['cb_'+i];
         else if(data['f_'+i]!==undefined)el.value=data['f_'+i];
       });
       alert('✓ Données importées avec succès');
-    }catch(err){alert('Erreur lors de l\'import : '+err.message)}
+    }catch(err){alert('Erreur lors de l\'import : '+err.message);}
   };
   reader.readAsText(file);
 }
 
-// Init
+// ═══════════════════════════════════════════════════════════════
+// GÉNÉRATEUR DOCX — ADEME PERFIMMO
+// ═══════════════════════════════════════════════════════════════
+function getVal(id){const el=document.getElementById(id);return el?el.value:'—';}
+function qVal(selector){const el=document.querySelector(selector);return el?el.value:'';}
+
+function generateDocx(){
+  if(typeof docx==='undefined'){alert('Chargement de la librairie docx en cours, réessayez dans 2 secondes.');return;}
+  const {
+    Document,Packer,Paragraph,TextRun,Table,TableRow,TableCell,
+    HeadingLevel,AlignmentType,BorderStyle,WidthType,ShadingType,
+    PageBreak,Header,Footer
+  } = docx;
+
+  // ── Collecte des données saisies ─────────────────────
+  const D = {};
+  // Section 0
+  D.dateReu   = qVal('#kdate')||'—';
+  D.typeAudit = qVal('select')||'—';
+  // Section 1
+  D.dateVisite= document.querySelector('#s1 input[type="date"]')?.value||'—';
+  // Section 2
+  D.site      = document.querySelectorAll('#s2 input[type="text"]')[0]?.value||'—';
+  D.siret     = document.querySelectorAll('#s2 input[type="text"]')[1]?.value||'—';
+  D.naf       = document.querySelectorAll('#s2 input[type="text"]')[2]?.value||'—';
+  D.adresse   = document.querySelectorAll('#s2 input[type="text"]')[3]?.value||'—';
+  D.zone      = document.querySelector('#s2 select')?.value||'—';
+  D.surface   = document.querySelectorAll('#s2 input[type="number"]')[2]?.value||'—';
+  D.annee     = document.querySelectorAll('#s2 input[type="number"]')[1]?.value||'—';
+  // Section 5 consommations
+  D.totConso  = document.getElementById('totConso')?.value||'—';
+  D.elecRef   = document.getElementById('elecRef')?.value||'—';
+  D.gazRef    = document.getElementById('gazRef')?.value||'—';
+  D.crefTotal = document.getElementById('crefTotal')?.textContent||'—';
+  // Section 6 objectifs
+  const s6inputs = document.querySelectorAll('#s6 input[type="number"]');
+  D.crefSurf  = s6inputs[9]?.value||'—';
+  D.cabs      = s6inputs[10]?.value||'—';
+  D.crelat30  = s6inputs[14]?.value||'—';
+  D.crelat40  = s6inputs[17]?.value||'—';
+  D.crelat50  = s6inputs[20]?.value||'—';
+  // Préconisations
+  const precoRows = document.querySelectorAll('#preco tr');
+  const precos = Array.from(precoRows).map(row=>{
+    const inp = row.querySelectorAll('input,select');
+    return [inp[0]?.value||'—',inp[1]?.value||'—',inp[2]?.value||'—',inp[3]?.value||'—',inp[4]?.value||'—',inp[5]?.value||'—',inp[6]?.value||'—'];
+  });
+  // Scénarios
+  const scenRows = document.querySelectorAll('#s10 tbody tr');
+  const scens = Array.from(scenRows).map(row=>{
+    const inp = row.querySelectorAll('input');
+    const cells = row.querySelectorAll('td');
+    return [cells[0]?.textContent?.trim()||'—', cells[1]?.textContent?.trim()||'—', inp[0]?.value||'—',inp[1]?.value||'—',inp[2]?.value||'—',inp[3]?.value||'—',inp[4]?.value||'—'];
+  });
+  // Non-conformités
+  const ncRows = document.querySelectorAll('#nc tr');
+  const ncs = Array.from(ncRows).map(row=>{
+    const inp = row.querySelectorAll('input,select');
+    return [inp[0]?.value||'—',inp[1]?.value||'—',inp[2]?.value||'—',inp[3]?.value||'—'];
+  });
+
+  const auditeur = Array.from(document.querySelectorAll('#kpart td input'))[2]?.value||'Cabinet Energis';
+  const dateRapport = new Date().toLocaleDateString('fr-FR');
+
+  // ── Constantes mise en page ──────────────────────────
+  const NAVY='0D1B2A', BLUE='1565C0', TEAL='00897B', AMBER='E65100', WHITE='FFFFFF';
+  const LBL='E3F2FD', LGRY='ECEFF1';
+  const PW=9638;
+
+  function bb(style,sz,col){return {style,size:sz||6,color:col||NAVY};}
+  const bThin={top:bb(BorderStyle.SINGLE,4,'CFD8DC'),bottom:bb(BorderStyle.SINGLE,4,'CFD8DC'),left:bb(BorderStyle.SINGLE,4,'CFD8DC'),right:bb(BorderStyle.SINGLE,4,'CFD8DC')};
+  const bNavy={top:bb(BorderStyle.SINGLE,8,NAVY),bottom:bb(BorderStyle.SINGLE,8,NAVY),left:bb(BorderStyle.SINGLE,8,NAVY),right:bb(BorderStyle.SINGLE,8,NAVY)};
+  const bNone={top:bb(BorderStyle.NONE),bottom:bb(BorderStyle.NONE),left:bb(BorderStyle.NONE),right:bb(BorderStyle.NONE)};
+
+  function cH(text,w,span){return new TableCell({width:{size:w,type:WidthType.DXA},columnSpan:span||1,borders:bNavy,shading:{fill:NAVY,type:ShadingType.CLEAR},margins:{top:80,bottom:80,left:120,right:120},children:[new Paragraph({children:[new TextRun({text:String(text||''),bold:true,color:WHITE,font:'Calibri',size:20})]})]})}
+  function cD(text,w,shade,bold,color){return new TableCell({width:{size:w,type:WidthType.DXA},borders:bThin,shading:{fill:shade||WHITE,type:ShadingType.CLEAR},margins:{top:60,bottom:60,left:120,right:120},children:[new Paragraph({children:[new TextRun({text:String(text||'—'),font:'Calibri',size:20,bold:bold||false,color:color||'000000'})]})]})}
+
+  function H1(num,title,pb){return new Paragraph({heading:HeadingLevel.HEADING_1,pageBreakBefore:pb!==false&&num>1,children:[new TextRun({text:`${num}. ${title}`,font:'Calibri',size:28,bold:true,color:NAVY})]})}
+  function H2(num,title){return new Paragraph({heading:HeadingLevel.HEADING_2,children:[new TextRun({text:`${num} ${title}`,font:'Calibri',size:24,bold:true,color:BLUE})]})}
+  function H3(title){return new Paragraph({heading:HeadingLevel.HEADING_3,children:[new TextRun({text:title,font:'Calibri',size:22,bold:true,color:'546E7A'})]})}
+  function P(text,italic){return new Paragraph({spacing:{after:120},children:[new TextRun({text:String(text||''),font:'Calibri',size:22,italic:italic||false})]})}
+  function SP(){return new Paragraph({spacing:{after:80},children:[new TextRun('')]})}
+
+  function kvTable(rows){return new Table({width:{size:PW,type:WidthType.DXA},columnWidths:[3200,PW-3200],rows:rows.map(([k,v,shade])=>new TableRow({children:[cD(k,3200,LBL,true),cD(v,PW-3200,shade||WHITE)]}))})}
+  function dtTable(headers,rows,widths){return new Table({width:{size:PW,type:WidthType.DXA},columnWidths:widths,rows:[new TableRow({children:headers.map((h,i)=>cH(h,widths[i]))}), ...rows.map(row=>new TableRow({children:row.map((cell,i)=>cD(cell,widths[i],i===0?LBL:WHITE))}))]})}
+
+  function tipBox(text,type){
+    const fill=type==='warn'?'FFF8E1':type==='green'?'E8F5E9':'E3F2FD';
+    const col=type==='warn'?AMBER:type==='green'?TEAL:BLUE;
+    const icon=type==='warn'?'⚠':type==='green'?'✓':'ℹ';
+    return new Table({width:{size:PW,type:WidthType.DXA},columnWidths:[160,PW-160],rows:[new TableRow({children:[
+      new TableCell({width:{size:160,type:WidthType.DXA},borders:{top:bb(BorderStyle.SINGLE,16,col),bottom:bb(BorderStyle.SINGLE,16,col),left:bb(BorderStyle.SINGLE,16,col),right:bb(BorderStyle.NONE)},shading:{fill,type:ShadingType.CLEAR},margins:{top:80,bottom:80,left:80,right:40},children:[new Paragraph({children:[new TextRun({text:icon,size:22,bold:true,color:col})]})] }),
+      new TableCell({width:{size:PW-160,type:WidthType.DXA},borders:{top:bb(BorderStyle.SINGLE,4,'CFD8DC'),bottom:bb(BorderStyle.SINGLE,4,'CFD8DC'),right:bb(BorderStyle.SINGLE,4,'CFD8DC'),left:bb(BorderStyle.NONE)},shading:{fill,type:ShadingType.CLEAR},margins:{top:80,bottom:80,left:80,right:120},children:[new Paragraph({children:[new TextRun({text:String(text||''),font:'Calibri',size:20})]})]}),
+    ]})]});
+  }
+
+  // ── Participants table ──────────────────────────────
+  const partRows = Array.from(document.querySelectorAll('#kpart tr')).map(r=>{
+    const inp=r.querySelectorAll('input');
+    return [inp[0]?.value||'—',inp[1]?.value||'—',inp[2]?.value||'—',inp[3]?.value||'—'];
+  }).filter(r=>r[0]!=='—'||r[1]!=='—');
+
+  // ── Interlocuteurs ──────────────────────────────────
+  const intRows = Array.from(document.querySelectorAll('#interloc tr')).map(r=>{
+    const sel=r.querySelector('select')?.value||'—';
+    const inp=r.querySelectorAll('input');
+    return [sel, inp[0]?.value||'—', inp[1]?.value||'—', inp[2]?.value||'—'];
+  });
+
+  // ── Historique travaux ──────────────────────────────
+  const histoRows = Array.from(document.querySelectorAll('#histo tr')).map(r=>{
+    const inp=r.querySelectorAll('input');
+    return [inp[0]?.value||'—',inp[1]?.value||'—',inp[2]?.value||'—'];
+  });
+
+  // ── Zones occupation ──────────────────────────────
+  const zoneRows = Array.from(document.querySelectorAll('#zones tr')).map(r=>{
+    const inp=r.querySelectorAll('input');
+    return [inp[0]?.value||'—',inp[1]?.value||'—',inp[2]?.value||'—'];
+  });
+
+  // ── Non-conformités ──────────────────────────────
+  const ncRows2 = Array.from(document.querySelectorAll('#nc tr')).map(r=>{
+    const inp=r.querySelectorAll('input,select');
+    return [(r.querySelector('td.cc')?.textContent||'—'),inp[0]?.value||'—',inp[1]?.value||'—',inp[3]?.value||'—'];
+  });
+
+  // ── Consommations par poste ──────────────────────
+  const posteLabels=['Chauffage','ECS','Climatisation','Éclairage','Ventilation','Bureautique','Auxiliaires'];
+  const posteRows = Array.from(document.querySelectorAll('#postes tr:not(:last-child)')).map((r,i)=>{
+    const inp=r.querySelectorAll('input');
+    return [posteLabels[i]||'—', inp[0]?.value||'—', r.querySelector('.rauto')?.textContent||'—', inp[1]?.value||'—'];
+  });
+
+  // ── DJU ──────────────────────────────────────────
+  const djuRows = Array.from(document.querySelectorAll('#dju tr')).map(r=>{
+    const inp=r.querySelectorAll('input');
+    return [inp[0]?.value||'—',inp[1]?.value||'—',inp[2]?.value||'—'];
+  });
+
+  // ── Éclairage ────────────────────────────────────
+  const eclRows = Array.from(document.querySelectorAll('#ecl tr')).map(r=>{
+    const inp=r.querySelectorAll('input,select');
+    return [inp[0]?.value||'—',inp[1]?.value||'—',inp[2]?.value||'—',inp[3]?.value||'—'];
+  });
+
+  // ── Synthèse exécutive ───────────────────────────
+  const synth1 = document.querySelectorAll('#s11 textarea')[0]?.value||'—';
+  const synth2 = document.querySelectorAll('#s11 textarea')[1]?.value||'—';
+  const synth3 = document.querySelectorAll('#s11 textarea')[2]?.value||'—';
+  const synth4 = document.querySelectorAll('#s11 textarea')[3]?.value||'—';
+
+  // ── Modélisation ────────────────────────────────
+  const modAnnee  = document.querySelectorAll('#s7 input[type="number"]')[0]?.value||'—';
+  const modOutil  = document.querySelectorAll('#s7 select')[0]?.value||'—';
+  const modJusti  = document.querySelectorAll('#s7 textarea')[0]?.value||'—';
+  const modConsigne = document.querySelectorAll('#s7 textarea')[1]?.value||'—';
+  const modApports  = document.querySelectorAll('#s7 textarea')[2]?.value||'—';
+
+  // ── Amiante ────────────────────────────────────
+  const amianteAnnee = document.querySelectorAll('#s1 input[type="number"]')[0]?.value||'—';
+  const amianteDTA   = document.querySelectorAll('#s1 select')[1]?.value||'—';
+  const amianteRisq  = document.querySelectorAll('#s1 textarea')[5]?.value||'—';
+
+  // ── Remarques hors périmètre ──────────────────
+  const horsPeri = document.querySelector('#s2 .ssub + .card textarea')?.value||'Sans objet.';
+
+  // ── 2.11 ──────────────────────────────────────
+  const remarqHors = document.querySelectorAll('#s2 textarea')[document.querySelectorAll('#s2 textarea').length-1]?.value||'Sans objet.';
+
+  // ── GTB / BACS ────────────────────────────────
+  const puissChauf = document.querySelectorAll('#s4 input[type="number"]')[3]?.value||'—';
+  const puissChauf2= document.querySelectorAll('#s4 input[type="number"]')[4]?.value||'—';
+  const equilibHyd = document.querySelectorAll('#s4 select')[3]?.value||'—';
+
+  // ── FAQ OPERAT ────────────────────────────────
+  const faqRows = Array.from(document.querySelectorAll('#faqoperat tr')).map(r=>{
+    const inp=r.querySelectorAll('input');
+    return [inp[0]?.value||'—',inp[1]?.value||'—',inp[2]?.value||'—'];
+  });
+  const faqNotes = document.querySelectorAll('#s12 textarea')[document.querySelectorAll('#s12 textarea').length-1]?.value||'—';
+
+  // ── Répartition propriétaire/locataire ────────
+  const statOccup = document.querySelectorAll('#s9 select')[document.querySelectorAll('#s9 select').length-3]?.value||'—';
+  const bailObs   = document.querySelectorAll('#s9 textarea')[document.querySelectorAll('#s9 textarea').length-1]?.value||'—';
+  const respRows  = Array.from(document.querySelectorAll('#respprop tr')).map(r=>{
+    const inp=r.querySelectorAll('input,select');
+    return [inp[0]?.value||'—',inp[1]?.value||'—',inp[2]?.value||'—',inp[3]?.value||'—'];
+  });
+
+  // ── OPERAT diff ───────────────────────────────
+  const operatRows = Array.from(document.querySelectorAll('#operatdiff tr')).map(r=>{
+    const inp=r.querySelectorAll('input,select');
+    return [inp[0]?.value||'—',inp[1]?.value||'—',inp[2]?.value||'—',inp[3]?.value||'—'];
+  });
+  const operatIUB  = document.querySelectorAll('#s6 input[type="text"]')[0]?.value||'—';
+  const operatEFA  = document.querySelectorAll('#s6 input[type="text"]')[1]?.value||'—';
+  const operatAnnRef= document.querySelectorAll('#s6 input[type="number"]')[document.querySelectorAll('#s6 input[type="number"]').length-1]?.value||'—';
+
+  // ── Préconisations CEE ────────────────────────
+  const ceeRows = Array.from(document.querySelectorAll('#s9 tbody tr')).slice(0,precos.length).map((r,i)=>precos[i]||[]);
+
+  // ── CONSTRUCTION DU DOCUMENT ─────────────────────────
+  const doc2 = new Document({
+    styles:{
+      default:{document:{run:{font:'Calibri',size:22}}},
+      paragraphStyles:[
+        {id:'Heading1',name:'Heading 1',basedOn:'Normal',next:'Normal',quickFormat:true,
+          run:{size:28,bold:true,font:'Calibri',color:NAVY},
+          paragraph:{spacing:{before:480,after:200},outlineLevel:0,border:{bottom:{style:BorderStyle.SINGLE,size:8,color:BLUE,space:4}}}},
+        {id:'Heading2',name:'Heading 2',basedOn:'Normal',next:'Normal',quickFormat:true,
+          run:{size:24,bold:true,font:'Calibri',color:BLUE},
+          paragraph:{spacing:{before:320,after:120},outlineLevel:1}},
+        {id:'Heading3',name:'Heading 3',basedOn:'Normal',next:'Normal',quickFormat:true,
+          run:{size:22,bold:true,font:'Calibri',color:'546E7A'},
+          paragraph:{spacing:{before:200,after:80},outlineLevel:2}},
+      ]
+    },
+    sections:[{
+      properties:{page:{size:{width:11906,height:16838},margin:{top:1080,bottom:1080,left:1134,right:1134}}},
+      headers:{default:new Header({children:[new Paragraph({border:{bottom:{style:BorderStyle.SINGLE,size:6,color:NAVY,space:1}},spacing:{after:100},children:[new TextRun({text:'AUDIT ÉNERGÉTIQUE TERTIAIRE — '+D.site,font:'Calibri',size:18,color:'607D8B'})]})]})},
+      footers:{default:new Footer({children:[new Paragraph({border:{top:{style:BorderStyle.SINGLE,size:6,color:NAVY,space:1}},spacing:{before:100},children:[new TextRun({text:'NF EN 16247 · DEET · ADEME Perfimmo — '+auditeur+'  |  '+dateRapport,font:'Calibri',size:16,color:'607D8B'})]})]})},
+      children:[
+
+        // ══ PAGE DE GARDE ══════════════════════════════════════
+        new Paragraph({spacing:{before:2000,after:400},alignment:AlignmentType.CENTER,children:[new TextRun({text:'AUDIT ÉNERGÉTIQUE TERTIAIRE',font:'Calibri',size:52,bold:true,color:NAVY})]}),
+        new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:600},children:[new TextRun({text:'pour la mise en œuvre du DEET (Dispositif Éco Énergie Tertiaire)',font:'Calibri',size:24,color:BLUE})]}),
+        new Table({width:{size:PW,type:WidthType.DXA},columnWidths:[2200,PW-2200],rows:[
+          new TableRow({children:[cH('Rapport final',2200),cD('',PW-2200)]}),
+          new TableRow({children:[cH('Site',2200),cD(D.site,PW-2200,'F5F7F9',true)]}),
+          new TableRow({children:[cH('Adresse',2200),cD(D.adresse,PW-2200)]}),
+          new TableRow({children:[cH('SIRET',2200),cD(D.siret,PW-2200)]}),
+          new TableRow({children:[cH('Surface DEET',2200),cD((D.surface||'—')+' m²',PW-2200)]}),
+          new TableRow({children:[cH('Zone climatique',2200),cD(D.zone,PW-2200)]}),
+          new TableRow({children:[cH('Auditeur',2200),cD(auditeur,PW-2200)]}),
+          new TableRow({children:[cH('Date du rapport',2200),cD(dateRapport,PW-2200)]}),
+        ]}),
+        SP(),SP(),
+        new Paragraph({alignment:AlignmentType.CENTER,spacing:{before:400},children:[new TextRun({text:'Conforme NF EN 16247-1/-2 · Décret n°2019-771 · ADEME Perfimmo',font:'Calibri',size:18,italic:true,color:'607D8B'})]}),
+        new Paragraph({children:[new PageBreak()]}),
+
+        // ══ CHAP 1 — CONTEXTE ════════════════════════════════
+        H1(1,'Contexte'),
+        H2('1.1','Cadre réglementaire'),
+        tipBox('DEET : Loi ÉLAN 2018, Décret n°2019-771, Arrêtés VA I à VI  |  BACS : Décret n°2023-259  |  Ombrières PV : Loi n°2023-175  |  Calorifugeage : Décret n°2023-444','info'),
+        SP(),
+        H2('1.2','Interlocuteurs et interlocutrices'),
+        dtTable(['Rôle','Nom / Société','Tél','Email'],intRows.length?intRows:[['—','—','—','—']],[2000,3000,2000,PW-7000]),
+        SP(),
+        H2('1.3','Documents transmis'),
+        kvTable([
+          ['Consommations',document.querySelectorAll('#s1 textarea')[0]?.value||'—'],
+          ['Plans',document.querySelectorAll('#s1 textarea')[1]?.value||'—'],
+          ['DOE techniques',document.querySelectorAll('#s1 textarea')[2]?.value||'—'],
+          ['Usage et occupation',document.querySelectorAll('#s1 textarea')[3]?.value||'—'],
+        ]),
+        SP(),
+        H2('1.4','Périmètre de l\'étude'),
+        P(document.querySelectorAll('#s1 textarea')[4]?.value||'—'),
+        SP(),
+        H2('1.5','Visite du site'),
+        kvTable([
+          ['Date de visite',D.dateVisite],
+          ['Auditeur(s)',document.querySelectorAll('#s1 input[type="text"]')[0]?.value||'—'],
+          ['Zones visitées',document.querySelectorAll('#s1 textarea')[5]?.value||'—'],
+          ['Zones NON visitées',document.querySelectorAll('#s1 textarea')[6]?.value||'—'],
+          ['Confort d\'hiver',document.querySelectorAll('#s1 textarea')[7]?.value||'—'],
+          ['Confort d\'été',document.querySelectorAll('#s1 textarea')[8]?.value||'—'],
+          ['Qualité de l\'air (QAI)',document.querySelectorAll('#s1 textarea')[9]?.value||'—'],
+        ]),
+        SP(),
+        H2('1.6','Amiante'),
+        tipBox('Bâtiment antérieur 1997 : un DTA à jour est obligatoire avant tout chantier d\'isolation extérieure ou remplacement de menuiseries.','warn'),
+        kvTable([['Année de construction',amianteAnnee],['DTA à jour ?',amianteDTA],['Risques identifiés',amianteRisq]]),
+        SP(),
+        H2('1.7','Indicateurs de performance et vétusté'),
+        dtTable(['Indicateur','État de conservation','Performance énergétique'],
+          [['●','Bon : intervention > 10 ans','Supérieure RT'],['○','Correct : 5–10 ans','< 50% écart RT'],['□','Mauvais : < 5 ans','> 50% écart RT'],['!','Danger','À remplacer immédiatement']],
+          [500,3800,PW-4300]
+        ),
+        new Paragraph({children:[new PageBreak()]}),
+
+        // ══ CHAP 2 — PRÉSENTATION DU SITE ════════════════════
+        H1(2,'Présentation du site'),
+        H2('2.1','Caractéristiques du site'),
+        kvTable([
+          ['Nom du site',D.site],['SIRET',D.siret],['Code NAF',D.naf],
+          ['Adresse',D.adresse],['Zone climatique',D.zone],
+          ['Année de construction',D.annee],['Surface Utile DEET',D.surface+' m²'],
+        ]),
+        SP(),
+        H2('2.2','Usage'),
+        H3('Occupations et horaires'),
+        dtTable(['Zone','Horaires d\'utilisation','Effectif'],zoneRows.length?zoneRows:[['—','—','—']],[3000,4000,PW-7000]),
+        SP(),
+        H3('Indicateurs d\'Intensité d\'Usage (IIU)'),
+        tipBox('Les IIU étalon sont définis par l\'Arrêté Valeurs Absolues pour chaque sous-catégorie OPERAT.','info'),
+        (() => {
+          const iiu = document.querySelectorAll('#s2 .dt:nth-of-type(2) tbody tr');
+          const iiuRows = Array.from(iiu).map(r=>{
+            const tds=r.querySelectorAll('td');
+            const inp=r.querySelectorAll('input');
+            return [tds[0]?.textContent||'—',inp[0]?.value||'—',inp[1]?.value||'—',inp[2]?.value||'—',tds[4]?.textContent||'1,00'];
+          });
+          return dtTable(['Indicateur IIU','Étalon','Référence (Créf)','Année courante','Coef modulation'],iiuRows.length?iiuRows:[['—','—','—','—','—']],[2600,1400,1500,1500,PW-7000]);
+        })(),
+        SP(),
+        H2('2.3','Historique des travaux'),
+        dtTable(['Année','Nature des travaux','Périmètre'],histoRows.length?histoRows:[['—','—','—']],[1500,5000,PW-6500]),
+        SP(),
+        H2('2.4','Maintenance des équipements techniques'),
+        (() => {
+          const rows=Array.from(document.querySelectorAll('#s2 table:nth-of-type(3) tbody tr')).map(r=>{
+            const tds=r.querySelectorAll('td');
+            const inp=r.querySelectorAll('input');
+            return [tds[0]?.textContent||'—',inp[0]?.value||'—',inp[1]?.value||'—',inp[2]?.value||'—'];
+          });
+          return dtTable(['Équipement','Type d\'entretien','Fréquence','Prestataire'],rows.length?rows:[['—','—','—','—']],[2200,3200,1600,PW-7000]);
+        })(),
+        SP(),
+        H2('2.5','Alimentation en énergies'),
+        (() => {
+          const rows=Array.from(document.querySelectorAll('#s2 table:nth-of-type(4) tbody tr')).map(r=>{
+            const tds=r.querySelectorAll('td');
+            const inp=r.querySelectorAll('input');
+            return [tds[0]?.textContent||'—',inp[0]?.value||'—',inp[1]?.value||'—',inp[2]?.value||'—'];
+          });
+          return dtTable(['Énergie','Fournisseur','Type contrat','Usage'],rows.length?rows:[['—','—','—','—']],[1800,2500,2500,PW-6800]);
+        })(),
+        SP(),
+        H2('2.10','Non-conformités remarquées'),
+        dtTable(['N°','Non-conformité','Texte applicable','Criticité'],ncRows2.length?ncRows2:[['1','—','—','—']],[500,3500,3000,PW-7000]),
+        SP(),
+        H2('2.11','Remarques hors périmètre de l\'audit énergétique'),
+        P(document.querySelectorAll('#s2 .card:last-of-type textarea')[0]?.value||'Sans objet.'),
+        new Paragraph({children:[new PageBreak()]}),
+
+        // ══ CHAP 3 — CONSOMMATIONS ═══════════════════════════
+        H1(3,'Étude des consommations énergétiques'),
+        H2('3.1','Station météo de référence'),
+        (() => {
+          const inp=document.querySelectorAll('#s5 .card:first-of-type input');
+          return kvTable([['Station retenue',inp[0]?.value||'—'],['Distance (km)',inp[1]?.value||'—'],['Source DJU',inp[2]?.value||'—'],['Méthode',inp[3]?.value||'Professionnel de l\'énergie']]);
+        })(),
+        SP(),
+        H3('DJU Chauffage et Refroidissement'),
+        dtTable(['Année','DJU Chauffage (base 18°C)','DJU Refroidissement (base 26°C)'],djuRows.length?djuRows:[['—','—','—']],[2000,4000,PW-6000]),
+        SP(),
+        H2('3.2','Alimentations en énergie'),
+        H3('Nature des contrats'),
+        (() => {
+          const rows=Array.from(document.querySelectorAll('#s5 table:nth-of-type(1) tbody tr')).map(r=>{
+            const tds=r.querySelectorAll('td');
+            const inp=r.querySelectorAll('input');
+            return [tds[0]?.textContent||'—',inp[0]?.value||'—',inp[1]?.value||'—',tds[3]?.textContent||'—'];
+          });
+          return dtTable(['Énergie','Fournisseur','Type tarif','Unité achat'],rows.length?rows:[['—','—','—','—']],[2000,2800,2800,PW-7600]);
+        })(),
+        SP(),
+        H3('Prix unitaires moyens'),
+        (() => {
+          const rows=Array.from(document.querySelectorAll('#s5 table:nth-of-type(2) tbody tr')).map(r=>{
+            const tds=r.querySelectorAll('td');
+            const inp=r.querySelectorAll('input');
+            return [tds[0]?.textContent||'—',inp[0]?.value||'—',inp[1]?.value||'—'];
+          });
+          return dtTable(['Énergie','Part fixe (€HTVA/an)','Prix variable (€HTVA/kWh)'],rows.length?rows:[['—','—','—']],[2500,3500,PW-6000]);
+        })(),
+        SP(),
+        H2('3.3','Présentation des consommations'),
+        dtTable(['Poste','kWhEF/an','kWhEF/m²·an','Part (%)'],posteRows.length?[...posteRows,['TOTAL',D.totConso||'—',document.getElementById('totRatio')?.textContent||'—','100%']]:[['—','—','—','—']],[2400,2400,2400,PW-7200]),
+        SP(),
+        H2('3.4','Synthèse'),
+        kvTable([
+          ['Consommation totale (kWhEF/an)',D.totConso||'—'],
+          ['Électricité corrigée (kWhEF)',D.elecRef||'—'],
+          ['Gaz corrigé (kWhEF)',D.gazRef?String(Math.round(parseFloat(D.gazRef)*0.9)):'—'],
+          ['Créf total',D.crefTotal||'—'],
+        ]),
+        new Paragraph({children:[new PageBreak()]}),
+
+        // ══ CHAP 4 — OBJECTIFS DEET ══════════════════════════
+        H1(4,'Objectifs suivant le Décret Tertiaire'),
+        H2('4.1','Catégories d\'activité et Surfaces'),
+        kvTable([
+          ['Catégorie principale',document.querySelector('#opcat')?.value||'—'],
+          ['Sous-catégorie',document.querySelectorAll('#s2 input[type="text"]')[4]?.value||'—'],
+          ['Surface de plancher (m²)',D.surface||'—'],
+        ]),
+        SP(),
+        H2('4.2','Intensité d\'usage'),
+        (() => {
+          const iiu=document.querySelectorAll('#s2 .dt:nth-of-type(2) tbody tr');
+          const rows=Array.from(iiu).map(r=>{const tds=r.querySelectorAll('td');const inp=r.querySelectorAll('input');return [tds[0]?.textContent||'—',inp[0]?.value||'—',inp[1]?.value||'—',inp[2]?.value||'—',tds[4]?.textContent||'1,00'];});
+          return dtTable(['Indicateur IIU','Étalon','Référence','Actuel','Coef modulation'],rows.length?rows:[['—','—','—','—','—']],[2600,1400,1500,1500,PW-7000]);
+        })(),
+        SP(),
+        H2('4.3','Consommations, choix de l\'année de référence'),
+        (() => {
+          const sel=document.querySelector('.case-box.selected h5')?.textContent?.trim()||'—';
+          return P('Cas retenu : '+sel);
+        })(),
+        kvTable([
+          ['MAX Créf / Cabs_réf',document.querySelectorAll('#s6 input[type="number"]')[0]?.value||'—'],
+          ['Cef réf (kWhEF)',document.querySelectorAll('#s6 input[type="number"]')[1]?.value||'—'],
+          ['Cef réf ajustée (kWhEF)',document.querySelectorAll('#s6 input[type="number"]')[4]?.value||'—'],
+          ['Année retenue',document.querySelectorAll('#s6 input[type="number"]')[5]?.value||'—'],
+          ['DJU Chauf année retenue',document.querySelectorAll('#s6 input[type="number"]')[6]?.value||'—'],
+          ['DJU Refroid année retenue',document.querySelectorAll('#s6 input[type="number"]')[7]?.value||'—'],
+          ['SDP (m²)',document.querySelectorAll('#s6 input[type="number"]')[8]?.value||'—'],
+          ['Créf surfacique (kWhEF/m²·an)',D.crefSurf||'—'],
+        ]),
+        SP(),
+        H2('4.4','Objectifs'),
+        H3('4.4.1 Cabs 2030'),
+        dtTable(['Indicateur','Unité','Valeur','Justification'],
+          [
+            ['Cabs étalon','kWhEF/m²',D.cabs||'—',document.querySelectorAll('#s6 table:nth-of-type(1) input[type="text"]')[0]?.value||'—'],
+            ['Cabs référence','kWhEF/m²',document.querySelectorAll('#s6 input[type="number"]')[11]?.value||'—',document.querySelectorAll('#s6 table:nth-of-type(1) input[type="text"]')[1]?.value||'—'],
+            ['Cabs modulé actuel','kWhEF/m²',document.querySelectorAll('#s6 input[type="number"]')[12]?.value||'—',document.querySelectorAll('#s6 table:nth-of-type(1) input[type="text"]')[2]?.value||'—'],
+            ['Coefficient de modulation','—',document.querySelectorAll('#s6 input[type="number"]')[13]?.value||'1,00','= Cabs Actuel / Cabs référence'],
+          ],
+          [2800,1500,1500,PW-5800]
+        ),
+        SP(),
+        H3('4.4.2 Crelat 2030 / 2040 / 2050'),
+        dtTable(['Horizon','Formule','Cible (kWhEF/m²·an)','Coef modulation','Crelat modulé'],
+          [
+            ['2030','0,6 × Créf',D.crelat30||'—',document.querySelectorAll('#s6 input[type="number"]')[15]?.value||'1,00',document.querySelectorAll('#s6 input[type="number"]')[16]?.value||'—'],
+            ['2040','0,5 × Créf',D.crelat40||'—',document.querySelectorAll('#s6 input[type="number"]')[18]?.value||'1,00',document.querySelectorAll('#s6 input[type="number"]')[19]?.value||'—'],
+            ['2050','0,4 × Créf',D.crelat50||'—',document.querySelectorAll('#s6 input[type="number"]')[21]?.value||'1,00',document.querySelectorAll('#s6 input[type="number"]')[22]?.value||'—'],
+          ],
+          [1200,1800,2000,1800,PW-6800]
+        ),
+        SP(),
+        H2('4.5','Conversion en énergie primaire et GES'),
+        tipBox('Exigence de l\'arrêté du 10/04/2020 modifié : ne pas augmenter les émissions GES ni les consommations d\'énergie primaire par rapport à l\'année de référence.','info'),
+        SP(),
+        H2('4.6','Saisie dans OPERAT'),
+        kvTable([
+          ['IUB du site',operatIUB],
+          ['Référence EFA',operatEFA],
+          ['Sous-catégorie déclarée',document.querySelectorAll('#s6 input[type="text"]')[2]?.value||'—'],
+          ['Échéance annuelle','30 septembre N+1'],
+        ]),
+        SP(),
+        H2('4.7','Analyse des saisies déjà faites dans OPERAT'),
+        tipBox('Supprimer ce paragraphe si aucune déclaration antérieure dans OPERAT.','info'),
+        operatRows.length&&operatRows[0][0]!=='—'?dtTable(['Champ OPERAT','Valeur déclarée','Valeur corrigée','Action'],operatRows,[2500,2000,2500,PW-7000]):P('Sans objet — aucune déclaration antérieure.'),
+        SP(),
+        H2('4.8','SYNTHÈSE : objectifs retenus'),
+        (() => {
+          const rows2=Array.from(document.querySelectorAll('#s6 table:last-of-type tbody tr')).map(r=>{
+            const tds=r.querySelectorAll('td');
+            const inp=r.querySelectorAll('input,select');
+            return [tds[0]?.textContent||'—',inp[0]?.value||'—',inp[1]?.value||'—',inp[2]?.value||'—',inp[3]?.value||'—'];
+          });
+          return dtTable(['Horizon','Cabs modulé','Crelat modulé','Cible retenue','Type'],rows2.length?rows2:[['—','—','—','—','—']],[1200,1800,1800,2000,PW-6800]);
+        })(),
+        new Paragraph({children:[new PageBreak()]}),
+
+        // ══ CHAP 5 — MODÉLISATION ════════════════════════════
+        H1(5,'Modélisation thermique du site'),
+        H2('5.1','Choix de l\'année d\'étalonnage'),
+        kvTable([['Année retenue',modAnnee],['Outil de modélisation',modOutil],['Justification',modJusti]]),
+        SP(),
+        H2('5.2','Hypothèses de fonctionnement (état actuel)'),
+        kvTable([['Températures consigne',modConsigne],['Apports internes',modApports]]),
+        SP(),
+        H2('5.3','Modélisation des consommations'),
+        (() => {
+          const rows3=Array.from(document.querySelectorAll('#s7 table tbody tr')).map(r=>{
+            const tds=r.querySelectorAll('td');
+            const inp=r.querySelectorAll('input,select');
+            return [tds[0]?.textContent||'—',inp[0]?.value||'—',inp[1]?.value||'—',r.querySelector('.cc')?.textContent||'—',inp[2]?.value||'—'];
+          });
+          return dtTable(['Énergie','Conso simulée','Conso facturée','Écart (%)','Validation'],rows3.length?rows3:[['—','—','—','—','—']],[1800,2000,2000,1400,PW-7200]);
+        })(),
+        tipBox('Le modèle doit reproduire les factures réelles avec un écart < 5 % pour être considéré comme validé (NF EN 16247-1 §5.5.3).','green'),
+        new Paragraph({children:[new PageBreak()]}),
+
+        // ══ CHAP 6 — ALÉAS ═══════════════════════════════════
+        H1(6,'Adaptation et aléas (hors enjeux énergétiques)'),
+        tipBox('Ce chapitre apporte une information sur les aléas climatiques mais l\'audit ne comporte pas d\'analyse personnalisée. Pour une analyse personnalisée, consulter le Diag Adaptation Bpifrance.','info'),
+        kvTable([
+          ['Vagues de chaleur',document.querySelectorAll('#s8 textarea')[0]?.value||'—'],
+          ['Aléas littoraux',document.querySelectorAll('#s8 textarea')[1]?.value||'—'],
+          ['Aléas pluviaux',document.querySelectorAll('#s8 textarea')[2]?.value||'—'],
+          ['Aléas RGA',document.querySelectorAll('#s8 textarea')[3]?.value||'—'],
+        ]),
+        new Paragraph({children:[new PageBreak()]}),
+
+        // ══ CHAP 7 — CONFORT D'ÉTÉ ══════════════════════════
+        H1(7,'Analyse pour le confort d\'été'),
+        H2('7.1','Contexte'),
+        P('Les vagues de chaleur vont s\'intensifier (TRACC, PNACC-3). Nos bâtiments ne sont pas adaptés car ils ont été conçus pour la maîtrise du chauffage. La pérennité du bâtiment nécessite une adaptation.'),
+        SP(),
+        H2('7.3','Dispositions clés'),
+        (() => {
+          const rows4=Array.from(document.querySelectorAll('#s8 table tbody tr')).map(r=>{
+            const tds=r.querySelectorAll('td');const inp=r.querySelectorAll('input');
+            return [tds[0]?.textContent||'—',inp[0]?.value||'—'];
+          });
+          return dtTable(['Stratégie','Application au site'],rows4.length?rows4:[['—','—']],[3500,PW-3500]);
+        })(),
+        new Paragraph({children:[new PageBreak()]}),
+
+        // ══ CHAP 8 — PRÉCONISATIONS ══════════════════════════
+        H1(8,'Préconisations'),
+        H2('8.1','Méthodologie'),
+        P('Chaque préconisation modifie une ou plusieurs variables dans la modélisation thermique. Les gains unitaires ne sont pas additionnables — leur assemblage se fait dans les scénarios (chapitre 9).'),
+        SP(),
+        H2('8.4','Constantes économiques'),
+        kvTable([
+          ['Taux d\'actualisation',document.querySelectorAll('#s9 input')[1]?.value||'—'],
+          ['Évolution prix énergie',document.querySelectorAll('#s9 input')[2]?.value||'—'],
+          ['Évolution coût travaux',document.querySelectorAll('#s9 input')[3]?.value||'—'],
+          ['Prix CEE moyen',document.querySelectorAll('#s9 input')[4]?.value||'—'],
+        ]),
+        SP(),
+        H2('8.11','Bilan des préconisations'),
+        tipBox('Les montants sont en € HT, sans honoraires ni aléas. Les TRB sont calculés en prix constants et en prix croissants.','info'),
+        dtTable(
+          ['N°','Préconisation','Gain kWh/an','Coût HT (€)','CEE (€)','Éco. €/an','TRB (ans)'],
+          precos.length?precos.map(r=>[r[0],r[1],r[2],r[3],r[4],r[5],r[6]]):[['—','—','—','—','—','—','—']],
+          [400,2800,1300,1300,1000,1000,PW-7800]
+        ),
+        SP(),
+        H2('8.12','Aides et subventions'),
+        H3('Certificats d\'Économie d\'Énergie (CEE)'),
+        dtTable(['N° Préco','Fiche CEE','Montant estimé (€)'],precos.length?precos.map(r=>[r[0],'—','—']):[['—','—','—']],[1500,4500,PW-6000]),
+        SP(),
+        H2('8.14','Répartition des responsabilités propriétaire / locataire'),
+        statOccup.includes('occupant')?P('Sans objet — propriétaire occupant.'):[
+          tipBox('CCH L174-1 : le DEET rend responsable à la fois le bailleur et le preneur à bail pour les actions relevant de leurs responsabilités respectives.','warn'),
+          kvTable([['Statut d\'occupation',statOccup],['Observations bail',bailObs]]),
+          SP(),
+          dtTable(['N° Préco','Libellé','Responsable','Commentaire'],respRows.length?respRows:[['—','—','—','—']],[800,3000,2500,PW-6300]),
+        ],
+        new Paragraph({children:[new PageBreak()]}),
+
+        // ══ CHAP 9 — SCÉNARIOS ═══════════════════════════════
+        H1(9,'Scénarios'),
+        H2('9.1','Description des scénarios'),
+        P('Le scénario « Gains rapides » regroupe les actions dont le TRB est inférieur à 5 ans. Le scénario 1 vise le respect du décret tertiaire en 2030. Les scénarios 2 et 3 visent 2040 et 2050.'),
+        SP(),
+        H2('9.6','Résultat par scénario — Respect du Décret Tertiaire'),
+        (() => {
+          const scenLabels=['Gains rapides','Scénario 1 — DEET 2030','Scénario 2 — DEET 2040','Scénario 3 — DEET 2050'];
+          const rows5=Array.from(document.querySelectorAll('#s10 tbody tr')).map((r,i)=>{
+            const inp=r.querySelectorAll('input');
+            return [scenLabels[i]||'—', inp[0]?.value||'—', inp[1]?.value||'—', inp[2]?.value||'—', inp[3]?.value||'—', inp[4]?.value||'—'];
+          });
+          return dtTable(['Scénario','Travaux inclus','Invest. (k€HT)','CEE (k€)','Éco. (k€/an)','TRB (ans)'],rows5.length?rows5:[['—','—','—','—','—','—']],[2000,3000,1300,1000,1000,PW-8300]);
+        })(),
+        new Paragraph({children:[new PageBreak()]}),
+
+        // ══ CHAP 10 — SYNTHÈSE EXÉCUTIVE ════════════════════
+        H1(10,'Synthèse exécutive'),
+        H2('10.1','Constat principal'),
+        P(synth1),
+        H2('10.2','Stratégie recommandée'),
+        P(synth2),
+        H2('10.3','Premières actions à engager'),
+        P(synth3),
+        H2('10.4','Limites de l\'audit'),
+        P(synth4),
+        new Paragraph({children:[new PageBreak()]}),
+
+        // ══ CHAP 11 — ANNEXES ═══════════════════════════════
+        H1(11,'Annexes'),
+        H2('11.1','Glossaire technique'),
+        dtTable(['Terme','Définition'],
+          [
+            ['Cabs','Cible en valeur absolue (kWhEF/m²·an) — dépend de l\'activité et des IIU'],
+            ['Créf','Consommation de référence — point de départ du calcul DEET'],
+            ['Crelat','Cible relative — 2030 = 60% Créf, 2040 = 50%, 2050 = 40%'],
+            ['DEET','Dispositif Éco Énergie Tertiaire'],
+            ['IIU','Indicateurs d\'Intensité d\'Usage'],
+            ['OPERAT','Observatoire de la Performance Énergétique, de la Rénovation et des Actions du Tertiaire'],
+            ['kWhEF','Kilowattheure en énergie finale (avec coef DEET : élec×1,0 / gaz PCS×0,9)'],
+            ['TRB','Temps de Retour sur investissement Brut'],
+            ['CEE','Certificats d\'Économies d\'Énergie'],
+            ['BACS','Building Automation & Control Systems — GTB classe B (NF EN ISO 52120-1)'],
+          ],
+          [2200,PW-2200]
+        ),
+        SP(),
+        H2('11.2','Cabs 2030 — Valeurs à la date de l\'étude'),
+        tipBox('Joindre les tableaux définissant les Cabs pour le site selon l\'Arrêté Valeurs Absolues VI (1er août 2025).','info'),
+        SP(),
+        H2('11.3','FAQ OPERAT à la date de l\'étude'),
+        tipBox('FAQ disponible sur operat.ademe.fr/public/faq — version consultée lors de la réalisation de l\'étude.','info'),
+        faqRows.length&&faqRows[0][0]!=='—'?dtTable(['Réf. FAQ','Question','Application au site'],faqRows,[1400,3800,PW-5200]):P('—'),
+        faqNotes&&faqNotes!=='—'?[SP(),P(faqNotes)]:SP(),
+      ].flat()
+    }]
+  });
+
+  // ── Génération et téléchargement ─────────────────────
+  const btnEl = event.target;
+  btnEl.textContent='⏳ Génération en cours...';
+  btnEl.disabled=true;
+
+  docx.Packer.toBlob(doc2).then(blob=>{
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;
+    const siteName=(D.site||'audit').replace(/[^a-zA-Z0-9]/g,'_').substring(0,30);
+    const today=new Date().toISOString().split('T')[0];
+    a.download=`Audit_Energetique_DEET_${siteName}_${today}.docx`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    btnEl.textContent='📄 Générer le rapport Word';
+    btnEl.disabled=false;
+  }).catch(err=>{
+    console.error('Erreur génération docx:',err);
+    alert('Erreur lors de la génération : '+err.message);
+    btnEl.textContent='📄 Générer le rapport Word';
+    btnEl.disabled=false;
+  });
+}
+
 go('s0');
+
 </script>
 
 </body>
