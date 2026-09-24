@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="bg-background">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Audit HP flottante – Régulation frigorifique | Portfolio</title>
+  <title>Audit HP flottante — Régulation frigorifique | Abdelilah Elghazouani</title>
+  <meta name="description" content="Audit énergétique d'une centrale frigorifique de 30 kW : passage d'une régulation haute pression fixe à flottante (Alger &amp; Marrakech) pour 15 à 22 % d'économies." />
+  <meta name="theme-color" content="#0a151d" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-xX2J3UlP8bIz7pPj9wVjZPQvP4gx+qX7YL8PbIHjKNqj7MsbO90iaC3q6iJFASsVHVuYLDhqAoPYfRZbjY2GcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="img/logo.png" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EHXMS5CHFZ"></script>
@@ -18,71 +20,154 @@
     gtag('config', 'G-EHXMS5CHFZ');
   </script>
 </head>
-<body>
+<body class="subpage">
+
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
   <header class="header">
-    <nav class="navbar" id="navbar">
-      <div class="logo">
-        <img src="img/profile.jpg" alt="Photo de Abdelilah El Ghazouani" class="profile-logo" />
-        <span>Abdelilah El Ghazouani</span>
-        <img src="img/logo.png" alt="Icône écologique" class="eco-logo" />
-      </div>
-      <input type="checkbox" id="menu-toggle" />
-      <label for="menu-toggle" class="hamburger"><span></span><span></span><span></span></label>
+    <nav class="navbar scrolled" id="navbar" aria-label="Navigation principale">
+      <a href="index.html#accueil" class="logo">
+        <img src="img/profile.jpg" alt="Portrait d'Abdelilah Elghazouani" class="profile-logo" />
+        <span class="logo-name">Abdelilah <strong>Elghazouani</strong></span>
+      </a>
+      <input type="checkbox" id="menu-toggle" aria-label="Ouvrir le menu" />
+      <label for="menu-toggle" class="hamburger" aria-hidden="true"><span></span><span></span><span></span></label>
       <ul class="nav-links">
         <li><a href="index.html#accueil">Accueil</a></li>
-        <li><a href="index.html#cv">CV</a></li>
+        <li><a href="index.html#apropos">Profil</a></li>
         <li><a href="index.html#projets">Projets</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <div class="subpage-hero">
-    <h1>Audit énergétique &amp; Régulation HP flottante</h1>
-    <p>Optimisation d'une centrale frigorifique de 30 kW</p>
+  <section class="subpage-hero">
+    <div class="hero-grid-overlay" aria-hidden="true"></div>
+    <div class="subpage-hero-inner">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="index.html#accueil">Accueil</a>
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        <a href="index.html#projets">Projets</a>
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        <span class="current">Audit HP flottante</span>
+      </nav>
+      <span class="subpage-eyebrow"><i class="fas fa-snowflake"></i> Audit énergétique · Froid</span>
+      <h1>Audit énergétique &amp; <span class="accent">régulation HP flottante</span></h1>
+      <p class="subpage-lead">
+        Optimisation de machines frigorifiques de 30 kW exploitées à Alger et Marrakech :
+        passage d'une haute pression de condensation fixe à une régulation flottante, adaptée
+        aux conditions extérieures.
+      </p>
+      <div class="subpage-tags">
+        <span class="chip amber">Audit NF EN 16247</span>
+        <span class="chip teal">HP flottante</span>
+        <span class="chip">R134a / R1234yf</span>
+        <span class="chip">RETScreen · CoolProp</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="subpage-kpis reveal">
+    <div class="kpi-card"><div class="kpi-value">30 kW</div><div class="kpi-label">Puissance frigorifique</div></div>
+    <div class="kpi-card"><div class="kpi-value">15–22 %</div><div class="kpi-label">Économie d'énergie</div></div>
+    <div class="kpi-card"><div class="kpi-value">6 857 €</div><div class="kpi-label">Gains annuels cumulés</div></div>
+    <div class="kpi-card"><div class="kpi-value">2 597 €</div><div class="kpi-label">Investissement initial</div></div>
   </div>
 
   <main class="subpage-content">
-    <h2>Qu'est-ce qu'un audit énergétique ?</h2>
-    <p>Un audit énergétique est un examen et une analyse méthodique de l'usage et de la consommation d'énergie d'un site, d'un bâtiment, d'un système ou d'un organisme. Son objectif est d'identifier les flux énergétiques et les potentiels d'amélioration de l'efficacité énergétique, puis d'en rendre compte afin de réduire les coûts et l'impact environnemental.</p>
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">01</span><h2>Qu'est-ce qu'un audit énergétique ?</h2></div>
+      <p>
+        Un audit énergétique est un examen et une analyse méthodique de l'usage et de la consommation
+        d'énergie d'un site, d'un bâtiment, d'un système ou d'un organisme. Son objectif est d'identifier
+        les flux énergétiques et les potentiels d'amélioration de l'efficacité énergétique, puis d'en
+        rendre compte afin de réduire les coûts et l'impact environnemental.
+      </p>
+    </section>
 
-    <h2>Principaux types d'audit énergétique</h2>
-    <ul>
-      <li><strong>Audit bâtiment :</strong> réalisé sur un bâtiment ou un parc immobilier pour dresser l'état initial des consommations, analyser l'isolation et les déperditions, et proposer des travaux de rénovation.</li>
-      <li><strong>Audit industriel :</strong> réalisé au sein d'une installation industrielle pour optimiser les procédés, améliorer les performances des équipements et réduire les coûts liés à l'énergie.</li>
-      <li><strong>Audit transport :</strong> destiné à analyser les consommations d'énergie dans les activités de transport et à proposer des solutions pour réduire les émissions et la facture énergétique.</li>
-    </ul>
-
-    <h2>Contexte et objectifs</h2>
-    <p>Ce projet porte sur des machines frigorifiques de 30 kW exploitées à Alger et à Marrakech. L'objectif de l'étude est de passer d'une régulation à haute pression fixe (HP fixe) à une régulation à haute pression flottante (HP flottante) afin d'adapter la pression de condensation aux conditions extérieures et ainsi réduire la consommation d'énergie et les coûts d'exploitation.</p>
-
-    <h3>Site d'Alger</h3>
-    <p>Deux machines utilisant les fluides R134a et R1234yf étaient régulées à haute pression fixe (12,65 bars et 12,53 bars). La consommation annuelle était de 92 372,88 kWh et 80 751,36 kWh. Grâce à la régulation HP flottante (9,5 bars), les économies attendues sont de 12 818,80 kWh et 11 642,31 kWh, soit des gains financiers de 423 € et 384 €.</p>
-
-    <h3>Site de Marrakech</h3>
-    <p>À Marrakech, les machines R134a et R1234yf régulées à 16,8 bars et 16,4 bars consommaient 114 840,09 kWh et 90 916,46 kWh par an. En adoptant la régulation HP flottante (≈11,37 bars), les économies prévues sont de 20 172,32 kWh et 19 861,77 kWh, soit des gains financiers de 3 058 € et 3 011 €.</p>
-
-    <h3>Comparaison des consommations</h3>
-    <div class="chart-container">
-      <img src="img/hp_flottante_comparison.png" alt="Comparaison des consommations d'énergie avant et après régulation HP flottante" />
-    </div>
-
-    <h3>Conclusion</h3>
-    <p>La régulation HP flottante permet de réduire de 15 % à 22 % la consommation d'énergie, selon le site et le fluide, tout en offrant un amortissement rapide de l'investissement initial (2 597 €). Elle constitue une solution simple et efficace pour optimiser les performances des installations frigorifiques et limiter leur impact environnemental.</p>
-
-    <h2>Documents de référence</h2>
-    <div class="documents">
-      <ul>
-        <li><a href="docs/Rapport d’audit énergétique – Actif (ING 3 TEF)  (1).pdf" download>Rapport d'audit énergétique (PDF)</a></li>
-        <li><a href="docs/TestExcel finale groupe 2 , Marrakech alger.xlsx" download>Feuille de calcul RETScreen / CoolProp (Excel)</a></li>
-        <li><a href="docs/Audit_HP_flottante_Presentation Groupe 2.pptx" download>Présentation PowerPoint</a></li>
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">02</span><h2>Principaux types d'audit</h2></div>
+      <ul class="feature-list">
+        <li><strong>Audit bâtiment :</strong> état initial des consommations, analyse de l'isolation et des déperditions, propositions de travaux de rénovation.</li>
+        <li><strong>Audit industriel :</strong> optimisation des procédés, amélioration des performances des équipements et réduction des coûts liés à l'énergie.</li>
+        <li><strong>Audit transport :</strong> analyse des consommations dans les activités de transport et solutions pour réduire émissions et facture énergétique.</li>
       </ul>
+    </section>
+
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">03</span><h2>Contexte et objectifs</h2></div>
+      <p>
+        Ce projet porte sur des machines frigorifiques de 30 kW exploitées à Alger et à Marrakech.
+        L'objectif de l'étude est de passer d'une régulation à haute pression fixe (HP fixe) à une
+        régulation à haute pression flottante (HP flottante) afin d'adapter la pression de condensation
+        aux conditions extérieures et ainsi réduire la consommation d'énergie et les coûts d'exploitation.
+      </p>
+      <h3>Site d'Alger</h3>
+      <p>
+        Deux machines utilisant les fluides R134a et R1234yf étaient régulées à haute pression fixe
+        (12,65 bars et 12,53 bars). La consommation annuelle était de 92 372,88 kWh et 80 751,36 kWh.
+        Grâce à la régulation HP flottante (9,5 bars), les économies attendues sont de 12 818,80 kWh et
+        11 642,31 kWh, soit des gains financiers de 423 € et 384 €.
+      </p>
+      <h3>Site de Marrakech</h3>
+      <p>
+        À Marrakech, les machines R134a et R1234yf régulées à 16,8 bars et 16,4 bars consommaient
+        114 840,09 kWh et 90 916,46 kWh par an. En adoptant la régulation HP flottante (≈11,37 bars),
+        les économies prévues sont de 20 172,32 kWh et 19 861,77 kWh, soit des gains financiers de
+        3 058 € et 3 011 €.
+      </p>
+    </section>
+
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">04</span><h2>Comparaison des consommations</h2></div>
+      <div class="chart-container">
+        <img src="img/hp_flottante_comparison.png" alt="Comparaison des consommations d'énergie avant et après régulation HP flottante" />
+        <p class="chart-caption">Consommations annuelles avant / après régulation HP flottante (kWh).</p>
+      </div>
+    </section>
+
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">05</span><h2>Conclusion</h2></div>
+      <p>
+        La régulation HP flottante permet de réduire de 15 % à 22 % la consommation d'énergie, selon le
+        site et le fluide, tout en offrant un amortissement rapide de l'investissement initial (2 597 €).
+        Elle constitue une solution simple et efficace pour optimiser les performances des installations
+        frigorifiques et limiter leur impact environnemental.
+      </p>
+    </section>
+
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">06</span><h2>Documents de référence</h2></div>
+      <ul class="documents-list">
+        <li><a href="docs/rapport-audit-hp-flottante.pdf" download><i class="fas fa-file-pdf"></i> Rapport d'audit énergétique (PDF) <i class="fas fa-download doc-arrow"></i></a></li>
+        <li><a href="docs/calcul-hp-flottante.xlsx" download><i class="fas fa-file-excel"></i> Feuille de calcul RETScreen / CoolProp (Excel) <i class="fas fa-download doc-arrow"></i></a></li>
+        <li><a href="docs/presentation-hp-flottante.pptx" download><i class="fas fa-file-powerpoint"></i> Présentation PowerPoint <i class="fas fa-download doc-arrow"></i></a></li>
+      </ul>
+    </section>
+
+    <div class="subpage-cta reveal">
+      <h2>Un projet, une méthode</h2>
+      <p>Découvrez mes autres études énergétiques ou échangeons sur votre besoin en alternance.</p>
+      <div class="subpage-cta-buttons">
+        <a href="index.html#projets" class="cta cta-primary" data-magnetic>Tous les projets <i class="fas fa-arrow-right"></i></a>
+        <a href="index.html#contact" class="cta cta-outline" data-magnetic>Me contacter</a>
+      </div>
     </div>
 
-    <a href="index.html#projets" class="back-link">← Retour aux projets</a>
+    <a href="index.html#projets" class="back-link"><i class="fas fa-arrow-left"></i> Retour aux projets</a>
   </main>
 
-  <footer>© 2026 Abdelilah El Ghazouani</footer>
+  <footer>
+    <span>© 2026 Abdelilah Elghazouani</span>
+    <span class="footer-sep">·</span>
+    <span>Ingénieur Énergétique — Portfolio</span>
+  </footer>
+
+  <a href="docs/CV-Elghazouani-Abdelilah.pdf" download class="download-cv-btn" title="Télécharger mon CV">
+    <i class="fas fa-download"></i> <span>Télécharger le CV</span>
+  </a>
+
   <script src="script.js"></script>
 </body>
 </html>
