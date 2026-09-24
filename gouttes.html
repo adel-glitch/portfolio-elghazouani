@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="bg-background">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gouttes d'Espoir – Étude solaire | Portfolio</title>
+  <title>Gouttes d'Espoir — Étude solaire | Abdelilah Elghazouani</title>
+  <meta name="description" content="Dimensionnement d'un système photovoltaïque pour le traitement d'eau en zones rurales. Projet Gouttes d'Espoir, Top 5 du concours IFMEREE Entreprendre, incubé et financé." />
+  <meta name="theme-color" content="#0a151d" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-xX2J3UlP8bIz7pPj9wVjZPQvP4gx+qX7YL8PbIHjKNqj7MsbO90iaC3q6iJFASsVHVuYLDhqAoPYfRZbjY2GcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="img/logo.png" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EHXMS5CHFZ"></script>
@@ -18,53 +20,112 @@
     gtag('config', 'G-EHXMS5CHFZ');
   </script>
 </head>
-<body>
+<body class="subpage">
+
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
   <header class="header">
-    <nav class="navbar" id="navbar">
-      <div class="logo">
-        <img src="img/profile.jpg" alt="Photo de Abdelilah El Ghazouani" class="profile-logo" />
-        <span>Abdelilah El Ghazouani</span>
-        <img src="img/logo.png" alt="Icône écologique" class="eco-logo" />
-      </div>
-      <input type="checkbox" id="menu-toggle" />
-      <label for="menu-toggle" class="hamburger"><span></span><span></span><span></span></label>
+    <nav class="navbar scrolled" id="navbar" aria-label="Navigation principale">
+      <a href="index.html#accueil" class="logo">
+        <img src="img/profile.jpg" alt="Portrait d'Abdelilah Elghazouani" class="profile-logo" />
+        <span class="logo-name">Abdelilah <strong>Elghazouani</strong></span>
+      </a>
+      <input type="checkbox" id="menu-toggle" aria-label="Ouvrir le menu" />
+      <label for="menu-toggle" class="hamburger" aria-hidden="true"><span></span><span></span><span></span></label>
       <ul class="nav-links">
         <li><a href="index.html#accueil">Accueil</a></li>
-        <li><a href="index.html#cv">CV</a></li>
+        <li><a href="index.html#apropos">Profil</a></li>
         <li><a href="index.html#projets">Projets</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <div class="subpage-hero">
-    <h1>Gouttes d'Espoir</h1>
-    <p>Étude solaire – Dimensionnement PV pour le traitement d'eau</p>
+  <section class="subpage-hero">
+    <div class="hero-grid-overlay" aria-hidden="true"></div>
+    <div class="subpage-hero-inner">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="index.html#accueil">Accueil</a>
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        <a href="index.html#projets">Projets</a>
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        <span class="current">Gouttes d'Espoir</span>
+      </nav>
+      <span class="subpage-eyebrow"><i class="fas fa-droplet"></i> Solaire · Impact social</span>
+      <h1>Gouttes d'Espoir — <span class="accent">solaire &amp; traitement d'eau</span></h1>
+      <p class="subpage-lead">
+        Solution solaire innovante pour le traitement de l'eau. En tant que chargé d'étude solaire,
+        j'ai développé un dispositif utilisant l'énergie photovoltaïque pour purifier l'eau et améliorer
+        l'accès à l'eau potable dans les zones rurales.
+      </p>
+      <div class="subpage-tags">
+        <span class="chip amber">Photovoltaïque</span>
+        <span class="chip teal">Traitement d'eau</span>
+        <span class="chip">Top 5 IFMEREE Entreprendre</span>
+        <span class="chip">Incubé &amp; financé</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="subpage-kpis reveal">
+    <div class="kpi-card"><div class="kpi-value">Top 5</div><div class="kpi-label">Concours IFMEREE</div></div>
+    <div class="kpi-card"><div class="kpi-value">100 % PV</div><div class="kpi-label">Alimentation solaire</div></div>
+    <div class="kpi-card"><div class="kpi-value">Rural</div><div class="kpi-label">Zones ciblées</div></div>
+    <div class="kpi-card"><div class="kpi-value">Financé</div><div class="kpi-label">Projet incubé</div></div>
   </div>
 
   <main class="subpage-content">
-    <h2>Contexte du projet</h2>
-    <p>
-      Gouttes d'Espoir est une solution solaire innovante pour le traitement de l'eau. En tant que chargé d'étude solaire au sein du bureau d'études, j'ai développé un dispositif utilisant l'énergie solaire pour purifier l'eau et améliorer l'accès à l'eau potable dans les zones rurales.
-    </p>
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">01</span><h2>Contexte du projet</h2></div>
+      <p>
+        Gouttes d'Espoir est une solution solaire innovante pour le traitement de l'eau. En tant que
+        chargé d'étude solaire au sein du bureau d'études, j'ai développé un dispositif utilisant
+        l'énergie solaire pour purifier l'eau et améliorer l'accès à l'eau potable dans les zones rurales.
+      </p>
+    </section>
 
-    <h2>Missions réalisées</h2>
-    <ul>
-      <li>Dimensionnement du système photovoltaïque pour l'alimentation d'une unité de traitement d'eau</li>
-      <li>Analyse de faisabilité technico-économique adaptée aux zones rurales</li>
-      <li>Contribution à l'implémentation et à l'optimisation énergétique du système</li>
-      <li>Classement dans le Top 5 du concours IFMEREE Entreprendre</li>
-    </ul>
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">02</span><h2>Missions réalisées</h2></div>
+      <ul class="feature-list">
+        <li>Dimensionnement du système photovoltaïque pour l'alimentation d'une unité de traitement d'eau.</li>
+        <li>Analyse de faisabilité technico-économique adaptée aux zones rurales.</li>
+        <li>Contribution à l'implémentation et à l'optimisation énergétique du système.</li>
+        <li>Classement dans le Top 5 du concours IFMEREE Entreprendre.</li>
+      </ul>
+    </section>
 
-    <h2>Impact</h2>
-    <p>
-      Le projet a été incubé et financé, démontrant sa viabilité technique et économique. Cette initiative illustre ma capacité à innover et à créer des solutions écologiques ayant un impact social positif, en combinant ingénierie solaire et développement durable.
-    </p>
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">03</span><h2>Impact</h2></div>
+      <p>
+        Le projet a été incubé et financé, démontrant sa viabilité technique et économique. Cette
+        initiative illustre ma capacité à innover et à créer des solutions écologiques ayant un impact
+        social positif, en combinant ingénierie solaire et développement durable.
+      </p>
+    </section>
 
-    <a href="index.html#projets" class="back-link">← Retour aux projets</a>
+    <div class="subpage-cta reveal">
+      <h2>Un projet, une méthode</h2>
+      <p>Découvrez mes autres études énergétiques ou échangeons sur votre besoin en alternance.</p>
+      <div class="subpage-cta-buttons">
+        <a href="index.html#projets" class="cta cta-primary" data-magnetic>Tous les projets <i class="fas fa-arrow-right"></i></a>
+        <a href="index.html#contact" class="cta cta-outline" data-magnetic>Me contacter</a>
+      </div>
+    </div>
+
+    <a href="index.html#projets" class="back-link"><i class="fas fa-arrow-left"></i> Retour aux projets</a>
   </main>
 
-  <footer>© 2026 Abdelilah El Ghazouani</footer>
+  <footer>
+    <span>© 2026 Abdelilah Elghazouani</span>
+    <span class="footer-sep">·</span>
+    <span>Ingénieur Énergétique — Portfolio</span>
+  </footer>
+
+  <a href="docs/CV-Elghazouani-Abdelilah.pdf" download class="download-cv-btn" title="Télécharger mon CV">
+    <i class="fas fa-download"></i> <span>Télécharger le CV</span>
+  </a>
+
   <script src="script.js"></script>
 </body>
 </html>
