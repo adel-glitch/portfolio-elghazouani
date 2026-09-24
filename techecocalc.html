@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="bg-background">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TECHECOCALC AI | Portfolio</title>
+  <title>TECHECOCALC AI — Plateforme de dimensionnement solaire | Abdelilah Elghazouani</title>
+  <meta name="description" content="Plateforme web de calcul et de dimensionnement des systèmes solaires avec analyses technico-économiques et simulation de scénarios. Projet TECHECOCALC AI." />
+  <meta name="theme-color" content="#0a151d" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-xX2J3UlP8bIz7pPj9wVjZPQvP4gx+qX7YL8PbIHjKNqj7MsbO90iaC3q6iJFASsVHVuYLDhqAoPYfRZbjY2GcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="img/logo.png" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EHXMS5CHFZ"></script>
@@ -18,61 +20,123 @@
     gtag('config', 'G-EHXMS5CHFZ');
   </script>
 </head>
-<body>
+<body class="subpage">
+
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
   <header class="header">
-    <nav class="navbar" id="navbar">
-      <div class="logo">
-        <img src="img/profile.jpg" alt="Photo de Abdelilah El Ghazouani" class="profile-logo" />
-        <span>Abdelilah El Ghazouani</span>
-        <img src="img/logo.png" alt="Icône écologique" class="eco-logo" />
-      </div>
-      <input type="checkbox" id="menu-toggle" />
-      <label for="menu-toggle" class="hamburger"><span></span><span></span><span></span></label>
+    <nav class="navbar scrolled" id="navbar" aria-label="Navigation principale">
+      <a href="index.html#accueil" class="logo">
+        <img src="img/profile.jpg" alt="Portrait d'Abdelilah Elghazouani" class="profile-logo" />
+        <span class="logo-name">Abdelilah <strong>Elghazouani</strong></span>
+      </a>
+      <input type="checkbox" id="menu-toggle" aria-label="Ouvrir le menu" />
+      <label for="menu-toggle" class="hamburger" aria-hidden="true"><span></span><span></span><span></span></label>
       <ul class="nav-links">
         <li><a href="index.html#accueil">Accueil</a></li>
-        <li><a href="index.html#cv">CV</a></li>
+        <li><a href="index.html#apropos">Profil</a></li>
         <li><a href="index.html#projets">Projets</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <div class="subpage-hero">
-    <h1>TECHECOCALC AI</h1>
-    <p>Plateforme web de calcul et dimensionnement solaire</p>
+  <section class="subpage-hero">
+    <div class="hero-grid-overlay" aria-hidden="true"></div>
+    <div class="subpage-hero-inner">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="index.html#accueil">Accueil</a>
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        <a href="index.html#projets">Projets</a>
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        <span class="current">TECHECOCALC AI</span>
+      </nav>
+      <span class="subpage-eyebrow"><i class="fas fa-laptop-code"></i> Développement · Outils numériques</span>
+      <h1>TECHECOCALC AI — <span class="accent">dimensionnement solaire</span></h1>
+      <p class="subpage-lead">
+        Plateforme web conçue pour faciliter le calcul et le dimensionnement des systèmes solaires.
+        Elle intègre des analyses technico-économiques et une interface conviviale pour simuler
+        différents scénarios et choisir la configuration optimale.
+      </p>
+      <div class="subpage-tags">
+        <span class="chip amber">HTML · CSS · JS</span>
+        <span class="chip teal">Photovoltaïque</span>
+        <span class="chip">Analyse ROI</span>
+        <span class="chip">Simulation de scénarios</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="subpage-kpis reveal">
+    <div class="kpi-card"><div class="kpi-value">Web</div><div class="kpi-label">Plateforme responsive</div></div>
+    <div class="kpi-card"><div class="kpi-value">Auto</div><div class="kpi-label">Dimensionnement PV</div></div>
+    <div class="kpi-card"><div class="kpi-value">ROI</div><div class="kpi-label">Analyse technico-éco</div></div>
+    <div class="kpi-card"><div class="kpi-value">PDF</div><div class="kpi-label">Rapports générés</div></div>
   </div>
 
   <main class="subpage-content">
-    <h2>Présentation du projet</h2>
-    <p>
-      TECHECOCALC AI est une plateforme web que j'ai conçue pour faciliter le calcul et le dimensionnement des systèmes solaires. Elle intègre des analyses technico-économiques et une interface conviviale permettant aux utilisateurs de simuler différents scénarios et de choisir la configuration optimale.
-    </p>
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">01</span><h2>Présentation du projet</h2></div>
+      <p>
+        TECHECOCALC AI est une plateforme web que j'ai conçue pour faciliter le calcul et le
+        dimensionnement des systèmes solaires. Elle intègre des analyses technico-économiques et une
+        interface conviviale permettant aux utilisateurs de simuler différents scénarios et de choisir
+        la configuration optimale.
+      </p>
+    </section>
 
-    <h2>Fonctionnalités principales</h2>
-    <ul>
-      <li>Dimensionnement automatisé des installations photovoltaïques</li>
-      <li>Analyses technico-économiques avec calcul du retour sur investissement</li>
-      <li>Interface utilisateur intuitive et responsive</li>
-      <li>Simulation de différents scénarios de configuration</li>
-      <li>Génération de rapports de dimensionnement</li>
-    </ul>
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">02</span><h2>Fonctionnalités principales</h2></div>
+      <div class="info-grid">
+        <div class="info-card"><i class="fas fa-solar-panel"></i><h3>Dimensionnement PV</h3><p>Dimensionnement automatisé des installations photovoltaïques.</p></div>
+        <div class="info-card"><i class="fas fa-chart-line"></i><h3>Analyse technico-éco</h3><p>Calcul du retour sur investissement et de la rentabilité.</p></div>
+        <div class="info-card"><i class="fas fa-mobile-screen"></i><h3>Interface intuitive</h3><p>Une expérience utilisateur fluide et responsive.</p></div>
+        <div class="info-card"><i class="fas fa-sliders"></i><h3>Scénarios</h3><p>Simulation de différentes configurations en temps réel.</p></div>
+        <div class="info-card"><i class="fas fa-file-lines"></i><h3>Rapports</h3><p>Génération de rapports de dimensionnement exportables.</p></div>
+      </div>
+    </section>
 
-    <h2>Technologies utilisées</h2>
-    <ul>
-      <li>Développement web (HTML, CSS, JavaScript)</li>
-      <li>Algorithmes de calcul et d'optimisation</li>
-      <li>Modélisation des systèmes solaires</li>
-    </ul>
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">03</span><h2>Technologies utilisées</h2></div>
+      <ul class="feature-list">
+        <li>Développement web — <strong>HTML, CSS, JavaScript</strong>.</li>
+        <li>Algorithmes de calcul et d'optimisation.</li>
+        <li>Modélisation des systèmes solaires.</li>
+      </ul>
+    </section>
 
-    <h2>Compétences mobilisées</h2>
-    <p>
-      Ce projet illustre mes compétences en programmation et en modélisation ainsi que mon intérêt pour l'optimisation énergétique. Il démontre ma capacité à concevoir des outils numériques au service de la transition énergétique.
-    </p>
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">04</span><h2>Compétences mobilisées</h2></div>
+      <p>
+        Ce projet illustre mes compétences en programmation et en modélisation ainsi que mon intérêt
+        pour l'optimisation énergétique. Il démontre ma capacité à concevoir des outils numériques au
+        service de la transition énergétique.
+      </p>
+    </section>
 
-    <a href="index.html#projets" class="back-link">← Retour aux projets</a>
+    <div class="subpage-cta reveal">
+      <h2>Un projet, une méthode</h2>
+      <p>Découvrez mes autres réalisations ou échangeons sur votre besoin en alternance.</p>
+      <div class="subpage-cta-buttons">
+        <a href="index.html#projets" class="cta cta-primary" data-magnetic>Tous les projets <i class="fas fa-arrow-right"></i></a>
+        <a href="index.html#contact" class="cta cta-outline" data-magnetic>Me contacter</a>
+      </div>
+    </div>
+
+    <a href="index.html#projets" class="back-link"><i class="fas fa-arrow-left"></i> Retour aux projets</a>
   </main>
 
-  <footer>© 2026 Abdelilah El Ghazouani</footer>
+  <footer>
+    <span>© 2026 Abdelilah Elghazouani</span>
+    <span class="footer-sep">·</span>
+    <span>Ingénieur Énergétique — Portfolio</span>
+  </footer>
+
+  <a href="docs/CV-Elghazouani-Abdelilah.pdf" download class="download-cv-btn" title="Télécharger mon CV">
+    <i class="fas fa-download"></i> <span>Télécharger le CV</span>
+  </a>
+
   <script src="script.js"></script>
 </body>
 </html>
