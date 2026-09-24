@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="bg-background">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stage Temasol – Maintenance solaire | Portfolio</title>
+  <title>Stage TEMASOL — Maintenance solaire | Abdelilah Elghazouani</title>
+  <meta name="description" content="Stage de 4 mois chez TEMASOL (Ouarzazate) : maintenance préventive et corrective des systèmes solaires thermiques et photovoltaïques, −25 % de pannes en 3 mois." />
+  <meta name="theme-color" content="#0a151d" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-xX2J3UlP8bIz7pPj9wVjZPQvP4gx+qX7YL8PbIHjKNqj7MsbO90iaC3q6iJFASsVHVuYLDhqAoPYfRZbjY2GcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="img/logo.png" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EHXMS5CHFZ"></script>
@@ -18,54 +20,114 @@
     gtag('config', 'G-EHXMS5CHFZ');
   </script>
 </head>
-<body>
+<body class="subpage">
+
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
   <header class="header">
-    <nav class="navbar" id="navbar">
-      <div class="logo">
-        <img src="img/profile.jpg" alt="Photo de Abdelilah El Ghazouani" class="profile-logo" />
-        <span>Abdelilah El Ghazouani</span>
-        <img src="img/logo.png" alt="Icône écologique" class="eco-logo" />
-      </div>
-      <input type="checkbox" id="menu-toggle" />
-      <label for="menu-toggle" class="hamburger"><span></span><span></span><span></span></label>
+    <nav class="navbar scrolled" id="navbar" aria-label="Navigation principale">
+      <a href="index.html#accueil" class="logo">
+        <img src="img/profile.jpg" alt="Portrait d'Abdelilah Elghazouani" class="profile-logo" />
+        <span class="logo-name">Abdelilah <strong>Elghazouani</strong></span>
+      </a>
+      <input type="checkbox" id="menu-toggle" aria-label="Ouvrir le menu" />
+      <label for="menu-toggle" class="hamburger" aria-hidden="true"><span></span><span></span><span></span></label>
       <ul class="nav-links">
         <li><a href="index.html#accueil">Accueil</a></li>
-        <li><a href="index.html#cv">CV</a></li>
+        <li><a href="index.html#apropos">Profil</a></li>
         <li><a href="index.html#projets">Projets</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <div class="subpage-hero">
-    <h1>Stage Temasol</h1>
-    <p>Maintenance &amp; SAV – Systèmes solaires thermiques et photovoltaïques</p>
+  <section class="subpage-hero">
+    <div class="hero-grid-overlay" aria-hidden="true"></div>
+    <div class="subpage-hero-inner">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="index.html#accueil">Accueil</a>
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        <a href="index.html#projets">Projets</a>
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        <span class="current">Stage TEMASOL</span>
+      </nav>
+      <span class="subpage-eyebrow"><i class="fas fa-screwdriver-wrench"></i> Expérience · Maintenance solaire</span>
+      <h1>Stage TEMASOL — <span class="accent">maintenance &amp; SAV solaire</span></h1>
+      <p class="subpage-lead">
+        Stage de 4 mois chez TEMASOL à Ouarzazate (mai – août 2024), axé sur la maintenance des
+        installations solaires thermiques et photovoltaïques. TEMASOL est un acteur majeur de l'énergie
+        solaire au Maroc.
+      </p>
+      <div class="subpage-tags">
+        <span class="chip amber">Maintenance préventive</span>
+        <span class="chip teal">Solaire thermique &amp; PV</span>
+        <span class="chip">Power BI</span>
+        <span class="chip">4 mois · Ouarzazate</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="subpage-kpis reveal">
+    <div class="kpi-card"><div class="kpi-value">−25 %</div><div class="kpi-label">Pannes en 3 mois</div></div>
+    <div class="kpi-card"><div class="kpi-value">15</div><div class="kpi-label">Rapports techniques</div></div>
+    <div class="kpi-card"><div class="kpi-value">4 mois</div><div class="kpi-label">Durée du stage</div></div>
+    <div class="kpi-card"><div class="kpi-value">Power BI</div><div class="kpi-label">Suivi des pièces</div></div>
   </div>
 
   <main class="subpage-content">
-    <h2>Contexte du stage</h2>
-    <p>
-      Stage de 4 mois chez TEMASOL à Ouarzazate (Mai – Août 2024), axé sur la maintenance des installations solaires thermiques et photovoltaïques. TEMASOL est un acteur majeur de l'énergie solaire au Maroc.
-    </p>
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">01</span><h2>Contexte du stage</h2></div>
+      <p>
+        Stage de 4 mois chez TEMASOL à Ouarzazate (mai – août 2024), axé sur la maintenance des
+        installations solaires thermiques et photovoltaïques. TEMASOL est un acteur majeur de l'énergie
+        solaire au Maroc.
+      </p>
+    </section>
 
-    <h2>Missions réalisées</h2>
-    <ul>
-      <li>Maintenance préventive et corrective des systèmes solaires thermiques et photovoltaïques</li>
-      <li>Mise en place d'un plan de maintenance préventive réduisant de 25 % le nombre de pannes en 3 mois</li>
-      <li>Diagnostics techniques et réparations sur site</li>
-      <li>Rédaction de 15 rapports techniques détaillés</li>
-      <li>Mise en place d'un suivi des pièces détachées (Excel + Power BI)</li>
-    </ul>
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">02</span><h2>Missions réalisées</h2></div>
+      <ul class="feature-list">
+        <li>Maintenance préventive et corrective des systèmes solaires thermiques et photovoltaïques.</li>
+        <li>Mise en place d'un plan de maintenance préventive réduisant de <strong>25 %</strong> le nombre de pannes en 3 mois.</li>
+        <li>Diagnostics techniques et réparations sur site.</li>
+        <li>Rédaction de 15 rapports techniques détaillés.</li>
+        <li>Mise en place d'un suivi des pièces détachées (Excel + Power BI).</li>
+      </ul>
+    </section>
 
-    <h2>Résultats et compétences acquises</h2>
-    <p>
-      Cette expérience pratique m'a permis de développer mes compétences en maintenance et gestion d'équipements solaires. La réduction de 25 % des pannes démontre l'efficacité de l'approche préventive mise en place. J'ai également renforcé mes compétences en rédaction technique et en analyse de données avec Power BI.
-    </p>
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">03</span><h2>Résultats &amp; compétences acquises</h2></div>
+      <p>
+        Cette expérience pratique m'a permis de développer mes compétences en maintenance et gestion
+        d'équipements solaires. La réduction de 25 % des pannes démontre l'efficacité de l'approche
+        préventive mise en place. J'ai également renforcé mes compétences en rédaction technique et en
+        analyse de données avec Power BI.
+      </p>
+    </section>
 
-    <a href="index.html#projets" class="back-link">← Retour aux projets</a>
+    <div class="subpage-cta reveal">
+      <h2>Un parcours de terrain</h2>
+      <p>Découvrez mes autres expériences ou échangeons sur votre besoin en alternance.</p>
+      <div class="subpage-cta-buttons">
+        <a href="index.html#projets" class="cta cta-primary" data-magnetic>Tous les projets <i class="fas fa-arrow-right"></i></a>
+        <a href="index.html#contact" class="cta cta-outline" data-magnetic>Me contacter</a>
+      </div>
+    </div>
+
+    <a href="index.html#projets" class="back-link"><i class="fas fa-arrow-left"></i> Retour aux projets</a>
   </main>
 
-  <footer>© 2026 Abdelilah El Ghazouani</footer>
+  <footer>
+    <span>© 2026 Abdelilah Elghazouani</span>
+    <span class="footer-sep">·</span>
+    <span>Ingénieur Énergétique — Portfolio</span>
+  </footer>
+
+  <a href="docs/CV-Elghazouani-Abdelilah.pdf" download class="download-cv-btn" title="Télécharger mon CV">
+    <i class="fas fa-download"></i> <span>Télécharger le CV</span>
+  </a>
+
   <script src="script.js"></script>
 </body>
 </html>
