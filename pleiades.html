@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="bg-background">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Évaluation énergétique du bâtiment – Pleiades | Portfolio</title>
+  <title>Évaluation énergétique du bâtiment (Pleiades) | Abdelilah Elghazouani</title>
+  <meta name="description" content="Étude énergétique d'un bâtiment tertiaire de 437 m² sous Pleiades : simulation thermique dynamique, PAC, biomasse, VMC double flux et photovoltaïque pour atteindre l'étiquette A." />
+  <meta name="theme-color" content="#0a151d" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-xX2J3UlP8bIz7pPj9wVjZPQvP4gx+qX7YL8PbIHjKNqj7MsbO90iaC3q6iJFASsVHVuYLDhqAoPYfRZbjY2GcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="img/logo.png" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EHXMS5CHFZ"></script>
@@ -18,72 +20,147 @@
     gtag('config', 'G-EHXMS5CHFZ');
   </script>
 </head>
-<body>
+<body class="subpage">
+
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
   <header class="header">
-    <nav class="navbar" id="navbar">
-      <div class="logo">
-        <img src="img/profile.jpg" alt="Photo de Abdelilah El Ghazouani" class="profile-logo" />
-        <span>Abdelilah El Ghazouani</span>
-        <img src="img/logo.png" alt="Icône écologique" class="eco-logo" />
-      </div>
-      <input type="checkbox" id="menu-toggle" />
-      <label for="menu-toggle" class="hamburger"><span></span><span></span><span></span></label>
+    <nav class="navbar scrolled" id="navbar" aria-label="Navigation principale">
+      <a href="index.html#accueil" class="logo">
+        <img src="img/profile.jpg" alt="Portrait d'Abdelilah Elghazouani" class="profile-logo" />
+        <span class="logo-name">Abdelilah <strong>Elghazouani</strong></span>
+      </a>
+      <input type="checkbox" id="menu-toggle" aria-label="Ouvrir le menu" />
+      <label for="menu-toggle" class="hamburger" aria-hidden="true"><span></span><span></span><span></span></label>
       <ul class="nav-links">
         <li><a href="index.html#accueil">Accueil</a></li>
-        <li><a href="index.html#cv">CV</a></li>
+        <li><a href="index.html#apropos">Profil</a></li>
         <li><a href="index.html#projets">Projets</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <div class="subpage-hero">
-    <h1>Évaluation Énergétique du Bâtiment</h1>
-    <p>Audit STD – Bâtiment tertiaire de 437 m² sous Pleiades</p>
+  <section class="subpage-hero">
+    <div class="hero-grid-overlay" aria-hidden="true"></div>
+    <div class="subpage-hero-inner">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="index.html#accueil">Accueil</a>
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        <a href="index.html#projets">Projets</a>
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        <span class="current">Évaluation énergétique</span>
+      </nav>
+      <span class="subpage-eyebrow"><i class="fas fa-building"></i> Simulation thermique dynamique</span>
+      <h1>Évaluation énergétique du bâtiment <span class="accent">sous Pleiades</span></h1>
+      <p class="subpage-lead">
+        Audit STD d'un bâtiment tertiaire de 437,9 m² (module ENF 119). Objectif :
+        optimiser chauffage, froid, ECS, ventilation et éclairage pour atteindre l'étiquette
+        énergétique de classe A.
+      </p>
+      <div class="subpage-tags">
+        <span class="chip amber">Pleiades</span>
+        <span class="chip teal">STD</span>
+        <span class="chip">PAC air/eau</span>
+        <span class="chip">Photovoltaïque 10,1 kWc</span>
+        <span class="chip">VMC double flux</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="subpage-kpis reveal">
+    <div class="kpi-card"><div class="kpi-value">437,9 m²</div><div class="kpi-label">Surface utile</div></div>
+    <div class="kpi-card"><div class="kpi-value">−50 %</div><div class="kpi-label">Consommation finale</div></div>
+    <div class="kpi-card"><div class="kpi-value">Classe A</div><div class="kpi-label">Étiquette énergétique</div></div>
+    <div class="kpi-card"><div class="kpi-value">10,1 kWc</div><div class="kpi-label">Solaire PV installé</div></div>
   </div>
 
   <main class="subpage-content">
-    <h2>Introduction</h2>
-    <p>Ce projet présente une étude énergétique d'un bâtiment tertiaire de 437,9 m² réalisée dans le cadre du module ENF 119 avec le logiciel Pleiades. L'objectif est d'optimiser les systèmes de chauffage, refroidissement, eau chaude sanitaire, ventilation et éclairage afin de réduire les consommations et les émissions de gaz à effet de serre, avec l'ambition d'atteindre une étiquette énergétique de classe A.</p>
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">01</span><h2>Introduction</h2></div>
+      <p>
+        Ce projet présente une étude énergétique d'un bâtiment tertiaire de 437,9 m² réalisée dans le
+        cadre du module ENF 119 avec le logiciel Pleiades. L'objectif est d'optimiser les systèmes de
+        chauffage, refroidissement, eau chaude sanitaire, ventilation et éclairage afin de réduire les
+        consommations et les émissions de gaz à effet de serre, avec l'ambition d'atteindre une étiquette
+        énergétique de classe A.
+      </p>
+    </section>
 
-    <h2>État initial</h2>
-    <p>Surface utile : 437,9 m² – station météo utilisée : Trappes (H1a). La consommation énergétique initiale était de 123,95 kWhEP/m².an et les émissions de GES de 3,83 kgCO₂/m².an. Les consommations finales par usage :</p>
-    <ul>
-      <li>Chauffage : 9 672 kWhEF</li>
-      <li>ECS : 1 281 kWhEF</li>
-      <li>Ventilation : 4 676 kWhEF</li>
-      <li>Éclairage : 7 968 kWhEF</li>
-      <li><strong>Total : 23 600 kWhEF</strong></li>
-    </ul>
-
-    <h2>Améliorations proposées</h2>
-    <ul>
-      <li>Remplacement du chauffage et de la climatisation par une pompe à chaleur air/eau réversible à haut rendement</li>
-      <li>Substitution du ballon électrique par une chaudière biomasse pour l'ECS</li>
-      <li>Installation d'une VMC double flux avec récupération de chaleur et bouches hygroréglables</li>
-      <li>Passage à un éclairage LED à détection de présence et gradation automatique</li>
-      <li>Intégration d'une installation photovoltaïque de 10,1 kWc (33 modules et onduleur Sunny Mini Central 8000 TL)</li>
-    </ul>
-
-    <h2>Résultats après optimisation</h2>
-    <p>Grâce à ces mesures, la consommation finale a été réduite de 50 %, passant de 23 600 à 11 676 kWhEF, et l'étiquette énergétique atteint le niveau de classe A.</p>
-    <div class="chart-container">
-      <img src="img/energy_consumption_comparison.png" alt="Graphique comparant la consommation énergétique avant et après optimisation" />
-    </div>
-    <p>La consommation primaire obtenue est de 56,65 kWhEP/m².an et les émissions de GES sont réduites à 1,60 kgCO₂/m².an.</p>
-
-    <h2>Documents</h2>
-    <div class="documents">
-      <ul>
-        <li><a href="docs/PROJET%20D%E2%80%99%C3%89VALUATION%20%C3%89NERG%C3%89TIQUE%20DU%20B%C3%82TIMENT%20ING%203%20TEF%20.pdf" download>Rapport PDF</a></li>
-        <li><a href="docs/Projet%20D%E2%80%99%C3%89VALUATION%20groupe-ELGHAZOUANI%20ING3%20TEF%202025-Base.plxm" download>Fichier Pleiades (.plxm)</a></li>
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">02</span><h2>État initial</h2></div>
+      <p>
+        Surface utile : 437,9 m² — station météo utilisée : Trappes (H1a). La consommation énergétique
+        initiale était de 123,95 kWhEP/m².an et les émissions de GES de 3,83 kgCO₂/m².an. Les
+        consommations finales par usage :
+      </p>
+      <ul class="feature-list">
+        <li>Chauffage : <strong>9 672 kWhEF</strong></li>
+        <li>ECS : <strong>1 281 kWhEF</strong></li>
+        <li>Ventilation : <strong>4 676 kWhEF</strong></li>
+        <li>Éclairage : <strong>7 968 kWhEF</strong></li>
+        <li>Total : <strong>23 600 kWhEF</strong></li>
       </ul>
+    </section>
+
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">03</span><h2>Améliorations proposées</h2></div>
+      <div class="info-grid">
+        <div class="info-card"><i class="fas fa-temperature-half"></i><h3>PAC air/eau réversible</h3><p>Remplacement du chauffage et de la climatisation par une pompe à chaleur haut rendement.</p></div>
+        <div class="info-card"><i class="fas fa-fire"></i><h3>Chaudière biomasse</h3><p>Substitution du ballon électrique pour la production d'eau chaude sanitaire.</p></div>
+        <div class="info-card"><i class="fas fa-wind"></i><h3>VMC double flux</h3><p>Récupération de chaleur et bouches hygroréglables pour limiter les déperditions.</p></div>
+        <div class="info-card"><i class="fas fa-lightbulb"></i><h3>Éclairage LED</h3><p>Détection de présence et gradation automatique selon l'apport de lumière naturelle.</p></div>
+        <div class="info-card"><i class="fas fa-solar-panel"></i><h3>Photovoltaïque 10,1 kWc</h3><p>33 modules et onduleur Sunny Mini Central 8000 TL pour l'autoproduction.</p></div>
+      </div>
+    </section>
+
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">04</span><h2>Résultats après optimisation</h2></div>
+      <p>
+        Grâce à ces mesures, la consommation finale a été réduite de 50 %, passant de 23 600 à
+        11 676 kWhEF, et l'étiquette énergétique atteint le niveau de classe A.
+      </p>
+      <div class="chart-container">
+        <img src="img/energy_consumption_comparison.png" alt="Graphique comparant la consommation énergétique avant et après optimisation" />
+        <p class="chart-caption">Consommation énergétique avant / après optimisation (kWhEF).</p>
+      </div>
+      <p>
+        La consommation primaire obtenue est de 56,65 kWhEP/m².an et les émissions de GES sont réduites
+        à 1,60 kgCO₂/m².an.
+      </p>
+    </section>
+
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">05</span><h2>Documents</h2></div>
+      <ul class="documents-list">
+        <li><a href="docs/rapport-evaluation-energetique-batiment.pdf" download><i class="fas fa-file-pdf"></i> Rapport d'évaluation énergétique (PDF) <i class="fas fa-download doc-arrow"></i></a></li>
+        <li><a href="docs/projet-evaluation-pleiades.plxm" download><i class="fas fa-file-code"></i> Fichier Pleiades (.plxm) <i class="fas fa-download doc-arrow"></i></a></li>
+      </ul>
+    </section>
+
+    <div class="subpage-cta reveal">
+      <h2>Un projet, une méthode</h2>
+      <p>Découvrez mes autres études énergétiques ou échangeons sur votre besoin en alternance.</p>
+      <div class="subpage-cta-buttons">
+        <a href="index.html#projets" class="cta cta-primary" data-magnetic>Tous les projets <i class="fas fa-arrow-right"></i></a>
+        <a href="index.html#contact" class="cta cta-outline" data-magnetic>Me contacter</a>
+      </div>
     </div>
 
-    <a href="index.html#projets" class="back-link">← Retour aux projets</a>
+    <a href="index.html#projets" class="back-link"><i class="fas fa-arrow-left"></i> Retour aux projets</a>
   </main>
 
-  <footer>© 2026 Abdelilah El Ghazouani</footer>
+  <footer>
+    <span>© 2026 Abdelilah Elghazouani</span>
+    <span class="footer-sep">·</span>
+    <span>Ingénieur Énergétique — Portfolio</span>
+  </footer>
+
+  <a href="docs/CV-Elghazouani-Abdelilah.pdf" download class="download-cv-btn" title="Télécharger mon CV">
+    <i class="fas fa-download"></i> <span>Télécharger le CV</span>
+  </a>
+
   <script src="script.js"></script>
 </body>
 </html>
