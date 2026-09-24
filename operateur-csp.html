@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="bg-background">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Opérateur CSP – NOMAC NOOR 1 | Portfolio</title>
+  <title>Opérateur CSP — NOMAC NOOR 1 | Abdelilah Elghazouani</title>
+  <meta name="description" content="Stage de supervision SCADA 24/7 à la centrale solaire thermodynamique NOOR 1 (160 MW) à Ouarzazate, opérée par NOMAC. Cycle thermodynamique et stockage thermique." />
+  <meta name="theme-color" content="#0a151d" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-xX2J3UlP8bIz7pPj9wVjZPQvP4gx+qX7YL8PbIHjKNqj7MsbO90iaC3q6iJFASsVHVuYLDhqAoPYfRZbjY2GcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="img/logo.png" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EHXMS5CHFZ"></script>
@@ -18,53 +20,112 @@
     gtag('config', 'G-EHXMS5CHFZ');
   </script>
 </head>
-<body>
+<body class="subpage">
+
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
   <header class="header">
-    <nav class="navbar" id="navbar">
-      <div class="logo">
-        <img src="img/profile.jpg" alt="Photo de Abdelilah El Ghazouani" class="profile-logo" />
-        <span>Abdelilah El Ghazouani</span>
-        <img src="img/logo.png" alt="Icône écologique" class="eco-logo" />
-      </div>
-      <input type="checkbox" id="menu-toggle" />
-      <label for="menu-toggle" class="hamburger"><span></span><span></span><span></span></label>
+    <nav class="navbar scrolled" id="navbar" aria-label="Navigation principale">
+      <a href="index.html#accueil" class="logo">
+        <img src="img/profile.jpg" alt="Portrait d'Abdelilah Elghazouani" class="profile-logo" />
+        <span class="logo-name">Abdelilah <strong>Elghazouani</strong></span>
+      </a>
+      <input type="checkbox" id="menu-toggle" aria-label="Ouvrir le menu" />
+      <label for="menu-toggle" class="hamburger" aria-hidden="true"><span></span><span></span><span></span></label>
       <ul class="nav-links">
         <li><a href="index.html#accueil">Accueil</a></li>
-        <li><a href="index.html#cv">CV</a></li>
+        <li><a href="index.html#apropos">Profil</a></li>
         <li><a href="index.html#projets">Projets</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <div class="subpage-hero">
-    <h1>Opérateur CSP – NOMAC NOOR 1</h1>
-    <p>Supervision en salle de contrôle – Centrale solaire thermodynamique</p>
+  <section class="subpage-hero">
+    <div class="hero-grid-overlay" aria-hidden="true"></div>
+    <div class="subpage-hero-inner">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="index.html#accueil">Accueil</a>
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        <a href="index.html#projets">Projets</a>
+        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+        <span class="current">Opérateur CSP · NOOR 1</span>
+      </nav>
+      <span class="subpage-eyebrow"><i class="fas fa-industry"></i> Expérience · Solaire à concentration</span>
+      <h1>Opérateur CSP — <span class="accent">NOMAC NOOR 1</span></h1>
+      <p class="subpage-lead">
+        Stage de 2 mois (juillet – août 2023) à la centrale solaire thermodynamique NOOR 1 à Ouarzazate,
+        opérée par NOMAC — l'une des plus grandes centrales CSP au monde, d'une capacité de 160 MW.
+      </p>
+      <div class="subpage-tags">
+        <span class="chip amber">CSP 160 MW</span>
+        <span class="chip teal">Supervision SCADA</span>
+        <span class="chip">Cycle thermodynamique</span>
+        <span class="chip">Stockage thermique</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="subpage-kpis reveal">
+    <div class="kpi-card"><div class="kpi-value">160 MW</div><div class="kpi-label">Capacité NOOR 1</div></div>
+    <div class="kpi-card"><div class="kpi-value">24/7</div><div class="kpi-label">Supervision SCADA</div></div>
+    <div class="kpi-card"><div class="kpi-value">2 mois</div><div class="kpi-label">Durée du stage</div></div>
+    <div class="kpi-card"><div class="kpi-value">CSP</div><div class="kpi-label">Solaire à concentration</div></div>
   </div>
 
   <main class="subpage-content">
-    <h2>Contexte de la mission</h2>
-    <p>
-      Stage de 2 mois (Juillet – Août 2023) à la centrale solaire thermodynamique NOOR 1 à Ouarzazate, opérée par NOMAC. NOOR 1 est l'une des plus grandes centrales CSP (Concentrated Solar Power) au monde, avec une capacité de 160 MW.
-    </p>
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">01</span><h2>Contexte de la mission</h2></div>
+      <p>
+        Stage de 2 mois (juillet – août 2023) à la centrale solaire thermodynamique NOOR 1 à Ouarzazate,
+        opérée par NOMAC. NOOR 1 est l'une des plus grandes centrales CSP (Concentrated Solar Power) au
+        monde, avec une capacité de 160 MW.
+      </p>
+    </section>
 
-    <h2>Missions réalisées</h2>
-    <ul>
-      <li>Supervision en temps réel des paramètres de la centrale (température du fluide caloporteur, flux solaire, pression) via le système SCADA 24/7</li>
-      <li>Analyse des processus de production d'énergie de la centrale CSP</li>
-      <li>Suivi des performances et identification des anomalies de fonctionnement</li>
-      <li>Compréhension approfondie du cycle thermodynamique et du stockage thermique</li>
-    </ul>
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">02</span><h2>Missions réalisées</h2></div>
+      <ul class="feature-list">
+        <li>Supervision en temps réel des paramètres de la centrale (température du fluide caloporteur, flux solaire, pression) via le système SCADA 24/7.</li>
+        <li>Analyse des processus de production d'énergie de la centrale CSP.</li>
+        <li>Suivi des performances et identification des anomalies de fonctionnement.</li>
+        <li>Compréhension approfondie du cycle thermodynamique et du stockage thermique.</li>
+      </ul>
+    </section>
 
-    <h2>Compétences acquises</h2>
-    <p>
-      Cette mission m'a donné une vision globale du fonctionnement des centrales solaires thermodynamiques et m'a permis d'appliquer mes connaissances en contrôle et optimisation des processus énergétiques. L'expérience sur un site de référence mondiale comme NOOR Ouarzazate constitue un atout majeur dans mon parcours d'ingénieur en énergétique.
-    </p>
+    <section class="subpage-section reveal">
+      <div class="section-head"><span class="num">03</span><h2>Compétences acquises</h2></div>
+      <p>
+        Cette mission m'a donné une vision globale du fonctionnement des centrales solaires
+        thermodynamiques et m'a permis d'appliquer mes connaissances en contrôle et optimisation des
+        processus énergétiques. L'expérience sur un site de référence mondiale comme NOOR Ouarzazate
+        constitue un atout majeur dans mon parcours d'ingénieur en énergétique.
+      </p>
+    </section>
 
-    <a href="index.html#projets" class="back-link">← Retour aux projets</a>
+    <div class="subpage-cta reveal">
+      <h2>Un parcours de terrain</h2>
+      <p>Découvrez mes autres expériences ou échangeons sur votre besoin en alternance.</p>
+      <div class="subpage-cta-buttons">
+        <a href="index.html#projets" class="cta cta-primary" data-magnetic>Tous les projets <i class="fas fa-arrow-right"></i></a>
+        <a href="index.html#contact" class="cta cta-outline" data-magnetic>Me contacter</a>
+      </div>
+    </div>
+
+    <a href="index.html#projets" class="back-link"><i class="fas fa-arrow-left"></i> Retour aux projets</a>
   </main>
 
-  <footer>© 2026 Abdelilah El Ghazouani</footer>
+  <footer>
+    <span>© 2026 Abdelilah Elghazouani</span>
+    <span class="footer-sep">·</span>
+    <span>Ingénieur Énergétique — Portfolio</span>
+  </footer>
+
+  <a href="docs/CV-Elghazouani-Abdelilah.pdf" download class="download-cv-btn" title="Télécharger mon CV">
+    <i class="fas fa-download"></i> <span>Télécharger le CV</span>
+  </a>
+
   <script src="script.js"></script>
 </body>
 </html>
