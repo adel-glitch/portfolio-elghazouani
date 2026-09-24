@@ -3,16 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Abdelilah El Ghazouani – Ingénieur Énergétique | Portfolio</title>
-  <meta name="description" content="Portfolio d'Abdelilah El Ghazouani, élève ingénieur en énergétique à l'ENSIATE. Spécialisé en solaire PV/CSP, efficacité énergétique, CVC et simulation thermique." />
+  <title>Abdelilah Elghazouani – Ingénieur Énergétique | Portfolio</title>
+  <meta name="description" content="Portfolio d'Abdelilah Elghazouani, élève ingénieur éco-énergéticien (ENSIATE). Audit énergétique NF EN 16247, DPE, CVC, simulation thermique dynamique, CEE et énergie solaire PV/CSP." />
+  <meta name="theme-color" content="#0a151d" />
 
-  <!-- Google Fonts -->
+  <!-- Open Graph -->
+  <meta property="og:title" content="Abdelilah Elghazouani – Ingénieur Énergétique" />
+  <meta property="og:description" content="Audit énergétique, CVC, thermique du bâtiment, ENR/Solaire. Recherche alternance 12–24 mois, disponible septembre 2026." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="img/profile.jpg" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-xX2J3UlP8bIz7pPj9wVjZPQvP4gx+qX7YL8PbIHjKNqj7MsbO90iaC3q6iJFASsVHVuYLDhqAoPYfRZbjY2GcA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="img/logo.png" />
@@ -28,66 +35,119 @@
 </head>
 <body>
 
+  <!-- Scroll progress -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <!-- Cursor glow -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
   <!-- ========== NAVBAR ========== -->
   <header class="header">
-    <nav class="navbar" id="navbar">
-      <div class="logo">
-        <img src="img/profile.jpg" alt="Photo de Abdelilah El Ghazouani" class="profile-logo" />
-        <span>Abdelilah El Ghazouani</span>
-        <img src="img/logo.png" alt="Icône écologique" class="eco-logo" />
-      </div>
-      <input type="checkbox" id="menu-toggle" />
-      <label for="menu-toggle" class="hamburger"><span></span><span></span><span></span></label>
+    <nav class="navbar" id="navbar" aria-label="Navigation principale">
+      <a href="#accueil" class="logo">
+        <img src="img/profile.jpg" alt="Portrait d'Abdelilah Elghazouani" class="profile-logo" />
+        <span class="logo-name">Abdelilah <strong>Elghazouani</strong></span>
+      </a>
+      <input type="checkbox" id="menu-toggle" aria-label="Ouvrir le menu" />
+      <label for="menu-toggle" class="hamburger" aria-hidden="true"><span></span><span></span><span></span></label>
       <ul class="nav-links">
         <li><a href="#accueil" class="active">Accueil</a></li>
-        <li><a href="#cv">CV</a></li>
+        <li><a href="#apropos">Profil</a></li>
+        <li><a href="#parcours">Parcours</a></li>
+        <li><a href="#competences">Compétences</a></li>
         <li><a href="#projets">Projets</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
       </ul>
     </nav>
 
     <!-- ========== HERO ========== -->
     <section id="accueil" class="hero">
-      <div class="hero-text">
-        <div class="hero-badge">Disponible immédiatement</div>
-        <h1>Ingénieur en Énergétique</h1>
-        <p class="tagline">
-          Recherche d'apprentissage – 12 ou 24 mois<br />
-          <span class="typing-text" id="typing"></span>
-        </p>
-        <div class="hero-buttons">
-          <a href="#cv" class="cta cta-primary">Découvrir mon profil</a>
-          <a href="#contact" class="cta cta-outline">Me contacter</a>
+      <canvas id="energyCanvas" aria-hidden="true"></canvas>
+      <div class="hero-grid-overlay" aria-hidden="true"></div>
+
+      <div class="hero-inner">
+        <div class="hero-text">
+          <div class="hero-badge">
+            <span class="pulse-dot"></span> Disponible · Septembre 2026
+          </div>
+          <h1 class="hero-title">
+            <span class="line">Ingénieur</span>
+            <span class="line gradient-text">Énergétique</span>
+          </h1>
+          <p class="hero-lead">
+            Élève ingénieur éco-énergéticien — audit réglementaire, CVC,
+            thermique du bâtiment et énergies renouvelables.
+          </p>
+          <p class="tagline">
+            <span class="tagline-static">Alternance 12–24 mois ·</span>
+            <span class="typing-text" id="typing"></span><span class="caret">|</span>
+          </p>
+          <div class="hero-buttons">
+            <a href="#projets" class="cta cta-primary" data-magnetic>Voir mes projets <i class="fas fa-arrow-right"></i></a>
+            <a href="#contact" class="cta cta-outline" data-magnetic>Me contacter</a>
+          </div>
+          <div class="hero-meta">
+            <a href="mailto:abdelilahelghzouani@gmail.com"><i class="fas fa-envelope"></i> abdelilahelghzouani@gmail.com</a>
+            <span><i class="fas fa-location-dot"></i> Paris 17ᵉ · Mobilité France</span>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="orbit-system">
+            <div class="sun-core"></div>
+            <div class="orbit orbit-1"><span class="orbit-node"><i class="fas fa-solar-panel"></i></span></div>
+            <div class="orbit orbit-2"><span class="orbit-node"><i class="fas fa-temperature-half"></i></span></div>
+            <div class="orbit orbit-3"><span class="orbit-node"><i class="fas fa-wind"></i></span></div>
+            <div class="orbit orbit-4"><span class="orbit-node"><i class="fas fa-bolt"></i></span></div>
+          </div>
         </div>
       </div>
-      <!-- Decorative 3D panel -->
-      <div id="panel3d" aria-hidden="true">
-        <div class="panel">
-          <div class="face front"></div>
-          <div class="face back"></div>
-        </div>
-      </div>
+
+      <a href="#apropos" class="scroll-cue" aria-label="Défiler vers le bas">
+        <span></span>
+      </a>
     </section>
   </header>
+
+  <!-- ========== MARQUEE ========== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Audit NF EN 16247</span><span class="dot">•</span>
+      <span>DPE Tertiaire</span><span class="dot">•</span>
+      <span>Décret Tertiaire · OPERAT</span><span class="dot">•</span>
+      <span>Simulation Thermique Dynamique</span><span class="dot">•</span>
+      <span>CVC · PAC · Froid</span><span class="dot">•</span>
+      <span>CEE · kWh cumac</span><span class="dot">•</span>
+      <span>Solaire PV / CSP</span><span class="dot">•</span>
+      <span>RE2020</span><span class="dot">•</span>
+      <span>Audit NF EN 16247</span><span class="dot">•</span>
+      <span>DPE Tertiaire</span><span class="dot">•</span>
+      <span>Décret Tertiaire · OPERAT</span><span class="dot">•</span>
+      <span>Simulation Thermique Dynamique</span><span class="dot">•</span>
+      <span>CVC · PAC · Froid</span><span class="dot">•</span>
+      <span>CEE · kWh cumac</span><span class="dot">•</span>
+      <span>Solaire PV / CSP</span><span class="dot">•</span>
+      <span>RE2020</span><span class="dot">•</span>
+    </div>
+  </div>
 
   <!-- ========== STATS ========== -->
   <section class="stats-section reveal">
     <div class="stats-grid">
       <div class="stat-card">
-        <div class="stat-number" data-target="3">0</div>
-        <div class="stat-label">Expériences pro</div>
+        <div class="stat-number" data-target="300" data-suffix="+">0</div>
+        <div class="stat-label">Dossiers CEE traités</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number" data-target="7">0</div>
-        <div class="stat-label">Projets réalisés</div>
+        <div class="stat-number" data-target="500" data-suffix="k€">0</div>
+        <div class="stat-label">Primes sécurisées</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number" data-target="4">0</div>
-        <div class="stat-label">Certifications</div>
+        <div class="stat-number" data-target="50" data-suffix="%">0</div>
+        <div class="stat-label">Conso évitée (G → A)</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number" data-target="4">0</div>
-        <div class="stat-label">Langues parlées</div>
+        <div class="stat-number" data-target="25" data-suffix="%">0</div>
+        <div class="stat-label">Pannes solaires en moins</div>
       </div>
     </div>
   </section>
@@ -95,312 +155,370 @@
   <main>
 
     <!-- ========== ABOUT ========== -->
-    <section id="cv" class="section">
+    <section id="apropos" class="section">
       <div class="section-header reveal">
-        <h2>À propos de moi</h2>
-        <p class="section-subtitle">Élève ingénieur passionné par la transition énergétique</p>
+        <span class="eyebrow">01 — Profil</span>
+        <h2>À propos</h2>
+        <p class="section-subtitle">Ingénieur au service de la transition énergétique.</p>
       </div>
 
-      <div class="about-content reveal">
-        <img src="img/profile.jpg" alt="Photo de Abdelilah El Ghazouani" class="profile-photo" />
-        <div class="about-text">
-          <p>Élève ingénieur en énergétique à l'ENSIATE, je capitalise sur une expertise technique du solaire (PV/CSP) acquise sur des sites de référence comme NOOR Ouarzazate. Passionné par l'ingénierie numérique, je maîtrise Python, l'IoT et la simulation thermique pour concevoir des solutions d'optimisation énergétique concrètes. Certifié ISO 50001, mon ambition est de mettre ma rigueur et ma créativité au service de vos projets d'efficacité énergétique en apprentissage.</p>
+      <div class="about-content">
+        <div class="about-photo reveal-left">
+          <img src="img/profile.jpg" alt="Portrait d'Abdelilah Elghazouani" class="profile-photo" />
+          <div class="about-photo-badge">
+            <i class="fas fa-language"></i> Anglais C1
+          </div>
+        </div>
+        <div class="about-text reveal-right">
+          <p>
+            Élève ingénieur éco-énergéticien à l'<strong>ENSIATE</strong>, admis en
+            <strong>Master Énergie – Génie Thermique</strong> à l'Université de Rouen Normandie.
+            Actuellement apprenti ingénieur CEE, après une expérience de chargé d'études
+            thermique en bureau d'études.
+          </p>
+          <p>
+            Compétences en audit énergétique réglementaire (NF EN 16247), DPE tertiaire (Liciel),
+            Décret Tertiaire, dimensionnement CVC, simulation thermique dynamique (Pleiades) et
+            dispositif des CEE. Trois expériences de terrain en énergie solaire — CSP,
+            photovoltaïque et maintenance.
+          </p>
           <div class="about-highlights">
-            <span class="highlight-tag">Solaire PV/CSP</span>
-            <span class="highlight-tag">Efficacité énergétique</span>
-            <span class="highlight-tag">Python &amp; IoT</span>
-            <span class="highlight-tag">ISO 50001</span>
-            <span class="highlight-tag">Simulation thermique</span>
+            <span class="highlight-tag"><i class="fas fa-clipboard-check"></i> Audit énergétique</span>
+            <span class="highlight-tag"><i class="fas fa-wind"></i> CVC</span>
+            <span class="highlight-tag"><i class="fas fa-building"></i> Thermique du bâtiment</span>
+            <span class="highlight-tag"><i class="fas fa-solar-panel"></i> ENR / Solaire</span>
+            <span class="highlight-tag"><i class="fas fa-chart-line"></i> CEE</span>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- ========== EXPERIENCES ========== -->
-      <h3 class="reveal">Expériences professionnelles</h3>
-      <div class="timeline stagger-children">
-        <div class="timeline-item">
-          <span class="timeline-date">Juin – Septembre 2025</span>
-          <h4>Chargé d'étude solaire – Bureau d'Études (Goutte d'Espoir Ste, Marrakech)</h4>
-          <p>
-            • Dimensionnement du système photovoltaïque pour l'alimentation d'une unité de traitement d'eau.<br />
-            • Analyse de faisabilité technico-économique adaptée aux zones rurales.<br />
-            • Contribution à l'implémentation et à l'optimisation énergétique du système.
-          </p>
+    <!-- ========== PARCOURS (EXPERIENCES + FORMATION) ========== -->
+    <section id="parcours" class="section">
+      <div class="section-header reveal">
+        <span class="eyebrow">02 — Parcours</span>
+        <h2>Expériences</h2>
+        <p class="section-subtitle">Du terrain solaire au bureau d'études énergétiques.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <span class="timeline-date">Juil. 2026 – en cours</span>
+          <h4>Apprenti Ingénieur CEE – Efficacité énergétique</h4>
+          <span class="timeline-org">Ecoway Partners · Paris</span>
+          <ul>
+            <li>Intervention sur plus de 300 dossiers CEE, soit plus de 500 000 € de primes sécurisées.</li>
+            <li>Fiabilisation des dossiers sur l'ensemble des métiers : contrôle de conformité réglementaire et technique avant dépôt.</li>
+            <li>Analyse des opérations au regard des fiches standardisées : éligibilité, performance, cohérence des pièces.</li>
+            <li>Vérification des chiffrages en kWh cumac et sécurisation du volume valorisable.</li>
+          </ul>
         </div>
-        <div class="timeline-item">
+
+        <div class="timeline-item reveal">
+          <span class="timeline-date">Mai – Juin 2026</span>
+          <h4>Chargé d'études thermique – Bureau d'études</h4>
+          <span class="timeline-org">Cabinet Energis · Paris</span>
+          <ul>
+            <li>Repris et fiabilisé 7 audits énergétiques tertiaires (NF EN 16247) et mise en conformité Décret Tertiaire (OPERAT).</li>
+            <li>Réalisé des DPE tertiaires sous Liciel, du relevé de données à l'édition des rapports.</li>
+            <li>Conçu une trame d'audit standardisée et réutilisable, structurant la production des livrables.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item reveal">
+          <span class="timeline-date">Juin – Sept. 2025</span>
+          <h4>Chargé d'études solaires – Bureau d'études</h4>
+          <span class="timeline-org">Goutte d'Espoir · Marrakech</span>
+          <ul>
+            <li>Dimensionné le système PV pour l'alimentation d'une unité de traitement d'eau en zone rurale.</li>
+            <li>Réalisé l'analyse de faisabilité technico-économique et l'optimisation énergétique du système.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item reveal">
           <span class="timeline-date">Mai – Août 2024</span>
-          <h4>Assistant Technique – Maintenance et SAV (TEMASOL, Ouarzazate)</h4>
-          <p>
-            • Maintenance préventive et corrective des systèmes solaires thermiques et photovoltaïques.<br />
-            • Réduction de 25 % des pannes en 3 mois.<br />
-            • Rédigé 15 rapports techniques et mis en place un suivi pièces détachées (Excel + Power BI).
-          </p>
+          <h4>Assistant technique – Maintenance &amp; SAV</h4>
+          <span class="timeline-org">TEMASOL · Ouarzazate</span>
+          <ul>
+            <li>Maintenance préventive et corrective de systèmes solaires thermiques et photovoltaïques.</li>
+            <li>Réduit les pannes de 25 % en 3 mois grâce à un plan de maintenance structuré.</li>
+            <li>Rédigé 15 rapports techniques ; suivi des pièces détachées (Excel + Power BI).</li>
+          </ul>
         </div>
-        <div class="timeline-item">
-          <span class="timeline-date">Juillet – Août 2023</span>
-          <h4>Opérateur en Salle de Contrôle – CSP (NOMAC NOOR 1, Ouarzazate)</h4>
-          <p>
-            • Supervisé en temps réel les paramètres (température fluide, flux solaire) sur SCADA 24/7.<br />
-            • Analyse des processus de production d'une centrale CSP.
-          </p>
+
+        <div class="timeline-item reveal">
+          <span class="timeline-date">Juil. – Août 2023</span>
+          <h4>Opérateur en salle de contrôle – Centrale CSP NOOR 1</h4>
+          <span class="timeline-org">NOMAC · Ouarzazate</span>
+          <ul>
+            <li>Supervisé en temps réel les paramètres de production (température fluide, flux solaire) via SCADA 24/7.</li>
+            <li>Analysé les processus thermodynamiques d'une centrale solaire à concentration de 160 MW.</li>
+          </ul>
         </div>
       </div>
 
-      <!-- ========== FORMATIONS ========== -->
-      <h3 class="reveal">Formations</h3>
-      <ul class="education-list stagger-children">
-        <li><strong>Cycle d'Ingénierie – Éco-énergéticien (Bac+4)</strong> – ENSIATE (Paris), 2025 – en cours</li>
-        <li><strong>Licence Sciences pour l'Ingénieur Énergie et Développement Durable</strong> – ENSIATE (Paris), 2025</li>
-        <li><strong>BTS en Systèmes Énergétiques Solaires</strong> – IFMEREE (Ouarzazate), 2022 – 2024</li>
-        <li><strong>Baccalauréat scientifique, option Sciences Physiques</strong> – Lycée Qualifiant Sidi Daoud (Ouarzazate), 2022</li>
-      </ul>
+      <div class="edu-grid">
+        <div class="section-header reveal" style="text-align:left;margin-bottom:1.5rem">
+          <h3 class="block-title">Formation</h3>
+        </div>
+        <div class="edu-cards">
+          <div class="edu-card reveal">
+            <span class="edu-year">2026</span>
+            <h4>Master Énergie – Génie Thermique</h4>
+            <p>Université de Rouen Normandie · <em>Admis</em></p>
+          </div>
+          <div class="edu-card reveal">
+            <span class="edu-year">2026 – en cours</span>
+            <h4>Cycle d'ingénierie – Éco-énergéticien (Bac+4)</h4>
+            <p>ENSIATE · Paris</p>
+          </div>
+          <div class="edu-card reveal">
+            <span class="edu-year">2024 – 2025</span>
+            <h4>Licence Sciences pour l'Ingénieur – Énergie &amp; DD</h4>
+            <p>ENSIATE · Paris</p>
+          </div>
+          <div class="edu-card reveal">
+            <span class="edu-year">2022 – 2024</span>
+            <h4>BTS Systèmes Énergétiques Solaires</h4>
+            <p>IFMEREE · Ouarzazate</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <!-- ========== SKILLS ========== -->
-      <h3 class="reveal">Compétences techniques</h3>
-      <div class="reveal">
-        <div class="skills-category">
-          <div class="skills-category-title">Génie Énergétique &amp; CVC</div>
+    <!-- ========== COMPETENCES ========== -->
+    <section id="competences" class="section">
+      <div class="section-header reveal">
+        <span class="eyebrow">03 — Expertise</span>
+        <h2>Compétences</h2>
+        <p class="section-subtitle">Réglementaire, technique et numérique.</p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skills-category reveal">
+          <div class="skills-category-title"><i class="fas fa-fire-flame-curved"></i> Énergétique &amp; CVC</div>
           <div class="skills-tags">
+            <span class="skill-tag">Audit NF EN 16247</span>
+            <span class="skill-tag">DPE</span>
+            <span class="skill-tag">STD</span>
+            <span class="skill-tag">Dimensionnement CVC</span>
+            <span class="skill-tag">Thermique du bâtiment</span>
             <span class="skill-tag">Solaire PV</span>
-            <span class="skill-tag">Éolien</span>
             <span class="skill-tag">Géothermie</span>
-            <span class="skill-tag">Hydraulique</span>
-            <span class="skill-tag">Cycles thermiques</span>
             <span class="skill-tag">PAC</span>
             <span class="skill-tag">Froid industriel</span>
-            <span class="skill-tag">CVC</span>
             <span class="skill-tag">Réseaux fluidiques</span>
-            <span class="skill-tag">Thermodynamique</span>
+            <span class="skill-tag">GTB / GTC</span>
           </div>
         </div>
-        <div class="skills-category">
-          <div class="skills-category-title">Performance &amp; Réglementation</div>
+        <div class="skills-category reveal">
+          <div class="skills-category-title"><i class="fas fa-scale-balanced"></i> Réglementation</div>
           <div class="skills-tags">
-            <span class="skill-tag">Efficacité énergétique</span>
-            <span class="skill-tag">GTB/GTC</span>
-            <span class="skill-tag">Diagnostic thermique</span>
-            <span class="skill-tag">Smart Grids</span>
-            <span class="skill-tag">IoT</span>
-            <span class="skill-tag">Décret Tertiaire</span>
-            <span class="skill-tag">BACS</span>
             <span class="skill-tag">RE2020</span>
+            <span class="skill-tag">Décret Tertiaire (OPERAT)</span>
+            <span class="skill-tag">Loi APER</span>
+            <span class="skill-tag">BACS</span>
+            <span class="skill-tag">ISO 50001</span>
             <span class="skill-tag">ISO 14001</span>
             <span class="skill-tag">Bilan carbone</span>
-            <span class="skill-tag">QSE</span>
           </div>
         </div>
-        <div class="skills-category">
-          <div class="skills-category-title">Logiciels</div>
+        <div class="skills-category reveal">
+          <div class="skills-category-title"><i class="fas fa-laptop-code"></i> Logiciels</div>
           <div class="skills-tags">
-            <span class="skill-tag">Simulink</span>
+            <span class="skill-tag">Liciel</span>
+            <span class="skill-tag">PVsyst</span>
+            <span class="skill-tag">Pleiades / Comfie</span>
+            <span class="skill-tag">T'Sol</span>
             <span class="skill-tag">AutoCAD</span>
             <span class="skill-tag">SketchUp</span>
-            <span class="skill-tag">PVsyst</span>
-            <span class="skill-tag">T'sol</span>
             <span class="skill-tag">CYPE</span>
             <span class="skill-tag">ClimaWin</span>
-            <span class="skill-tag">Pleiades</span>
-            <span class="skill-tag">Proteus</span>
             <span class="skill-tag">ETAP</span>
+            <span class="skill-tag">Simulink</span>
+            <span class="skill-tag">HelioScope</span>
           </div>
         </div>
-        <div class="skills-category">
-          <div class="skills-category-title">Langages</div>
+        <div class="skills-category reveal">
+          <div class="skills-category-title"><i class="fas fa-code"></i> Programmation &amp; Data</div>
           <div class="skills-tags">
             <span class="skill-tag">Python</span>
-            <span class="skill-tag">LaTeX</span>
             <span class="skill-tag">VBA</span>
+            <span class="skill-tag">LaTeX</span>
             <span class="skill-tag">C (Arduino)</span>
-          </div>
-        </div>
-        <div class="skills-category">
-          <div class="skills-category-title">Bureautique &amp; Plateformes</div>
-          <div class="skills-tags">
-            <span class="skill-tag">Pack Office</span>
             <span class="skill-tag">Power BI</span>
-            <span class="skill-tag">Overleaf</span>
+            <span class="skill-tag">Excel avancé</span>
             <span class="skill-tag">PVgis</span>
             <span class="skill-tag">NASA Power</span>
-            <span class="skill-tag">HelioScope</span>
-            <span class="skill-tag">SmartDesign 2.0</span>
-          </div>
-        </div>
-        <div class="skills-category">
-          <div class="skills-category-title">Langues</div>
-          <div class="languages-grid">
-            <div class="lang-item">
-              <div class="lang-name">Français</div>
-              <div class="lang-level">Courant</div>
-            </div>
-            <div class="lang-item">
-              <div class="lang-name">Anglais</div>
-              <div class="lang-level">C1</div>
-            </div>
-            <div class="lang-item">
-              <div class="lang-name">Arabe</div>
-              <div class="lang-level">Langue maternelle</div>
-            </div>
-            <div class="lang-item">
-              <div class="lang-name">Amazigh</div>
-              <div class="lang-level">Langue maternelle</div>
-            </div>
           </div>
         </div>
       </div>
 
-      <!-- ========== CERTIFICATIONS ========== -->
-      <h3 class="reveal">Certifications</h3>
-      <ul class="cert-list stagger-children">
-        <li>Fondamentaux de la chaleur renouvelable – ADEME (2024)</li>
-        <li>Rénovation Performante – MOOC (2024)</li>
-        <li>Concevoir une réhabilitation énergétique responsable du bâti ancien – MOOC (2024)</li>
-        <li>ISO 50001:2018 – Gestion de l'énergie</li>
-      </ul>
+      <div class="lang-cert-grid">
+        <div class="lang-block reveal">
+          <h3 class="block-title"><i class="fas fa-language"></i> Langues</h3>
+          <div class="languages-grid">
+            <div class="lang-item"><div class="lang-name">Arabe</div><div class="lang-level">Maternelle</div></div>
+            <div class="lang-item"><div class="lang-name">Amazigh</div><div class="lang-level">Maternelle</div></div>
+            <div class="lang-item"><div class="lang-name">Français</div><div class="lang-level">Courant</div></div>
+            <div class="lang-item"><div class="lang-name">Anglais</div><div class="lang-level">C1 certifié</div></div>
+          </div>
+        </div>
+        <div class="cert-block reveal">
+          <h3 class="block-title"><i class="fas fa-award"></i> Certifications</h3>
+          <ul class="cert-list">
+            <li><i class="fas fa-circle-check"></i> Chaleur renouvelable – ADEME (2024)</li>
+            <li><i class="fas fa-circle-check"></i> Rénovation performante : réhabilitation énergétique – MOOC (2024)</li>
+            <li><i class="fas fa-circle-check"></i> Réhabilitation énergétique du bâti ancien – MOOC (2024)</li>
+            <li><i class="fas fa-circle-check"></i> Anglais – niveau C1 (certifié)</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <!-- ========== PROJECTS ========== -->
     <section id="projets" class="section">
       <div class="section-header reveal">
+        <span class="eyebrow">04 — Réalisations</span>
         <h2>Projets</h2>
-        <p class="section-subtitle">Des réalisations concrètes en énergie renouvelable et efficacité énergétique</p>
+        <p class="section-subtitle">Des résultats mesurables en énergie et efficacité énergétique.</p>
       </div>
 
-      <div class="projects-grid stagger-children">
-        <a href="gouttes.html" class="project-card">
-          <div class="project-card-header">
-            <span class="project-card-badge badge-solar">Solaire PV</span>
+      <div class="projects-grid">
+        <a href="pleiades.html" class="project-card reveal" data-tilt>
+          <div class="project-card-top">
+            <span class="project-card-badge badge-audit">Audit · STD</span>
+            <i class="fas fa-building project-card-icon"></i>
           </div>
-          <div class="project-card-body">
-            <h3>Gouttes d'Espoir – Étude solaire</h3>
-            <p>Dimensionnement d'un système photovoltaïque pour l'alimentation d'une unité de traitement d'eau en zones rurales. Analyse de faisabilité technico-économique.</p>
-            <span class="project-card-link">Voir le projet</span>
-          </div>
-        </a>
-        
-       <a href="audit-trame.html" class="project-card">
-  <div class="project-card-header">
-    <span class="project-card-badge badge-audit">
-      Audit énergétique
-    </span>
-  </div>
-
-  <div class="project-card-body">
-    <h3>Trame Audit Énergétique Tertiaire</h3>
-
-    <p>
-      Trame interactive d'audit énergétique, outil web complet avec
-      calculateur OPERAT intégré, checklist de conformité, et export
-      PDF/JSON.
-    </p>
-
-    <span class="project-card-link">Voir le projet</span>
-  </div>
-</a>
-        
-        <a href="pleiades.html" class="project-card">
-          <div class="project-card-header">
-            <span class="project-card-badge badge-audit">Audit énergétique</span>
-          </div>
-          <div class="project-card-body">
-            <h3>Audit STD – Bâtiment tertiaire (437 m²)</h3>
-            <p>Modélisation thermique dynamique sous Pleiades. Réduction de 50 % (123 → 56 kWhEP/m².an), classe A atteinte.</p>
-            <span class="project-card-link">Voir le projet</span>
-          </div>
+          <h3>Audit STD – Bâtiment tertiaire (437 m²)</h3>
+          <p>Modélisation thermique dynamique sous Pleiades/Comfie et calcul DPE. Préconisations CVC : PAC air/eau, VMC double flux, LED, 10 kWc PV.</p>
+          <div class="project-card-result">−50 % de consommation · classe A atteinte</div>
+          <span class="project-card-link">Voir le projet <i class="fas fa-arrow-right"></i></span>
         </a>
 
-         <a href="hp-flottante.html" class="project-card">
-          <div class="project-card-header">
+        <a href="hp-flottante.html" class="project-card reveal" data-tilt>
+          <div class="project-card-top">
             <span class="project-card-badge badge-cvc">Froid &amp; CVC</span>
+            <i class="fas fa-snowflake project-card-icon"></i>
           </div>
-          <div class="project-card-body">
-            <h3>Audit HP flottante – Centrale 30 kW</h3>
-            <p>Diagnostic énergétique R134a/R1234yf. Conception régulation HP flottante. Réduction jusqu'à 30 %, soit 20 000 kWh/an.</p>
-            <span class="project-card-link">Voir le projet</span>
-          </div>
+          <h3>Audit HP flottante – Centrale 30 kW</h3>
+          <p>Diagnostic énergétique R134a / R1234yf, conception d'une régulation HP flottante (Eliwell FREE HPF 6200).</p>
+          <div class="project-card-result">−30 % · 20 000 kWh/an économisés · TRI &lt; 1 an</div>
+          <span class="project-card-link">Voir le projet <i class="fas fa-arrow-right"></i></span>
         </a>
 
-        <a href="techecocalc.html" class="project-card">
-          <div class="project-card-header">
+        <a href="audit-trame.html" class="project-card reveal" data-tilt>
+          <div class="project-card-top">
+            <span class="project-card-badge badge-audit">Outil web</span>
+            <i class="fas fa-clipboard-list project-card-icon"></i>
+          </div>
+          <h3>Trame Audit Énergétique Tertiaire</h3>
+          <p>Trame interactive d'audit — outil web complet avec calculateur OPERAT intégré, checklist de conformité et export PDF/JSON.</p>
+          <div class="project-card-result">NF EN 16247 · OPERAT</div>
+          <span class="project-card-link">Voir le projet <i class="fas fa-arrow-right"></i></span>
+        </a>
+
+        <a href="gouttes.html" class="project-card reveal" data-tilt>
+          <div class="project-card-top">
+            <span class="project-card-badge badge-solar">Solaire PV</span>
+            <i class="fas fa-solar-panel project-card-icon"></i>
+          </div>
+          <h3>Goutte d'Espoir – Étude solaire</h3>
+          <p>Dimensionnement d'un système photovoltaïque pour l'alimentation d'une unité de traitement d'eau en zone rurale. Faisabilité technico-économique.</p>
+          <div class="project-card-result">Accès à l'eau · zones rurales</div>
+          <span class="project-card-link">Voir le projet <i class="fas fa-arrow-right"></i></span>
+        </a>
+
+        <a href="techecocalc.html" class="project-card reveal" data-tilt>
+          <div class="project-card-top">
             <span class="project-card-badge badge-dev">Développement</span>
+            <i class="fas fa-calculator project-card-icon"></i>
           </div>
-          <div class="project-card-body">
-            <h3>TECHECOCALC AI</h3>
-            <p>Plateforme web de calcul et dimensionnement des systèmes solaires avec analyses technico-économiques et interface conviviale.</p>
-            <span class="project-card-link">Voir le projet</span>
-          </div>
+          <h3>TECHECOCALC AI</h3>
+          <p>Plateforme web de calcul et de dimensionnement des systèmes solaires avec analyses technico-économiques et interface conviviale.</p>
+          <div class="project-card-result">Python · outil de dimensionnement</div>
+          <span class="project-card-link">Voir le projet <i class="fas fa-arrow-right"></i></span>
         </a>
 
-        <a href="stage-temasol.html" class="project-card">
-          <div class="project-card-header">
-            <span class="project-card-badge badge-stage">Stage</span>
-          </div>
-          <div class="project-card-body">
-            <h3>Stage Temasol – Maintenance &amp; SAV</h3>
-            <p>Maintenance solaire thermique et PV. Plan préventif réduisant de 25 % les pannes. 15 rapports techniques rédigés.</p>
-            <span class="project-card-link">Voir le projet</span>
-          </div>
-        </a>
-
-        <a href="operateur-csp.html" class="project-card">
-          <div class="project-card-header">
-            <span class="project-card-badge badge-solar">CSP</span>
-          </div>
-          <div class="project-card-body">
-            <h3>Opérateur CSP – NOMAC NOOR 1</h3>
-            <p>Supervision en temps réel des paramètres de la centrale CSP Noor 1 via SCADA et analyse des processus de production.</p>
-            <span class="project-card-link">Voir le projet</span>
-          </div>
-        </a>
-
-        <a href="conception-cvc.html" class="project-card">
-          <div class="project-card-header">
+        <a href="conception-cvc.html" class="project-card reveal" data-tilt>
+          <div class="project-card-top">
             <span class="project-card-badge badge-cvc">CVC</span>
+            <i class="fas fa-wind project-card-icon"></i>
           </div>
-          <div class="project-card-body">
-            <h3>Conception réseaux fluides CVC</h3>
-            <p>Dimensionnement EP/EF/ECS, calcul pertes de charge. Plans techniques AutoCAD. Sélection équipements hydrauliques.</p>
-            <span class="project-card-link">Voir le projet</span>
+          <h3>Conception réseaux fluides CVC</h3>
+          <p>Dimensionnement EP/EF/ECS, calcul de pertes de charge et plans techniques AutoCAD (DWG). Sélection d'équipements hydrauliques.</p>
+          <div class="project-card-result">EP / EF / ECS · AutoCAD</div>
+          <span class="project-card-link">Voir le projet <i class="fas fa-arrow-right"></i></span>
+        </a>
+
+        <a href="stage-temasol.html" class="project-card reveal" data-tilt>
+          <div class="project-card-top">
+            <span class="project-card-badge badge-stage">Maintenance</span>
+            <i class="fas fa-screwdriver-wrench project-card-icon"></i>
           </div>
+          <h3>Stage TEMASOL – Maintenance &amp; SAV</h3>
+          <p>Maintenance solaire thermique et PV. Plan préventif structuré et suivi des pièces détachées.</p>
+          <div class="project-card-result">−25 % de pannes · 15 rapports</div>
+          <span class="project-card-link">Voir le projet <i class="fas fa-arrow-right"></i></span>
+        </a>
+
+        <a href="operateur-csp.html" class="project-card reveal" data-tilt>
+          <div class="project-card-top">
+            <span class="project-card-badge badge-solar">CSP</span>
+            <i class="fas fa-sun project-card-icon"></i>
+          </div>
+          <h3>Opérateur CSP – NOMAC NOOR 1</h3>
+          <p>Supervision en temps réel des paramètres d'une centrale solaire à concentration de 160 MW via SCADA 24/7.</p>
+          <div class="project-card-result">160 MW · SCADA</div>
+          <span class="project-card-link">Voir le projet <i class="fas fa-arrow-right"></i></span>
         </a>
       </div>
     </section>
 
     <!-- ========== CONTACT ========== -->
     <section id="contact" class="contact-section">
-      <div class="reveal">
+      <div class="contact-inner reveal">
+        <span class="eyebrow">05 — Contact</span>
         <h2>Travaillons ensemble</h2>
-        <p class="contact-subtitle">Vous recherchez un apprenti ingénieur en énergétique ? N'hésitez pas à me contacter.</p>
-      </div>
-      <div class="contact-grid reveal">
-        <a href="tel:+33660354796" class="contact-card">
-          <i class="fas fa-phone"></i>
-          <span>06 60 35 47 96</span>
-        </a>
-        <a href="mailto:abdelilahelghzouani@gmail.com" class="contact-card">
-          <i class="fas fa-envelope"></i>
-          <span>abdelilahelghzouani@gmail.com</span>
-        </a>
-        <a href="https://www.linkedin.com/in/alternance-paris-cvc-énergies-renouvelables-efficacité-énergétique" target="_blank" rel="noopener" class="contact-card">
-          <i class="fab fa-linkedin"></i>
-          <span>LinkedIn</span>
-        </a>
-        <div class="contact-card">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>Paris 17ᵉ</span>
+        <p class="contact-subtitle">
+          Vous recherchez un apprenti ingénieur en énergétique pour 12 à 24 mois,
+          disponible en septembre 2026 ? Écrivons la suite.
+        </p>
+        <div class="contact-grid">
+          <a href="tel:+33660354796" class="contact-card" data-magnetic>
+            <i class="fas fa-phone"></i>
+            <span class="contact-label">Téléphone</span>
+            <span class="contact-value">06 60 35 47 96</span>
+          </a>
+          <a href="mailto:abdelilahelghzouani@gmail.com" class="contact-card" data-magnetic>
+            <i class="fas fa-envelope"></i>
+            <span class="contact-label">Email</span>
+            <span class="contact-value">abdelilahelghzouani@gmail.com</span>
+          </a>
+          <a href="https://www.linkedin.com/in/alternance-paris-cvc-énergies-renouvelables-efficacité-énergétique" target="_blank" rel="noopener" class="contact-card" data-magnetic>
+            <i class="fab fa-linkedin"></i>
+            <span class="contact-label">Réseau</span>
+            <span class="contact-value">LinkedIn</span>
+          </a>
+          <div class="contact-card">
+            <i class="fas fa-location-dot"></i>
+            <span class="contact-label">Localisation</span>
+            <span class="contact-value">Paris 17ᵉ · France</span>
+          </div>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- ========== FOOTER ========== -->
   <footer>
-    © 2026 Abdelilah El Ghazouani – Portfolio
+    <span>© 2026 Abdelilah Elghazouani</span>
+    <span class="footer-sep">·</span>
+    <span>Ingénieur Énergétique — Portfolio</span>
   </footer>
 
-  <!-- ========== DOWNLOAD CV BUTTON ========== -->
   <a href="docs/CV-Elghazouani-Abdelilah.pdf" download class="download-cv-btn" title="Télécharger mon CV">
-    <i class="fas fa-download"></i> Télécharger CV
+    <i class="fas fa-download"></i> <span>Télécharger le CV</span>
   </a>
 
   <script src="script.js"></script>
